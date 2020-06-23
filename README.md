@@ -1,24 +1,62 @@
-# README
+# trasto
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+"travel story"、略してtrasto。このtrastoという言葉はスペイン語で「役に立たないオンボロ」という意味。
+ネガティブな響きにも聞こえますが、あなたがゲストハウスでの出来事を記録した日記のような、なんてことない体験談も、そこに行ったことのない誰かにとってはとても役に立つ情報になるはずというメッセージを込めて名付けました。
 
-Things you may want to cover:
+## サイト概要
 
-* Ruby version
+trastoは全国のゲストハウスに関する情報共有や、ゲストハウス好きのユーザー同士の交流を目的としたSNSサイトです。
+今まで行ったゲストハウスをお気に入りに登録したり、気になるゲストハウスを行きたいリストにキープすることもできます。
+お気に入りのゲストハウスに応援コメントを残したり、写真や文章と一緒にあなたがゲストハウスで体験したストーリーを投稿することもできます。
+2020年7月にオープンしたばかりの新しいSNSサイトです。今はまだ真っ白なページにあなただけの物語を描いてみませんか？
 
-* System dependencies
+### サイトテーマ
 
-* Configuration
+全国のゲストハウスファンを繋ぐ架け橋としてのSNSサイト
 
-* Database creation
+### テーマを選んだ理由
 
-* Database initialization
+あなたは旅先でゲストハウスに泊まったことはありますか？
+ゲストハウスはただの安宿ではありません。それぞれに特色があり、それぞれのゲストハウスでしか得ることのできない体験があります。
+これらの情報は今までは書籍や、個人のブログ、Google Mapへのコメントなどからしか得ることができず、統合されたプラットフォームは存在していませんでした。
+「もっとたくさんの人にゲストハウスの魅力を知ってほしい。もっと手軽にゲストハウスのことを知ってもらえる情報源があったらいいな。」そのような思いからtrastoは生まれました。
 
-* How to run the test suite
+### ターゲットユーザ
 
-* Services (job queues, cache servers, search engines, etc.)
+旅が好き、ゲストハウスに泊まるのが好きな日本全国の旅行者
 
-* Deployment instructions
+### 主な利用シーン
 
-* ...
+・ユーザーはゲストハウスに宿泊した後に、そのゲストハウスでの『ストーリー』を写真や文章と一緒に投稿する。  
+・他のユーザーが投稿したストーリーに『コメント』や『いいね』を残すことができる。  
+・ストーリーを残すのは少し手間というライトユーザーは行ったことのあるゲストハウスへの『応援コメント』を投稿する。  
+・ユーザーは好きなゲストハウスを『お気に入りリスト』に登録したり、他のユーザーの『ストーリー』を読んで気になったゲストハウスを『行きたいリスト』に登録することができる。  
+・ユーザーはツイッター感覚で、旅に関する『つぶやき』をすることができる。他のユーザーはその『つぶやき』に対して『コメント』や『いいね』を残すことができる。  
+・上記の『つぶやき』機能には本家Twitterと同様に他のユーザーをフォローしたり、他のユーザーからフォローされる機能が備わっている。  
+・双方のユーザーが承認すれば他の人にはやりとりを見られることのない『チャット』でのやりとりもすることができる。  
+
+## 設計書
+
+### ER図
+
+https://drive.google.com/file/d/17yoAxT9jRp7GEhbl4oK1InPRb3PNv0Ma/view?usp=sharing
+
+### データベース定義書
+
+https://drive.google.com/file/d/17e0RIeYr3ggOAGpvfDQd_bw7hTbPTF5c/view?usp=sharing
+
+### アプリケーション詳細設計
+
+https://drive.google.com/file/d/14TwSX4paQjc2i_sKvJU4T4JvkpGy8Sjh/view?usp=sharing
+
+### UIフロー
+
+https://drive.google.com/file/d/1ar0s2OQ3lJ9snnRYmI6ZYhjiLtKQZHfv/view?usp=sharing
+
+### ワイヤーフレーム
+
+https://drive.google.com/file/d/183jRX328wrRc8NRxN_iW6Z8nvan13XLf/view?usp=sharing
+
+### 機能一覧
+
+https://docs.google.com/spreadsheets/d/189dJTlmK8Zm1sxLN4mIa5wTC9Z3ABPJg00Rdkbz00sY/edit?usp=sharing
