@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_045018) do
+ActiveRecord::Schema.define(version: 2020_06_24_070529) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_045018) do
     t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatar"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -158,6 +159,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_045018) do
     t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "avatar"
   end
 
   add_foreign_key "bookmarks", "houses"
