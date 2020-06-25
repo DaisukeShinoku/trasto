@@ -1,0 +1,9 @@
+<h1>
+  <%= @user.account_name %>
+  <%= @user.display_name %>
+  <% if @user.avatar? %>
+    <%= image_tag @user.avatar.medium.url %>
+  <% else %>
+    <%= image_tag 'medium_noimage.png' %>
+  <% end %>
+</h1>

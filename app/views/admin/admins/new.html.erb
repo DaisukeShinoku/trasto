@@ -1,6 +1,7 @@
 <div>
   <div>
-    <%= form_for(:session, url: login_path) do |f| %>
+    <h1>管理者ログイン画面</h1>
+    <%= form_for(:session, url: admin_login_path) do |f| %>
 
       <%= f.label :email %>
       <%= f.email_field :email %>
@@ -10,7 +11,5 @@
 
       <%= f.submit "Log in" %>
     <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
   </div>
 </div>
