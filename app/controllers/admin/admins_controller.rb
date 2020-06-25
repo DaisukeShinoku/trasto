@@ -1,5 +1,5 @@
 class Admin::AdminsController < ApplicationController
-  include Admin::AdminsHelper
+
   def top
   end
 
@@ -24,5 +24,14 @@ class Admin::AdminsController < ApplicationController
   def admin_params
     params.require(:admin).permit(:email, :password)
   end
+
+      # ログイン済みアドミンかどうか確認
+      def logged_in_admin
+        unless logged_in_admin?
+          store_location
+          flash[:danger] = "管理者権限がありません"
+          redirect_to admin_login_url
+        end
+      end
 
 end
