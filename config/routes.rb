@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :users
     get  '/signup',  to: 'users#new'
     resources :stories
+    resources :houses
   end
 
   namespace :admin do
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
     get '/top', to: 'admins#top'
     resources :users
     resources :houses
-    resources :stories
+    resources :categories, only: [:index, :create, :edit, :update]
   end
 
 end

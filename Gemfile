@@ -60,3 +60,5 @@ gem 'mini_magick'
 gem 'fog-aws'
 
 gem 'bcrypt'
+
+gem 'jp_prefecture'

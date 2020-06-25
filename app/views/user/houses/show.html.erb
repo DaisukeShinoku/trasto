@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="columns is-full">
+    <div class="column is-2">
+      // ジャンル検索？？
+    </div>
+    <div class="column is-10">
+      <div class="columns is-multiline">
+        <div class="column is-7">
+          <figure class="image">
+          <% if @house.house_image? %>
+            <%= image_tag @house.house_image.third.url %><br>
+          <% else %>
+            <%= image_tag 'third_house_noimage.png' %><br>
+          <% end %>
+          </figure>
+          <h1><strong><%= @house.name%>/<%= @house.prefecture.name %></strong></h1><br>
+          <h1>ドミトリー:<%= @house.domitory_price %>〜/個室:<%= @house.prefecture.name %>〜</h1><br>
+          <h1>住所:<%= @house.address %></h1><br>
+          <div><%= link_to 'この宿へのストーリーを投稿する', '#', class: 'button is-primary' %></div><br>
+          <div><%= link_to 'この宿への応援コメントを投稿する', '#', class: 'button is-primary' %></div><br>
+          <div><%= link_to '他の人が書いたストーリーを読む', '#', class: 'button is-primary' %></div><br>
+          <%= link_to 'お気に入りリストに登録', '#', class: 'button is-primary' %>
+          <%= "    " %>
+          <%= link_to '行きたいリストに登録', '#', class: 'button is-primary' %>
+        </div>
+        <div class="column is-5">
+          工事中
+        </div>
+      </div>
+  </div>
+</div>
