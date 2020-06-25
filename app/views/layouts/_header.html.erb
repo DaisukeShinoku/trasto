@@ -48,7 +48,9 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-          <% if logged_in? %>
+          <% if logged_in_admin? %>
+            <%= link_to 'Log out(Admin)', admin_logout_path, method: :delete, class: 'button is-danger' %>
+          <% elsif logged_in? %>
             <%= link_to 'Log out', logout_path, method: :delete, class: 'button is-danger' %>
           <% else %>
             <%= link_to 'Sign Up', signup_path, class: 'button is-primary' %>
