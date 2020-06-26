@@ -1,0 +1,44 @@
+        <table>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td><h5>ユーザーID</h5></td>
+                    <td>
+                        <%= @user.id %>
+                        <% if @user.is_valid == false %>
+                            <span class= "label label-primary" >有効会員</span>
+                        <% else %>
+                            <span class= "label label-default" >退会済み</span>
+                        <% end %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><h5>アカウント名</h5></td>
+                    <td>@<%= {@user.acoount_name} %></td>
+                </tr>
+                <tr>
+                    <td><h5>表示名</h5></td>
+                    <td><%= {@user.display_name} %></td>
+                </tr>
+                <tr>
+                    <td><h5>Email</h5></td>
+                    <td><%= @user.email %></td>
+                </tr>
+                <tr>
+                    <td><h5>自己紹介文</h5></td>
+                    <td> <%= @user.introduction %> </td>
+                </tr>
+                <tr>
+                    <td><h5>プロフィール画像</h5></td>
+                    <td>
+                    <% if user.avatar? %>
+                      <%= image_tag user.avatar.small.url %>
+                    <% else %>
+                      <%= image_tag 'small_noimage.png' %>
+                    <% end %>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+        <%= link_to '編集する', edit_admin_user_path(@user.id), class: 'button is-link' %>
