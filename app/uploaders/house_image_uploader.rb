@@ -21,7 +21,7 @@ class HouseImageUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [960, 540]
   end
 
-  version :ffith do
+  version :fifth do
     process resize_to_fill: [1600, 900]
   end
 

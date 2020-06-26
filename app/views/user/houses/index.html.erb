@@ -18,7 +18,7 @@
             <% end %>
             <% if house.is_valid == true %>
               <p>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
-                個室:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+                個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
             <% else %>
               <p>閉館中</p>
             <% end %>
