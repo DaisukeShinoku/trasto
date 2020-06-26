@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   scope module: :user do
     resources :users
     get  '/signup',  to: 'users#new'
-    resources :stories
-    resources :houses
+    resources :houses do
+      resources :stories
+    end
   end
 
   namespace :admin do

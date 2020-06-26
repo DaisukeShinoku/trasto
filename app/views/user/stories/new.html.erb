@@ -1,0 +1,30 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <%= form_for(shallow_args(@house, @story), url:house_stories_path )do |f| %>
+        <table class="table">
+          <tr>
+            <th><%= f.label :title, 'タイトル' %></th>
+            <td><%= f.text_field :title, :size=>"100"%></td>
+          </tr>
+          <tr>
+            <th><%= f.label :visit_date, '訪問日時' %></th>
+            <td><%= f.date_field :visit_date %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :story_image, '画像を登録' %></th>
+            <td><%= f.file_field :story_image %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :content, '本文' %></th>
+            <td><%= f.text_area :content, :size=>"100x80"%></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><%= f.submit "新規登録" , class: "button is-primary"  %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</section>
