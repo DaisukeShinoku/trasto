@@ -12,6 +12,17 @@ Admin.create!(
 )
 
 User.create!(
+  account_name: 'trasto',
+  display_name: '公式アカウント',
+  email: 'trasto@trasto.com',
+  password: '111111',
+  password_confirmation: '111111',
+  introduction: 'お前が一人箱根学園のジャージと歴史、プライドを背負いゴールに向けて走る状態になったのならその時は自由に走れ。チームのことは全て忘れていい',
+  avatar: open("#{Rails.root}/db/fixtures/trasto.png"),
+  admin: true
+)
+
+User.create!(
   account_name: 'user1',
   display_name: '東堂尽八',
   email: '111@user.com',

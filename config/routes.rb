@@ -13,10 +13,10 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/login', to: 'admins#new'
-    post '/login', to: 'admins#create'
-    delete '/logout',  to: 'admins#destroy'
-    get '/top', to: 'admins#top'
+    # get '/login', to: 'admins#new'
+    # post '/login', to: 'admins#create'
+    # delete '/logout',  to: 'admins#destroy'
+    # get '/top', to: 'admins#top'
     resources :users
     resources :houses
     resources :categories, only: [:index, :create, :edit, :update]
