@@ -1,12 +1,42 @@
-<div>
-  <%= @user.account_name %>
-  <%= @user.display_name %>
-  <% if @user.avatar? %>
-    <%= image_tag @user.avatar.medium.url %>
-  <% else %>
-    <%= image_tag 'medium_noimage.png' %>
-  <% end %>
-  <% if current_user?(@user) %>
-    <%= link_to "ユーザー情報を編集", edit_user_path(@user.id) %>
-  <% end %>
+<div class="container">
+  <div class="columns is-full">
+    <div class="column is-4">
+      <table class="table">
+        <tr>
+          <td><h1><%= @user.display_name %>さん</h1><h5>@<%= @user.account_name %></h5></td>
+        </tr>
+        <tr>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <td>
+            <% if @user.avatar? %>
+              <%= image_tag @user.avatar.medium.url %>
+            <% else %>
+              <%= image_tag 'medium_noimage.png' %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% if current_user?(@user) %>
+              <%= link_to "ユーザー情報を編集", edit_user_path(@user.id) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= link_to "Follow", "#", class: 'button is-success' %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "Send Message", "#", class: 'button is-success is-light' %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "お気に入りゲストハウス一覧", bookmark_user_path(@user.id), class: 'button is-warning is-light'%></td>
+        </tr>
+      </table>
+    </div>
+    <div class="column is-8">
+      <strong>工事中</strong>
+    </div>
+  </div>
 </div>

@@ -1,5 +1,4 @@
 class User::HousesController < ApplicationController
-  before_action :logged_in_user
 
   def index
     @houses = House.all
@@ -14,7 +13,7 @@ class User::HousesController < ApplicationController
     def logged_in_user
       unless logged_in?
         store_location
-        flash[:danger] = "Please log in."
+        flash[:warning] = "Please log in."
         redirect_to login_url
       end
     end
@@ -24,4 +23,9 @@ class User::HousesController < ApplicationController
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+
+    # お気に入り機能
+    # def bookmarks
+      # @houses = current_user.bookmark_houses.includes(:user)
+    # end
 end

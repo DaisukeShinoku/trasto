@@ -18,10 +18,19 @@
           <h1>住所:<%= @house.address %></h1><br>
           <div><%= link_to 'この宿へのストーリーを投稿する', '#', class: 'button is-primary' %></div><br>
           <div><%= link_to 'この宿への応援コメントを投稿する', '#', class: 'button is-primary' %></div><br>
-          <div><%= link_to '他の人が書いたストーリーを読む', '#', class: 'button is-primary' %></div><br>
-          <%= link_to 'お気に入りリストに登録', '#', class: 'button is-primary' %>
-          <%= "    " %>
-          <%= link_to '行きたいリストに登録', '#', class: 'button is-primary' %>
+          <div><%= link_to 'ユーザーが書いたストーリーを読む', '#', class: 'button is-info' %></div><br>
+          <% if @house.bookmark_by?(current_user) %>
+            <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :delete do %>
+              <p class="button is-danger">お気に入りリストから解除</p>
+            <% end %>
+          <% else %>
+            <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :post do %>
+              <p class="button is-danger is-light">お気に入りリストに登録</p>
+            <% end %>
+          <% end %>
+          <%#= link_to 'お気に入りリストに登録', '#', class: 'button is-primary' %>
+          <%#= "    " %>
+          <%#= link_to '行きたいリストに登録', '#', class: 'button is-primary' %>
         </div>
         <div class="column is-5">
           工事中

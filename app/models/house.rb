@@ -3,6 +3,7 @@ class House < ApplicationRecord
 
   has_many :house_categories
   has_many :categories, through: :house_categories
+  has_many :bookmarks, dependent: :destroy
 
   with_options presence: true do
     validates :name
@@ -18,5 +19,10 @@ class House < ApplicationRecord
 
   def fulladdress
     self.prefecture.name + self.address
+  end
+
+  # boardのお気に入り判定 → vies側で呼び出し
+  def bookmark_by?(user)
+    bookmarks.where(user_id: user.id).exists?
   end
 end
