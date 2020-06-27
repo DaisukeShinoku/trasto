@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="has-navbar-fixed-top has-navbar-fixed-bottom">
+  <body class="has-navbar-fixed-top" >
       <%= render 'layouts/header' %>
       <% flash.each do |message_type, message| %>
         <div class="notification is-<%= message_type %>"><%= message %></div>

@@ -2,3 +2,21 @@
 @import "bulma/sass/utilities/_all.sass";
 @import "bulma/sass/grid/columns.sass";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
+body {
+  a:link {color:white; text-decoration:none }
+  a:visited { color:white; text-decoration:none }
+  a:hover { color:white; text-decoration:none }
+  a:active { color:white; text-decoration:none }
+}
+
+.header-link{
+  text-align:center;
+  line-height: 56px;
+  padding-right:12px;
+  padding-left:12px;
+}
+
+.navbar-dropdown{
+  background-color:rgb(54,54,54);
+}

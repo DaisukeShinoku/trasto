@@ -1,5 +1,6 @@
 class Admin::HousesController < ApplicationController
-  before_action :logged_in_admin
+  # before_action :logged_in_admin
+  before_action :admin_user
   before_action :set_categories
 
   def index
@@ -48,4 +49,9 @@ end
   def set_categories
     @categories = Category.where(is_valid: true)
   end
+
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end
