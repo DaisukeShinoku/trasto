@@ -1,4 +1,6 @@
 class User::ToGoListsController < ApplicationController
+  before_action :logged_in_user
+  
   def create
     @house = House.find(params[:house_id])
     to_go_list = @house.to_go_lists.new(user_id: current_user.id)

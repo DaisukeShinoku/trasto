@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+
   namespace :user do
     get 'to_go_lists/create'
     get 'to_go_lists/destroy'
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
       end
     end
     get  '/signup',  to: 'users#new'
+    resources :messages, :only => [:create]
+    resources :rooms, :only => [:create, :show, :index]
     resources :houses do
       resources :stories
       resource :bookmarks, only: %i[create destroy]
