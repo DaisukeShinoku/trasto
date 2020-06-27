@@ -33,6 +33,9 @@
         <tr>
           <td><%= link_to "お気に入りゲストハウス一覧", bookmark_user_path(@user.id), class: 'button is-warning is-light'%></td>
         </tr>
+        <tr>
+          <td><%= link_to "行きたいゲストハウス一覧", to_go_list_user_path(@user.id), class: 'button is-warning is-light'%></td>
+        </tr>
       </table>
     </div>
     <div class="column is-8">

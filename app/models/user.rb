@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   has_many :stories, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :to_go_lists, dependent: :destroy
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

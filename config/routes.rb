@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   namespace :user do
+    get 'to_go_lists/create'
+    get 'to_go_lists/destroy'
+    get 'to_go_lists/index'
+  end
+  namespace :user do
     get 'bookmarks/create'
     get 'bookmarks/destroy'
   end
@@ -12,12 +17,14 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :bookmark, to: 'bookmarks#index'
+        get :to_go_list, to: 'to_go_lists#index'
       end
     end
     get  '/signup',  to: 'users#new'
     resources :houses do
       resources :stories
       resource :bookmarks, only: %i[create destroy]
+      resource :to_go_lists, only: %i[create destroy]
       get :bookmarks, on: :collection
     end
   end
