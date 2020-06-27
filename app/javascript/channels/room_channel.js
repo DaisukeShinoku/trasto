@@ -23,4 +23,16 @@ document.addEventListener('turbolinks:load', () => {
           messageContainer.insertAdjacentHTML('beforeend', data['message'])
       }
   })
+  // ********** 以下を追加 **********
+  const documentElement = document.documentElement
+  // js.erb 内でも使用できるように変数を決定
+  window.messageContent = document.getElementById('message_content')
+  // 一番下まで移動する関数。js.erb 内でも使用できるように変数を決定
+  window.scrollToBottom = () => {
+      window.scroll(0, documentElement.scrollHeight)
+  }
+
+  // 最初にページ一番下へ移動させる
+  scrollToBottom()
+// ********** 以上を追加 **********
 })
