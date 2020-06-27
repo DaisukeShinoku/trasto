@@ -28,7 +28,21 @@
           <td><%= link_to "Follow", "#", class: 'button is-success' %></td>
         </tr>
         <tr>
-          <td><%= link_to "Send Message", "#", class: 'button is-success is-light' %></td>
+          <td>
+          <% if @user.id == current_user.id %>
+          <% else %>
+            <% if @isRoom == true %>
+              <%= link_to "Send Message", "/rooms/#{@roomId}", class: 'button is-success' , data: {"turbolinks" => false} %>
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, :value=> @user.id %>
+                <% end %>
+                <%= f.submit "Start Chat", class: 'button is-success', data: {"turbolinks" => false} %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <td>
         </tr>
         <tr>
           <td><%= link_to "お気に入りゲストハウス一覧", bookmark_user_path(@user.id), class: 'button is-warning is-light'%></td>
@@ -43,3 +57,5 @@
     </div>
   </div>
 </div>
+
+<%= render 'layouts/footer' %>

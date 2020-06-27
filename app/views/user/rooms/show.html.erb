@@ -1,0 +1,14 @@
+<div class="has-navbar-fixed-bottom">
+<h1>DM</h1>
+
+<h4>参加者</h4>
+<% @entries.each do |e| %>
+  <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
+<% end %>
+
+<hr>
+  <div id="message-container">
+    <%= render @messages %>
+  </div>
+<%= render 'roomfooter' %>
+</div>
