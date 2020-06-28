@@ -20,7 +20,7 @@ document.addEventListener('turbolinks:load', () => {
 
       received(data) {
           // サーバー側から受け取ったHTMLを一番最後に加える
-          messageContainer.insertAdjacentHTML('beforeend', data['message'])
+          messageContainer.insertAdjacentHTML('beforeend', data['message', 'oldest_message_id'])
       }
   })
   const documentElement = document.documentElement
@@ -91,7 +91,7 @@ document.addEventListener('turbolinks:load', () => {
             var request = new XMLHttpRequest();
             request.open('GET', location.pathname + '/show_additionally', true);
             request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-            request.send({oldest_message_id: oldestMessageId, remote: true});
+            request.sendData({oldest_message_id: oldestMessageId, remote: true});
         }
     }, {passive: true});
     // ********** 以上を追加 **********
