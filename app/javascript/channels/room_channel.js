@@ -1,5 +1,6 @@
 import consumer from "./consumer"
 
+
 // turbolinks の読み込みが終わった後にidを取得しないと，エラーが出ます。
 document.addEventListener('turbolinks:load', () => {
 
@@ -88,8 +89,9 @@ document.addEventListener('turbolinks:load', () => {
                 // cache: false,
                 // data: {oldest_message_id: oldestMessageId, remote: true}
             // })
-            var request = new XMLHttpRequest();
-            request.open('GET', location.pathname + '/show_additionally', true);
+            var request = require('superagent');
+            var noCache = require('superagent-no-cache');
+            request.open.use(noCache)('GET', location.pathname + '/show_additionally', true);
             request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
             request.send({oldest_message_id: oldestMessageId, remote: true});
         }
