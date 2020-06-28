@@ -82,12 +82,16 @@ document.addEventListener('turbolinks:load', () => {
             // 表示済みのメッセージの内，最も古いidを取得
             oldestMessageId = document.getElementsByClassName('message')[0].id.replace(/[^0-9]/g, '')
             // Ajax を利用してメッセージの追加読み込みリクエストを送る。最も古いメッセージidも送信しておく。
-            $.ajax({
-                type: 'GET',
-                url: '/rooms/:id/show_additionally',
-                cache: false,
-                data: {oldest_message_id: oldestMessageId, remote: true}
-            })
+            // $.ajax({
+                // type: 'GET',
+                // url: '/show_additionally',
+                // cache: false,
+                // data: {oldest_message_id: oldestMessageId, remote: true}
+            // })
+            var request = new XMLHttpRequest();
+            request.open('GET', location.pathname + '/show_additionally', true);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            request.send({oldest_message_id: oldestMessageId, remote: true});
         }
     }, {passive: true});
     // ********** 以上を追加 **********
