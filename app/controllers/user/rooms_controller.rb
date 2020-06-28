@@ -9,7 +9,7 @@ class User::RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     if Entry.where(:user_id => current_user.id, :room_id => @room.id).present?
-      @messages = @room.messages.includes(:user).order(:id)
+      @messages = @room.messages.includes(:user).order(:id).last(20)
       @message = current_user.messages.build
       @entries = @room.entries
     else
