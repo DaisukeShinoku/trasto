@@ -72,7 +72,7 @@ document.addEventListener('turbolinks:load', () => {
     }
 
     // ********** 以下を追加 **********
-    let oldestMessageId
+    let oldest_message_id
     // メッセージの追加読み込みの可否を決定する変数
     window.showAdditionally = true
 
@@ -80,7 +80,7 @@ document.addEventListener('turbolinks:load', () => {
         if (documentElement.scrollTop === 0 && showAdditionally) {
             showAdditionally = false
             // 表示済みのメッセージの内，最も古いidを取得
-            oldestMessageId = document.getElementsByClassName('message')[0].id.replace(/[^0-9]/g, '')
+            oldest_message_id = document.getElementsByClassName('message')[0].id.replace(/[^0-9]/g, '')
 
             // jQuery導入の場合
             // Ajax を利用してメッセージの追加読み込みリクエストを送る。最も古いメッセージidも送信しておく。
@@ -94,7 +94,7 @@ document.addEventListener('turbolinks:load', () => {
             var request = new XMLHttpRequest();
             request.open('GET', location.pathname + '/show_additionally', true);
             request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-            request.send({oldest_message_id: oldestMessageId, remote: true});
+            request.send(`oldest_message_id`);
         }
     }, {passive: true});
     // ********** 以上を追加 **********
