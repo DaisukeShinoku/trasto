@@ -1,5 +1,21 @@
 import consumer from "./consumer"
 
+import axios from 'axios';
+
+axios.interceptors.request.use(function (config) {
+    if (typeof config.params === 'undefined') {
+      config.params = {};
+    }
+    if (typeof config.params === 'object') {
+      if (typeof URLSearchParams === 'function' && config.params instanceof URLSearchParams)
+        config.params.append('_', Date.now());
+      else
+        config.params._ = Date.now();
+    }
+  
+    return config;
+  });
+
 // turbolinks の読み込みが終わった後にidを取得しないと，エラーが出ます。
 document.addEventListener('turbolinks:load', () => {
 
@@ -91,7 +107,7 @@ document.addEventListener('turbolinks:load', () => {
             var request = new XMLHttpRequest();
             request.open('GET', location.pathname + '/show_additionally', true);
             request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-            request.send({oldest_message_id: oldestMessageId, remote: true});
+            request.sendData({oldest_message_id: oldestMessageId, remote: true});
         }
     }, {passive: true});
     // ********** 以上を追加 **********
