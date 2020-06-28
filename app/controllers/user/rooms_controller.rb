@@ -16,4 +16,12 @@ class User::RoomsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+  def show_additionally
+    # ********** 以下を追加 **********
+    # 追加のメッセージ10件を取得する
+    last_id = params[:oldest_message_id].to_i - 1    
+    @messages = Message.includes(:user).order(:id).where(id: 1..last_id).last(10)
+    # ********** 以上を追加 **********
+  end
 end

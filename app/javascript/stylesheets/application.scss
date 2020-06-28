@@ -20,13 +20,23 @@
 #message-container {
   max-width: 768px;
   margin: 0 auto;
-  padding: 1rem 1rem 8rem 1rem;
+  padding: 1rem 1rem 1rem 1rem;
 }
 
 // メッセージ投稿フォーム
 roomfooter {
   max-width: 768px;
-  padding: 1rem;
+  // padding: 1rem;
   margin: 0 auto;
-  background-color: white;
+}
+
+.footerforroom{
+  background-color:rgb(54,54,54);
+  padding-top: 1rem;
+  // padding-bottom: 15rem;
+}
+
+// ユーザーがフォームサイズを自由に変更できる機能を停止させておく
+#message_content {
+  resize: none;
 }
