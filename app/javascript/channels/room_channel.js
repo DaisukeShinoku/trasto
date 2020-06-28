@@ -86,7 +86,7 @@ document.addEventListener('turbolinks:load', () => {
             // Ajax を利用してメッセージの追加読み込みリクエストを送る。最も古いメッセージidも送信しておく。
             // $.ajax({
                 // type: 'GET',
-                // url: '/show_additionally',
+                // url: location.pathname + '/show_additionally',
                 // cache: false,
                 // data: {oldest_message_id: oldestMessageId, remote: true}
             // })
