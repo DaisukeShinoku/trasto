@@ -62,3 +62,5 @@ gem 'fog-aws'
 gem 'bcrypt'
 
 gem 'jp_prefecture'
+
+gem 'dotenv-rails'
