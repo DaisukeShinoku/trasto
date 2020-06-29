@@ -20,7 +20,7 @@ document.addEventListener('turbolinks:load', () => {
 
       received(data) {
           // サーバー側から受け取ったHTMLを一番最後に加える
-          messageContainer.insertAdjacentHTML('beforeend', data['message', 'oldest_message_id'])
+          messageContainer.insertAdjacentHTML('beforeend', data['message'])
       }
   })
   const documentElement = document.documentElement
