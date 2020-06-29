@@ -1,0 +1,42 @@
+@import "bulma";
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/grid/columns.sass";
+
+.header-link{
+  a:link {color:white; text-decoration:none }
+  a:visited { color:white; text-decoration:none }
+  a:hover { color:white; text-decoration:none }
+  a:active { color:white; text-decoration:none }
+  text-align:center;
+  line-height: 56px;
+  padding-right:12px;
+  padding-left:12px;
+}
+
+.navbar-dropdown{
+  background-color:rgb(54,54,54);
+}
+
+#message-container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+// メッセージ投稿フォーム
+roomfooter {
+  max-width: 768px;
+  // padding: 1rem;
+  margin: 0 auto;
+}
+
+.footerforroom{
+  background-color:rgb(54,54,54);
+  padding-top: 1rem;
+  // padding-bottom: 15rem;
+}
+
+// ユーザーがフォームサイズを自由に変更できる機能を停止させておく
+#message_content {
+  resize: none;
+}

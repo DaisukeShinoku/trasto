@@ -1,0 +1,23 @@
+<div>
+  <div>
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :remember_me, class: "checkbox level" do %>
+        <%= f.check_box :remember_me, class: "level-item" %>
+        <span class="level-item">Remember me on this computer</span>
+      <% end %>
+
+      <%= f.submit "Log in", class: "button is-primary"%>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="columns is-full">
+    <div class="column is-3">
+      // ジャンル検索？？
+    </div>
+    <div class="column is-10">
+      <h1><strong><%= @house.name %>のストーリー一覧</strong></h1><br>
+      <div class="columns is-multiline">
+        <% @house.stories.each do |story| %>
+        <div class="column is-4">
+             <%= link_to house_story_path(story) do %>
+              <% if story.story_image? %>
+                <%= image_tag story.story_image.second.url %>
+              <% else %>
+                <%= image_tag 'second_story_noimage.png' %>
+              <% end %>
+              <p><strong><%= story.title %></strong>/<%= story.user.display_name %></p>
+            <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

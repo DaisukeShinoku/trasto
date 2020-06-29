@@ -1,0 +1,33 @@
+  <table class="table">
+    <tr class="active">
+      <th>アカウント名</th>
+      <th>表示名</th>
+      <th>email</th>
+      <th>ステータス</th>
+      <th>画像</th>
+      <th></th>
+    </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to user.account_name, user_path(user.id) %></td>
+      <td><%= user.display_name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <% if user.is_valid == true %>
+          <%= "有効" %>
+        <% else %>
+          <%= "退会済み" %>
+        <% end %>
+      </td>
+      <td>
+        <% if user.avatar? %>
+          <%= image_tag user.avatar.small.url %>
+        <% else %>
+          <%= image_tag 'small_noimage.png' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+
+<%= render 'layouts/footer' %>

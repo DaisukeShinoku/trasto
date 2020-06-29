@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="columns is-full">
+    <div class="column is-3">
+      // ジャンル検索？？
+    </div>
+    <div class="column is-10">
+      <h1><strong><%= @user.display_name%>さんの行きたいゲストハウス一覧</strong></h1><br>
+      <div class="columns is-multiline">
+        <% @to_go_lists.each  do |to_go_list| %>
+          <div class="column is-4">
+             <%= link_to house_path(to_go_list.house) do %>
+              <% if to_go_list.house.house_image? %>
+                <%= image_tag to_go_list.house.house_image.second.url %>
+              <% else %>
+                <%= image_tag 'second_house_noimage.png' %>
+              <% end %>
+              <p><strong><%= to_go_list.house.name %></strong>/<%= to_go_list.house.prefecture.name %></p>
+            <% end %>
+            <% if to_go_list.house.is_valid == true %>
+              <p>ドミトリー:<%= number_to_currency(to_go_list.house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
+                個室:<%= number_to_currency(to_go_list.house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+            <% else %>
+              <p>閉館中</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

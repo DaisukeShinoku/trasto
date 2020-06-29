@@ -1,0 +1,44 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-vcentered">
+          <div class="column is-5">
+            <figure class="image">
+            <% if @story.story_image? %>
+              <%= image_tag @story.story_image.third.url %><br>
+            <% else %>
+              <%= image_tag 'third_story_noimage.png' %><br>
+            <% end %>
+            </figure>
+          </div>
+
+          <div class="is-6 is-offset-1">
+            <table class="table">
+              <tr>
+                <th>タイトル</th>
+                <td><%= @story.name %><td>
+              </tr>
+              <tr>
+                <th>投稿したユーザー</th>
+                <td><%= @story.user.display_name %><td>
+              </tr>
+              <tr>
+                <th>訪問したゲストハウス</th>
+                <td><%= @story.house.name %><td>
+              </tr>
+              <tr>
+                <th>訪問日</th>
+                <td><%= @story.visit_date %><td>
+              </tr>
+            </table>
+            <div class="container">
+              <h1>本文</h1>
+              <%= @story.title %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render 'layouts/footer' %>

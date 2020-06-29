@@ -1,0 +1,32 @@
+<h1>カテゴリー一覧</h1>
+
+<%= form_for(@category, url:admin_categories_path) do |f| %>
+
+    <div class="field">
+      <p>カテゴリー追加</p>
+      <%= f.text_field :name %>
+      有効 <%= f.radio_button :is_valid, true %>
+      無効 <%= f.radio_button :is_valid, false %> 
+      <%= f.submit '追加', class: 'button is-primary' %>
+    </div>
+<% end %>
+
+<table class="table">
+  <tr>
+    <th>カテゴリーID</th>
+    <th></th>
+  </tr>
+  <% @categories.each do |category| %>
+  <tr>
+      <td> <%= category.name %> </td>
+    <% if category.is_valid == true %>
+      <td> 有効 </td>
+    <% else %>
+      <td> 無効 </td>
+    <% end %>
+      <td> <%= link_to "編集する", edit_admin_category_path(category), class: 'button is-primary' %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= render 'layouts/footer' %>

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="columns is-full">
+    <div class="column is-2">
+      // ジャンル検索？？
+    </div>
+    <div class="column is-10">
+      <div class="columns is-multiline">
+        <div class="column is-7">
+          <figure class="image">
+          <% if @house.house_image? %>
+            <%= image_tag @house.house_image.third.url %><br>
+          <% else %>
+            <%= image_tag 'third_house_noimage.png' %><br>
+          <% end %>
+          </figure>
+          <h1><strong><%= @house.name%>/<%= @house.prefecture.name %></strong></h1><br>
+          <h1>ドミトリー:<%= @house.domitory_price %>〜/個室:<%= @house.private_price %>〜</h1><br>
+          <h1>住所:<%= @house.address %></h1><br>
+          <% if logged_in? %>
+            <div><%= link_to 'この宿へのストーリーを投稿する', '#', class: 'button is-primary' %></div><br>
+            <div><%= link_to 'この宿への応援コメントを投稿する', '#', class: 'button is-primary' %></div><br>
+          <% end %>
+          <div><%= link_to 'この宿に投稿されたストーリーを読む', '#', class: 'button is-info' %></div><br>
+          <% if logged_in? %>
+            <% if @house.bookmark_by?(current_user) %>
+              <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :delete do %>
+                <p class="button is-danger">お気に入りリストから解除</p>
+              <% end %>
+            <% else %>
+              <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :post do %>
+                <p class="button is-danger is-light">お気に入りリストに登録</p>
+              <% end %>
+            <% end %>
+            <% if @house.listed_by?(current_user) %>
+              <%= link_to house_to_go_lists_path(@house, redirect_id: 0), method: :delete do %>
+                <p class="button is-danger">行きたいリストから解除</p>
+              <% end %>
+            <% else %>
+              <%= link_to house_to_go_lists_path(@house, redirect_id: 0), method: :post do %>
+                <p class="button is-danger is-light">行きたいリストに登録</p>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="column is-5">
+          工事中
+        </div>
+      </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

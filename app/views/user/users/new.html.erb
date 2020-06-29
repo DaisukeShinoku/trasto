@@ -1,0 +1,30 @@
+<h1>Create your profile</h1>
+<div>
+  <div>
+    <%= form_for(@user) do |f| %>
+      <%= f.label :account_name %>
+      <%= f.text_field :account_name %>
+
+      <%= f.label :display_name %>
+      <%= f.text_field :display_name %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.label :introduction %>
+      <%= f.text_field :introduction %>
+
+      <%= f.file_field :avatar %>
+
+      <%= f.submit "Create my account" %>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

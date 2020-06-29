@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="columns is-full">
+    <div class="column is-3">
+      // ジャンル検索？？
+    </div>
+    <div class="column is-10">
+      <h1><strong><%= @user.display_name%>さんのお気に入りのゲストハウス一覧</strong></h1><br>
+      <div class="columns is-multiline">
+        <% @bookmarks.each  do |bookmark| %>
+          <div class="column is-4">
+             <%= link_to house_path(bookmark.house) do %>
+              <% if bookmark.house.house_image? %>
+                <%= image_tag bookmark.house.house_image.second.url %>
+              <% else %>
+                <%= image_tag 'second_house_noimage.png' %>
+              <% end %>
+              <p><strong><%= bookmark.house.name %></strong>/<%= bookmark.house.prefecture.name %></p>
+            <% end %>
+            <% if bookmark.house.is_valid == true %>
+              <p>ドミトリー:<%= number_to_currency(bookmark.house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
+                個室:<%= number_to_currency(bookmark.house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+            <% else %>
+              <p>閉館中</p>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>
