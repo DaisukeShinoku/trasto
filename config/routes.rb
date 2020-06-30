@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
     get  '/signup',  to: 'users#new'
     resources :messages, :only => [:create]
+    resources :tweets
     resources :rooms, :only => [:create, :show, :index] do
       member do
         get :show_additionally, to: 'rooms#show_additionally'

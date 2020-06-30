@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="columns is-full">
+    <div class="column is-3">
+      // ？？
+    </div>
+    <div class="column is-9">
+      <div class="columns is-multiline">
+        <div class="column is-8">
+          <div></div>
+          <br>
+          <h1>今の気持ちをツイートしよう</h1>
+          <%= form_for(@tweet) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div class="field">
+              <%= f.text_area :content, :size=>"80x6", placeholder: "今の気持ちをツイートしよう..." %>
+            </div>
+            <%= f.submit "Post", class: "button is-primary" %>
+          <% end %>
+        </div>
+        <div class="column is-4">
+          <br>
+          <div></div>
+          <br>
+          <div></div>
+          <br>
+          <div>//工事中//</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>
