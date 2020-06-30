@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       member do
         get :bookmark, to: 'bookmarks#index'
         get :to_go_list, to: 'to_go_lists#index'
+        get :following, :followers
       end
     end
     get  '/signup',  to: 'users#new'
