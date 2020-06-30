@@ -1,3 +1,51 @@
-<h1>HOMEだよ</h1>
-<h1>Capistranoの実行テスト</h1>
+<div class="container">
+  <div class="columns is-full">
+    <div class="column is-3">
+      // ？？
+    </div>
+    <div class="column is-9">
+      <div class="columns is-multiline">
+        <div class="column is-8">
+          <div class="card is-shady">
+            <div class="card-image">
+              <div class="slide-a">
+                <div class="slide-b"><img class="slide-c" src="<%= asset_path "musubiya-moai4.jpg"  %>"  ></div>
+                <div class="slide-b"><img class="slide-c" src="<%= asset_path "tau-ryo2.jpg"   %>"  ></div>
+                <div class="slide-b"><img class="slide-c" src="<%= asset_path "non_utojuku1.jpg"    %>"  ></div>
+                <div class="slide-b"><img class="slide-c" src="<%= asset_path "zakimusubiya5.jpg"   %>"  ></div>
+                <div class="slide-b"><img class="slide-c" src="<%= asset_path "tau-ryo1.jpg"   %>"  ></div>
+              </div>
+            </div>
+          </div>
+            <div class="card-content">
+              <div class="content">
+                <h1>"travel" + "story" = trasto</h1>
+                <h2>ゲストハウスで経験した<br>
+                あなただけの物語を語ろう。</h2>
+                <span class="button is-primary modal-button" data-target="modal-image2">>> What's trasto??</span>
+              </div>
+            </div>
+        </div>
+        <div class="column is-4 is-centered">
+          <div>
+            <br>
+            <h3 class="has-text-centered">あなたの物語を聞かせてください</h3>
+            <br>
+            <div class="has-text-centered"><%= link_to 'Log in', login_path, class: 'button is-primary is-medium' %></div>
+            <br>
+            <h2></h2>
+            <br>
+            <h3 class="has-text-centered">ユーザー登録がまだの方はこちら</h3>
+            <br>
+            <div class="has-text-centered"><%= link_to 'Sign Up', signup_path, class: 'button is-primary is-medium' %></div>
+          </div>
+          <br>
+          <div></div>
+          <br>
+          <div>工事中</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <%= render 'layouts/footer' %>

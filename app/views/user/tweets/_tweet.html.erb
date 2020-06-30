@@ -1,0 +1,12 @@
+<div id="tweet-<%= tweet.id %>" class="tweet" >
+  <% if tweet.user.avatar? %>
+    <%= image_tag tweet.user.avatar.small.url %><br>
+  <% else %>
+    <%= image_tag 'small_noimage.png' %><br>
+  <% end %>
+  <span><%= link_to tweet.user.display_name, tweet.user %></span>
+  <span><%= tweet.content %></span>
+  <span>
+    Posted <%= time_ago_in_words(tweet.created_at) %> ago.
+  </span>
+</div>

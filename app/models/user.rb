@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :to_go_lists, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :tweets, dependent: :destroy
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
