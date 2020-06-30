@@ -18,3 +18,11 @@ import '../stylesheets/application';
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(function() {
+  $('.slide-a').slick({
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 4000,
+  });
+});

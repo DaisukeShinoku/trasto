@@ -5,6 +5,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   process resize_to_fill: [900, 900]
 
+  version :xs do
+    process resize_to_fill: [50, 50]
+  end
+
   version :small do
     process resize_to_fill: [100, 100]
   end
@@ -19,8 +23,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # 環境ごとに保存先変更/デフォルトではstorage :fileがコメントアウトで入っている
+  if Rails.env.development?
+    storage :file
+  elsif Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
