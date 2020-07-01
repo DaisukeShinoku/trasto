@@ -129,17 +129,27 @@
       </div>
       <div class="columns is-multiline">
         <div class="column is-full">
-          <%= @story.content %>
+          <p><%= @story.content %></p>
         </div>
       </div>
       <div>
         <div>
           <div>
             <h1>ストーリーにコメントを残そう</h1>
-              <%= form_for house_story_comments_path(@house, @story) do |f| %>
+              <%#= form_for(@tweet) do |f| %>
+              <%#= form_for(shallow_args(@house, @story), url:house_stories_path )do |f| %>
+              <%#= form_for(@house, url:admin_houses_path) do |f| %>
+              <%#= form_with model: @story_comment do |f| %>
+              <%#= form_for(shallow_args2(@house, @story, @story_comment), url:house_story_story_comments_path )do |f| %>
+              <%#= form_for(shallow_args2(@house, @story, @story_comment), url:house_story_comments_path )do |f| %>
+              <%= form_for(@story_comment, url:house_story_comments_path) do |f| %>
+              <%#= form_for(@story_comment, url:house_story_story_comments_path) do |f| %>
               <div class="field">
                 <%= f.text_area :content, :size=>"80x6", placeholder: "コメントしよう..." %>
               </div>
+              <%#= f.hidden_field :house_id, :value => @story.house_id %>
+              <%#= f.hidden_field :story_id, :value => @story.id %>
+              <%#= f.hidden_field :id, :value => @story.id %>
               <%= f.submit "コメント", class: "button is-primary" %>
               <% end %>
           </div>
@@ -162,7 +172,7 @@
                       <small><%= l story_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
                       <small>
                         <% if current_user.id == story_comment.user_id %>
-                          <%= link_to "delete", house_story_story_comment(@house, story), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                          <%= link_to "delete", house_story_story_comment_path(@house, @story, story_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
                         <% end %>
                       </small>
                       <br>

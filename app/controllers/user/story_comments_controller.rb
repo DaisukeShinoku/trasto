@@ -1,6 +1,7 @@
 class User::StoryCommentsController < ApplicationController
   def create
-    @story = Story.find(params[:story_id])
+    @story = Story.find(params[:id])
+    # @story = Story.find(params[:story_id])
     @house = House.find(params[:house_id])
     @story_comment = @story.story_comments.build(story_comment_params)
     @story_comment.user_id = current_user.id
@@ -15,15 +16,18 @@ class User::StoryCommentsController < ApplicationController
   end
 
   def destroy
+    # @story = Story.find(params[:id])
     @story = Story.find(params[:story_id])
     @house = House.find(params[:house_id])
     @story_comment = StoryComment.find(params[:id])
     @story_comment.destroy
+    flash[:warning] = "コメントを削除しました"
+    redirect_to request.referrer || root_url
   end
 
   private
 
-  def story_comments_params
+  def story_comment_params
     params.require(:story_comment).permit(:content)
   end
 

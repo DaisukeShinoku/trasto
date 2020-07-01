@@ -17,10 +17,10 @@
           <h1>ドミトリー:<%= @house.domitory_price %>〜/個室:<%= @house.private_price %>〜</h1><br>
           <h1>住所:<%= @house.address %></h1><br>
           <% if logged_in? %>
-            <div><%= link_to 'この宿へのストーリーを投稿する', '#', class: 'button is-primary' %></div><br>
+            <div><%= link_to 'この宿へのストーリーを投稿する', new_house_story_path(@house), class: 'button is-primary' %></div><br>
             <div><%= link_to 'この宿への応援コメントを投稿する', '#', class: 'button is-primary' %></div><br>
           <% end %>
-          <div><%= link_to 'この宿に投稿されたストーリーを読む', '#', class: 'button is-info' %></div><br>
+          <div><%= link_to 'この宿に投稿されたストーリーを読む', house_stories_path(@house), class: 'button is-info' %></div><br>
           <% if logged_in? %>
             <% if @house.bookmark_by?(current_user) %>
               <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :delete do %>

@@ -11,6 +11,7 @@ class User::StoriesController < ApplicationController
     @house = House.find(params[:house_id])
     @story = Story.find(params[:id])
     @story_comments = @story.story_comments
+    @story_comment = StoryComment.new
   end
 
   def new
