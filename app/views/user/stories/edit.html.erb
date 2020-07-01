@@ -1,2 +1,113 @@
+<div class="container main-content">
 
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
+  <div class="columns is-full">
+    <div class="column is-3 has-background-info-light">
+      <div class="has-text-centered">
+        <figure class="image">
+          <% if @house.house_image? %>
+            <%= image_tag @house.house_image.second.url %><br>
+          <% else %>
+            <%= image_tag 'second_house_noimage.png' %><br>
+          <% end %>
+        </figure>
+      </div>
+      <aside class="is-medium menu">
+      <ul class="menu-list">
+        <li>
+          <a><strong><%= @house.name %></strong><br>
+          <small><%= @house.prefecture.name %></small></a>
+        </li>
+        <li>
+          <a>
+          <small>
+          ドミトリー:<%= @house.domitory_price %>円〜<br>
+          個室:<%= @house.private_price %>円〜
+          </small>
+          </a>
+        </li>
+        <li>
+          <a><small><%= @house.stories.count %>件のストーリー</small></a>
+        </li>
+        <li>
+          <a><small><%= @house.stories.count %>件の応援コメント</small></a>
+        </li>
+        <% if logged_in? %>
+        <li>
+          <a><small><%= @house.stories.count %>人がお気に入りに登録</small></a>
+        </li>
+        <li>
+          <a><small><%= @house.stories.count %>人が行きたいリストに登録</small></a>
+        </li>
+        <li class="has-text-centered">
+        <%= link_to new_house_story_path(@house) do %>
+          <p class="button is-primary">&nbsp;&nbsp;ストーリーを投稿&nbsp;&nbsp;</p>
+        <% end %>
+        </li>
+        <li class="has-text-centered">
+        <%= link_to new_house_story_path(@house) do %>
+          <p class="button is-primary">&nbsp;応援コメントを投稿&nbsp;</p>
+        <% end %>
+        </li>
+        <li class="has-text-centered">
+          <% if @house.bookmark_by?(current_user) %>
+            <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :delete do %>
+              <p class="button is-danger">『お気に入り』を解除</p>
+            <% end %>
+          <% else %>
+            <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :post do %>
+              <p class="button is-danger is-light">『お気に入り』に登録</p>
+            <% end %>
+          <% end %>
+        </li>
+        <li class="has-text-centered">
+          <% if @house.listed_by?(current_user) %>
+            <%= link_to house_to_go_lists_path(@house, redirect_id: 0), method: :delete do %>
+              <p class="button is-danger">『行きたい！』を解除</p>
+            <% end %>
+          <% else %>
+            <%= link_to house_to_go_lists_path(@house, redirect_id: 0), method: :post do %>
+              <p class="button is-danger is-light">『行きたい！』に登録</p>
+            <% end %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+      </aside>
+    </div>
+    <div class="column is-9">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <%= form_for(shallow_args(@house, @story), url:house_story_path )do |f| %>
+            <table class="table">
+              <tr>
+                <th><%= f.label :title, 'タイトル' %></th>
+                <td><%= f.text_field :title, :size=>"100"%></td>
+              </tr>
+              <tr>
+                <th><%= f.label :visit_date, '訪問日時' %></th>
+                <td><%= f.date_field :visit_date %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :story_image, '画像を登録' %></th>
+                <td><%= f.file_field :story_image %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :content, '本文' %></th>
+                <td><%= f.text_area :content, :size=>"100x30"%></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td><%= f.submit "ストーリーを更新" , class: "button is-primary"  %></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <%= render 'layouts/footer' %>
