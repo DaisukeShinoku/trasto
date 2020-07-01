@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "story_image"
     t.index ["house_id"], name: "index_stories_on_house_id"
+    t.index ["user_id", "house_id", "created_at"], name: "index_stories_on_user_id_and_house_id_and_created_at"
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["story_id"], name: "index_story_comments_on_story_id"
+    t.index ["user_id", "story_id", "created_at"], name: "index_story_comments_on_user_id_and_story_id_and_created_at"
     t.index ["user_id"], name: "index_story_comments_on_user_id"
   end
 

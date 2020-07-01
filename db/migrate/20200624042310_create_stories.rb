@@ -9,5 +9,6 @@ class CreateStories < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :stories, [:user_id, :house_id, :created_at]
   end
 end

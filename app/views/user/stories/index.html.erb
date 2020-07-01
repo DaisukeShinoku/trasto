@@ -101,7 +101,7 @@
                         <%= link_to house_story_path(@house, story) do %>
                         <strong><%= story.title %></strong><br>
                         <% end %>
-                        <small><%= l story.created_at, format: '%Y年%-m月%-d日(%a) %H:%M' %></small>
+                        <small><%= l story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small>
                         <br>
                         <small><%= story.content.truncate(100) %></small>
                       </p>
