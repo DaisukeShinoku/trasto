@@ -1,5 +1,6 @@
 class User::StoriesController < ApplicationController
   before_action :logged_in_user
+  before_action :correct_user,   only: [:edit, :update, :destory]
 
   def index
     @house = House.find(params[:house_id])
@@ -17,24 +18,33 @@ class User::StoriesController < ApplicationController
 
 def create
   @house = House.find(params[:house_id])
-  @story = current_user.stories.build(story_params)
+  @story = @house.stories.build(story_params)
+  @story.user_id = current_user.id
+  @story.house_id = @house.id
     if @story.save
-      redirect_to house_story_url(@story)
+      flash[:success] = "ストーリーを投稿しました!"
+      redirect_to house_stories_url(@house)
     else
-      flash.now[:success] = "Welcome to the Sample App!"
+      flash.now[:warning] = "ストーリーの投稿に失敗しました"
       render action: :new
     end
 end
 
 def edit
+  @house = House.find(params[:house_id])
   @story = Story.find(params[:id])
 end
 
 def update
+  @house = House.find(params[:house_id])
   @story = Story.find(params[:id])
+  @story.user_id = current_user.id
+  @story.house_id = @house.id
     if @story.update(story_params)
-      redirect_to house_story_url(@story)
+      flash[:success] = "ストーリーを更新しました!"
+      redirect_to house_stories_url(@house)
     else
+      flash.now[:warning] = "ストーリーの更新に失敗しました"
       render action: :edit
     end
 end
@@ -43,7 +53,7 @@ def destroy
   @story = Story.find(params[:id])
   @house = @story.house
   @story.destroy
-  derirect_to story_house_url(@house)
+  redirect_to house_stories_url(@house)
 end
 
   private
@@ -68,7 +78,7 @@ end
 
     # 正しいユーザーかどうか確認
     def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      @story = current_user.stories.find_by(id: params[:id])
+      redirect_to root_url if @story.nil?
     end
 end

@@ -1,3 +1,5 @@
+<div class="container main-content is-fullhd">
+
 <section class="hero">
   <div class="hero-body">
     <div class="container">
@@ -16,7 +18,7 @@
             <table class="table">
               <tr>
                 <th>タイトル</th>
-                <td><%= @story.name %><td>
+                <td><%= @story.title %><td>
               </tr>
               <tr>
                 <th>投稿したユーザー</th>
@@ -33,12 +35,14 @@
             </table>
             <div class="container">
               <h1>本文</h1>
-              <%= @story.title %>
+              <%= @story.content %>
             </div>
           </div>
       </div>
     </div>
   </div>
 </section>
+
+</div>
 
 <%= render 'layouts/footer' %>
