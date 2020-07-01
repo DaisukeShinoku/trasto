@@ -24,7 +24,13 @@ Rails.application.routes.draw do
       end
     end
     resources :houses do
-      resources :stories
+      resources :stories do
+        member do
+          resources :story_comments, only: [:create]
+          resources :story_bookmarks, only: [:create, :destroy]
+        end
+        resources :story_comments, only: [:destroy]
+      end
       resource :bookmarks, only: %i[create destroy]
       resource :to_go_lists, only: %i[create destroy]
       get :bookmarks, on: :collection

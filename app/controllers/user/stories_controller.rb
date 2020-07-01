@@ -8,7 +8,10 @@ class User::StoriesController < ApplicationController
   end
 
   def show
+    @house = House.find(params[:house_id])
     @story = Story.find(params[:id])
+    @story_comments = @story.story_comments
+    @story_comment = StoryComment.new
   end
 
   def new
@@ -60,11 +63,6 @@ end
 
   def story_params
     params.require(:story).permit(:title, :content, :visit_date, :story_image)
-  end
-
-  def house_params
-    params.require(:house).permit(:name, :postcode, :prefecture_code, :address, :domitory_price, :private_price,
-                                  :copy, :introduction, :house_image, :is_valid, {:category_ids => []})
   end
 
     # ログイン済みユーザーかどうか確認
