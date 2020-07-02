@@ -28,59 +28,66 @@ User.create!(
 # 2
 User.create!(
   account_name: 'user1',
-  display_name: '東堂尽八',
+  display_name: 'ネコ太郎',
   email: '111@user.com',
   password: '111111',
   password_confirmation: '111111',
-  introduction: 'お前が一人箱根学園のジャージと歴史、プライドを背負いゴールに向けて走る状態になったのならその時は自由に走れ。チームのことは全て忘れていい',
+  introduction: "吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。
+  何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
+  吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。",
   avatar: open("#{Rails.root}/db/fixtures/user1.jpg")
 )
 
 # 3
 User.create!(
   account_name: 'user2',
-  display_name: '石垣光太郎',
+  display_name: '坊っちゃん',
   email: '222@user.com',
   password: '222222',
   password_confirmation: '222222',
-  introduction: "道は違えど同じや、ゴールへ向かう気持ちは同じや御堂筋！見ろ総北、箱根学園！形は少しいびつかもしれんけどこれが・・・俺たち京都伏見というチームや",
+  introduction: "親譲りの無鉄砲で小供の時から損ばかりしている。
+  小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。
+  なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。",
   avatar: open("#{Rails.root}/db/fixtures/user2.jpg")
 )
 
 # 4
 User.create!(
   account_name: 'user3',
-  display_name: '荒北靖友',
+  display_name: '漱石くん',
   email: '333@user.com',
   password: '333333',
   password_confirmation: '333333',
-  introduction: "ジャマなんだよ！！ワーギャー騒ぐなっつんだよ！！ガンバレじゃねーよおめーががんばれボケナスが！！
-  傍観者が！！俺はここまで一人できた。たった一人の力でこの大舞台まで登ってきたんだよ！！
-  見てるだけのヤツにがんばれ言われる筋合いねーよ",
-  avatar: open("#{Rails.root}/db/fixtures/user3.jpeg")
+  introduction: "私はまあ煩悶のものにご学問は売っが得るたですうなけれて、二二の人が別段しだによって説明なて、
+  だからこの英語の自信が抜いがらが、彼らかが何の職業を発展が叱ると来るたものならうと話しが意味云え行くますだ。
+  文章にそれで槙君がそれでまだ引き離すしものましなかった。",
+  avatar: open("#{Rails.root}/db/fixtures/user3.jpg")
 )
 
 # 5
 User.create!(
   account_name: 'user4',
-  display_name: '新開隼人',
+  display_name: 'マルチタスク',
   email: '444@user.com',
   password: '444444',
   password_confirmation: '444444',
-  introduction: "勝つぜ！寿一！尽八！靖友！勝つぜオレは！オレは勝つ！勝つからよ！チーム戻ったら…　最ッ高のハイタッチをしてくれるか！",
+  introduction: "それを人間に当てはめて、同時並行的に複数の仕事をこなせる人を
+  「マルチタスク型人間」なんて言うみたいですね。
+  複数のプロジェクトを同時進行で進められるとか。",
   avatar: open("#{Rails.root}/db/fixtures/user4.jpg")
 )
 
 # 6
 User.create!(
   account_name: 'user5',
-  display_name: '御堂筋翔',
+  display_name: '集中ちゃん',
   email: '555@user.com',
   password: '555555',
   password_confirmation: '555555',
-  introduction: "キモいとかキモくないとか、まだそういうもんにこだわっとる、飾りにこだわっとる！！
-  飾りはゴミや、カスや、不要品や、
-  そんなものにこだわっとる限り、本質は、真実は、絶対に見えてこない！！",
+  introduction: "一度に一つの事に集中しなさいとか、
+  一番重要なことを最初にしなさいとか、
+  管理する方法を考えるより、管理する対象を少なくする方がいいとか、
+  言っている事はかなりクラシックです。",
   avatar: open("#{Rails.root}/db/fixtures/user5.jpg")
 )
 

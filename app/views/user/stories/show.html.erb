@@ -133,8 +133,8 @@
         </div>
       </div>
       <div>
-        <div>
-          <div>
+        <div class="columns is-multiline">
+          <div class="column is-8">
             <h1>ストーリーにコメントを残そう</h1>
               <%#= form_for(@tweet) do |f| %>
               <%#= form_for(shallow_args(@house, @story), url:house_stories_path )do |f| %>
@@ -152,6 +152,21 @@
               <%#= f.hidden_field :id, :value => @story.id %>
               <%= f.submit "コメント", class: "button is-primary" %>
               <% end %>
+          </div>
+          <div class="column is-4">
+            <div>
+              <% if logged_in? %>
+                <% if @story.story_bookmark_by?(current_user) %>
+                  <%= link_to house_story_bookmark_path(@story, redirect_id: 0), method: :delete do %>
+                    <p class="button is-danger">お気に入りリストから解除</p>
+                  <% end %>
+                <% else %>
+                  <%= link_to house_story_bookmarks_path(@story, redirect_id: 0), method: :post do %>
+                    <p class="button is-danger is-light">お気に入りリストに登録</p>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
           <% @story_comments.each do |story_comment| %>
