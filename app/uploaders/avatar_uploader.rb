@@ -3,22 +3,22 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  process resize_to_fill: [900, 900]
+  process resize_to_fill: [1600, 1200]
 
   version :xs do
-    process resize_to_fill: [50, 50]
+    process resize_to_fill: [80, 60]
   end
 
   version :small do
-    process resize_to_fill: [100, 100]
+    process resize_to_fill: [160, 120]
   end
 
   version :medium do
-    process resize_to_fill: [300, 300]
+    process resize_to_fill: [320, 240]
   end
 
   version :large do
-    process resize_to_fill: [900, 900]
+    process resize_to_fill: [640, 480]
   end
 
 
