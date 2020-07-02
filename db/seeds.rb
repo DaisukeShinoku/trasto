@@ -106,7 +106,7 @@ end
 
 #ツイート
 
-5.times do |n|
+2.times do |n|
   Tweet.create!(
   user_id: rand(2..6),
   content: "「写真つきのツイート」「写真つきのツイート」「写真つきのツイート」
@@ -124,7 +124,7 @@ end
   )
 end
 
-5.times do |n|
+3.times do |n|
   Tweet.create!(
   user_id: rand(2..6),
   content: "「写真つきのツイート」「写真つきのツイート」「写真つきのツイート」
@@ -134,7 +134,7 @@ end
   )
 end
 
-25.times do |n|
+30.times do |n|
   Tweet.create!(
   user_id: rand(2..6),
   content: "「つぶやきます」「つぶやきます」「つぶやきます」「つぶやきます」「つぶやきます」
@@ -1531,7 +1531,6 @@ Story.create!(
   「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
   「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」",
   visit_date: '2020-017-01',
-  story_image: open("#{Rails.root}/db/fixtures/free#{rand(1..11)}.jpg")
 )
 end
 
