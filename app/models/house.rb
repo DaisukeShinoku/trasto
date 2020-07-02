@@ -1,5 +1,6 @@
 class House < ApplicationRecord
   mount_uploader :house_image, HouseImageUploader
+  mount_uploaders :images, ImagesUploader
 
   has_many :house_categories
   has_many :stories, dependent: :destroy

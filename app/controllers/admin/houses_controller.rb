@@ -43,7 +43,7 @@ end
 
   def house_params
     params.require(:house).permit(:name, :postcode, :prefecture_code, :address, :domitory_price, :private_price,
-                                  :copy, :introduction, :house_image, :is_valid, {:category_ids => []})
+                                  :copy, :introduction, :house_image, :is_valid, {:category_ids => []}, {images: []})
   end
 
   def set_categories
