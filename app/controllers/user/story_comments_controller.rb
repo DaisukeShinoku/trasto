@@ -1,4 +1,10 @@
 class User::StoryCommentsController < ApplicationController
+  def index
+    @story = Story.find(params[:id])
+    @house = House.find(params[:house_id])
+    @story_comment = StoryComment.where(story_id: @story.id)
+  end
+  
   def create
     @story = Story.find(params[:id])
     # @story = Story.find(params[:story_id])
