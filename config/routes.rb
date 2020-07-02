@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :houses do
       resources :stories do
         member do
-          resources :story_comments, only: [:create]
+          resources :story_comments, only: [:create, :index]
           resources :story_bookmarks, only: [:create, :destroy]
         end
         resources :story_comments, only: [:destroy]

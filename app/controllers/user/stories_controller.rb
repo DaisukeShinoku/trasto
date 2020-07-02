@@ -10,7 +10,7 @@ class User::StoriesController < ApplicationController
   def show
     @house = House.find(params[:house_id])
     @story = Story.find(params[:id])
-    @story_comments = @story.story_comments
+    @story_comments = @story.story_comments.last(10)
     @story_comment = StoryComment.new
   end
 

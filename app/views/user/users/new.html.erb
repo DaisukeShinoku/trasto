@@ -1,30 +1,36 @@
-<h1>Create your profile</h1>
-<div>
+<div class="container main-content">
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
+  <h1>Create your profile</h1>
   <div>
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :account_name %>
-      <%= f.text_field :account_name %>
+    <div>
+      <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.label :account_name %>
+        <%= f.text_field :account_name %>
 
-      <%= f.label :display_name %>
-      <%= f.text_field :display_name %>
+        <%= f.label :display_name %>
+        <%= f.text_field :display_name %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email %>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
 
-      <%= f.label :introduction %>
-      <%= f.text_field :introduction %>
+        <%= f.label :introduction %>
+        <%= f.text_field :introduction %>
 
-      <%= f.file_field :avatar %>
+        <%= f.file_field :avatar %>
 
-      <%= f.submit "Create my account" %>
-    <% end %>
+        <%= f.submit "Create my account" %>
+      <% end %>
+    </div>
   </div>
 </div>
 

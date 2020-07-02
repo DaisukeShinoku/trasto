@@ -1,37 +1,44 @@
-<h1>Update your profile</h1>
-<div>
-  <div>
-    <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :account_name %>
-      <%= f.text_field :account_name %>
+<div class="container main-content">
 
-      <%= f.label :display_name %>
-      <%= f.text_field :display_name %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.label :introduction %>
-      <%= f.text_field :introduction %>
-
-      <%= f.file_field :avatar %>
-
-      <% if current_user.admin? %>
-        <%= f.radio_button :is_valid, true %>
-        <%= f.label :is_valid, "有効", value: true %>
-        <%= f.radio_button :is_valid, false %>
-        <%= f.label :is_valid, "退会済み", value: false %>
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
       <% end %>
 
-      <%= f.submit "編集内容を保存する" %>
-    <% end %>
+  <h1>Update your profile</h1>
+  <div>
+    <div>
+      <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.label :account_name %>
+        <%= f.text_field :account_name %>
+
+        <%= f.label :display_name %>
+        <%= f.text_field :display_name %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+
+        <%= f.label :introduction %>
+        <%= f.text_field :introduction %>
+
+        <%= f.file_field :avatar %>
+
+        <% if current_user.admin? %>
+          <%= f.radio_button :is_valid, true %>
+          <%= f.label :is_valid, "有効", value: true %>
+          <%= f.radio_button :is_valid, false %>
+          <%= f.label :is_valid, "退会済み", value: false %>
+        <% end %>
+
+        <%= f.submit "編集内容を保存する" %>
+      <% end %>
+    </div>
   </div>
 </div>
 

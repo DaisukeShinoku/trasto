@@ -1,4 +1,9 @@
-<div class="container main-content is-fullhd">
+<div class="container main-content">
+
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
   <div class="columns is-full">
     <div class="column is-3">
       // ？？
@@ -41,7 +46,7 @@
                         <% end %>
                       </small>
                       <br>
-                      <%= tweet.content %>
+                      <%= sanitize(simple_format(tweet.content), :tags => %w(p br)) %>
                     </p>
                   </div>
                   <% if tweet.tweet_picture? %>

@@ -1,17 +1,25 @@
-<h1>カテゴリー編集</h1>
+<div class="container main-content">
 
-<%= form_for @category, url: admin_category_path, method: :patch do |f| %>
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
 
-  <table class="table">
-    <tr>
-      <th> ジャンル名 </th>
-      <td> <%= f.text_field :name, class:"field" %> </td>
-      <td>有効 <%= f.radio_button :is_valid, true %> </td>
-      <td>無効 <%= f.radio_button :is_valid, false %> </td>
-      <td> <%= f.submit "変更を保存する", class: 'button is-primary' %> </td>
-    </tr>
-  </table>
+  <h1>カテゴリー編集</h1>
 
- <% end %>
+  <%= form_for @category, url: admin_category_path, method: :patch do |f| %>
+
+    <table class="table">
+      <tr>
+        <th> ジャンル名 </th>
+        <td> <%= f.text_field :name, class:"field" %> </td>
+        <td>有効 <%= f.radio_button :is_valid, true %> </td>
+        <td>無効 <%= f.radio_button :is_valid, false %> </td>
+        <td> <%= f.submit "変更を保存する", class: 'button is-primary' %> </td>
+      </tr>
+    </table>
+
+  <% end %>
+
+</div>
 
 <%= render 'layouts/footer' %>

@@ -1,52 +1,58 @@
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ゲストハウスID</th>
-            <th>ゲストハウス名</th>
-            <th>価格（相部屋）</th>
-            <th>価格（個室）</th>
-            <th>ステータス</th>
-            <th>メイン画像</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @houses.each do |house| %>
-          <tr>
-            <td>
-              <%= house.id %>
-            </td>
-            <td>
-              <%= link_to house.name, admin_house_path(house.id) %>
-            </td>
-            <td>
-              <%= house.domitory_price %>円
-            </td>
-            <td>
-              <%= house.private_price %>円
-            </td>
-            <td>
-            <% if house.is_valid == true %>
-              <%= "営業中" %>
-            <% else %>
-              <%= "閉館" %>
-            <% end %>
-            </td>
-            <td>
-              <% if house.house_image? %>
-                <%= image_tag house.house_image.first.url %>
-              <% else %>
-                <%= image_tag 'first_house_noimage.png' %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+<div class="container main-content">
 
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ゲストハウスID</th>
+              <th>ゲストハウス名</th>
+              <th>価格（相部屋）</th>
+              <th>価格（個室）</th>
+              <th>ステータス</th>
+              <th>メイン画像</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @houses.each do |house| %>
+            <tr>
+              <td>
+                <%= house.id %>
+              </td>
+              <td>
+                <%= link_to house.name, admin_house_path(house.id) %>
+              </td>
+              <td>
+                <%= house.domitory_price %>円
+              </td>
+              <td>
+                <%= house.private_price %>円
+              </td>
+              <td>
+              <% if house.is_valid == true %>
+                <%= "営業中" %>
+              <% else %>
+                <%= "閉館" %>
+              <% end %>
+              </td>
+              <td>
+                <% if house.house_image? %>
+                  <%= image_tag house.house_image.first.url %>
+                <% else %>
+                  <%= image_tag 'first_house_noimage.png' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
 <%= render 'layouts/footer' %>
