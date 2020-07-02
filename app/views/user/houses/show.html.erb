@@ -15,7 +15,7 @@
           <% if @house.house_image? %>
             <%= image_tag @house.house_image.third.url %><br>
           <% else %>
-            <%= image_tag 'third_house_noimage.png' %><br>
+            <%= image_tag 'noimage_third.png' %><br>
           <% end %>
           </figure>
           <h1><strong><%= @house.name%>/<%= @house.prefecture.name %></strong></h1><br>

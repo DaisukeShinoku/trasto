@@ -11,7 +11,7 @@
           <% if @house.house_image? %>
             <%= image_tag @house.house_image.second.url %><br>
           <% else %>
-            <%= image_tag 'second_house_noimage.png' %><br>
+            <%= image_tag 'noimage_second.png' %><br>
           <% end %>
         </figure>
       </div>
@@ -86,7 +86,7 @@
             <% if @story.story_image? %>
               <%= image_tag @story.story_image.first.url %><br>
             <% else %>
-              <%= image_tag 'first_story_noimage.png' %><br>
+              <%= image_tag 'noimage_first.png' %><br>
             <% end %>
           </figure>
         </div>
@@ -106,7 +106,7 @@
                     <% if @story.user.avatar? %>
                       <%= image_tag @story.user.avatar.xs.url %>
                     <% else %>
-                      <%= image_tag 'xs_noimage.png' %>
+                      <%= image_tag 'noimage_xs.png' %>
                     <% end %>
                 </div>
                 <p>
@@ -130,7 +130,7 @@
                   <% if story_comment.user.avatar? %>
                     <%= image_tag story_comment.user.avatar.xs.url %><br>
                   <% else %>
-                    <%= image_tag 'xs_noimage.png' %><br>
+                    <%= image_tag 'noimage_xs.png' %><br>
                   <% end %>
                 </div>
                 <div class="media-content">
