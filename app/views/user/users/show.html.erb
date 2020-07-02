@@ -10,10 +10,10 @@
         <tr>
           <div>
             <div>
-              <td><h1><%= @user.display_name %>さん</h1>
+              <td><h1><strong><%= @user.display_name %></strong></h1>
             </div>
             <div>
-              <h5>@<%= @user.account_name %></h5></td>
+              <h5><small>@<%= @user.account_name %></small></h5></td>
             </div>
           </div>
         </tr>
@@ -25,7 +25,7 @@
             <% if @user.avatar? %>
               <%= image_tag @user.avatar.medium.url %>
             <% else %>
-              <%= image_tag 'medium_noimage.png' %>
+              <%= image_tag 'noimage_second.png' %>
             <% end %>
           </td>
         </tr>
@@ -39,16 +39,13 @@
             <%= render 'follow_form', user: @user %>
           </td>
         </tr>
+        <% if current_user?(@user) %>
         <tr>
           <td>
-            <% if current_user?(@user) %>
               <%= link_to "ユーザー情報を編集", edit_user_path(@user.id), class: 'button is-success' %>
-            <% end %>
           </td>
         </tr>
-        <tr>
-          <td><%= link_to "Follow", "#", class: 'button is-success' %></td>
-        </tr>
+        <% end %>
         <tr>
           <td>
           <% if @user.id == current_user.id %>

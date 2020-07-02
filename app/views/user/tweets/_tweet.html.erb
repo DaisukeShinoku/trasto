@@ -2,7 +2,7 @@
   <% if tweet.user.avatar? %>
     <%= image_tag tweet.user.avatar.small.url %><br>
   <% else %>
-    <%= image_tag 'small_noimage.png' %><br>
+    <%= image_tag 'noimage_first.png' %><br>
   <% end %>
   <span><%= link_to tweet.user.display_name, tweet.user %></span>
   <span><%= tweet.content %></span>
