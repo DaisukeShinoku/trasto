@@ -52,7 +52,15 @@
               <td><%= f.select :is_valid, {"営業中": true,"閉館": false } %></td>
             </tr>
             <tr>
-              <th><%= f.file_field :house_image %></th>
+              <th><%= f.label :house_image, 'メイン画像' %></th>
+              <td><%= f.file_field :house_image %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :images, 'サブ画像(4枚まで)' %></th>
+              <td><%= f.file_field :images, multiple: true %></td>
+            </tr>
+            <tr>
+              <th></th>
               <td><%= f.submit "新規登録" , class: "button is-primary"  %></td>
             </tr>
           </table>

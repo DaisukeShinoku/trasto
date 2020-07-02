@@ -56,7 +56,8 @@ def destroy
   @story = Story.find(params[:id])
   @house = @story.house
   @story.destroy
-  redirect_to house_stories_url(@house)
+  flash.now[:warning] = "ストーリーを削除しました"
+  redirect_to request.referrer || root_url
 end
 
   private

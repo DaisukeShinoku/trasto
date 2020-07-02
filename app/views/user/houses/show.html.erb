@@ -48,7 +48,13 @@
           <% end %>
         </div>
         <div class="column is-5">
-          工事中
+          <% if @house.images? %>
+            <figure>
+              <% @house.images.each do |image| %>
+                <%= image_tag(image.url) %>
+              <% end %>
+            </figure>
+          <% end %>
         </div>
       </div>
   </div>
