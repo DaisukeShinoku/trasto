@@ -1,14 +1,19 @@
-<div>
-<h1>DM</h1>
+<div class="container main-content">
 
-<h4>参加者</h4>
-<% @entries.each do |e| %>
-  <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
-<% end %>
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
 
-<hr>
-  <div id="message-container">
-    <%= render @messages %>
-  </div>
-<%= render 'roomfooter' %>
+  <h1>DM</h1>
+
+  <h4>参加者</h4>
+  <% @entries.each do |e| %>
+    <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
+  <% end %>
+
+  <hr>
+    <div id="message-container">
+      <%= render @messages %>
+    </div>
+  <%= render 'roomfooter' %>
 </div>

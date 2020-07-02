@@ -1,9 +1,14 @@
-<div class="container">
+<div class="container main-content">
+
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
   <div class="columns is-full">
     <div class="column is-3">
       // ジャンル検索？？
     </div>
-    <div class="column is-10">
+    <div class="column is-9">
       <h1><strong>全国のゲストハウス一覧</strong></h1><br>
       <div class="columns is-multiline">
         <% @houses.each do |house| %>

@@ -129,7 +129,7 @@
       </div>
       <div class="columns is-multiline">
         <div class="column is-full">
-          <p><%= @story.content %></p>
+          <%= safe_join(@story.content.split("\n"), tag(:br)) %>
         </div>
       </div>
       <div>
@@ -176,7 +176,7 @@
                         <% end %>
                       </small>
                       <br>
-                      <%= story_comment.content %>
+                      <%= sanitize(simple_format(story_comment.content), :tags => %w(p br)) %>
                     </p>
                   </div>
                 </div>
@@ -186,7 +186,9 @@
       </div>
       <div class="columns is-multiline">
         <div class="column is-full">
-          リンク関連が入る？？
+          <%= link_to house_story_comments_path do %>
+            <p>>>このストーリーへのコメントを一覧で表示</p>
+          <% end %>
         </div>
       </div>
     </div>

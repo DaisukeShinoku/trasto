@@ -1,3 +1,9 @@
+<div class="container main-content">
+
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
 <div>
   <div>
     <h1>管理者ログイン画面</h1>
@@ -12,6 +18,8 @@
       <%= f.submit "Log in" %>
     <% end %>
   </div>
+</div>
+
 </div>
 
 <%= render 'layouts/footer' %>

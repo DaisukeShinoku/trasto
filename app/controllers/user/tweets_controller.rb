@@ -26,7 +26,7 @@ class User::TweetsController < ApplicationController
 
   def index
     @tweet = Tweet.new
-    @tweets = Tweet.all
+    @tweets = Tweet.all.first(20)
   end
 
   private

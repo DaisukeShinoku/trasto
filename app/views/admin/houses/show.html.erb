@@ -1,69 +1,76 @@
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-vcentered">
-          <div class="column is-5">
-            <figure class="image">
-            <% if @house.house_image? %>
-              <%= image_tag @house.house_image.third.url %><br>
-            <% else %>
-              <%= image_tag 'third_house_noimage.png' %><br>
-            <% end %>
-            </figure>
-            <div>
-            <% @house.house_categories.each do |house_categories| %>
-              <%= house_categories.category.name %>
-            <% end %>
-            </div>
-          </div>
+<div class="container main-content">
 
-          <div class="is-6 is-offset-1">
-            <table class="table">
-              <tr>
-                <th>ゲストハウス名</th>
-                <td><%= @house.name %><td>
-              </tr>
-              <tr>
-                <th>都道府県</th>
-                <td><%= @house.prefecture.name %><td>
-              </tr>
-              <tr>
-                <th>郵便番号</th>
-                <td><%= @house.postcode %><td>
-              </tr>
-              <tr>
-                <th>住所</th>
-                <td><%= @house.address %><td>
-              </tr>
-              <tr>
-                <th>キャッチコピー</th>
-                <td><%= @house.copy %><td>
-              </tr>
-              <tr>
-                <th>価格（相部屋）</th>
-                <td><%= number_to_currency(@house.domitory_price, :precision => 0, :unit => "￥") %><td>
-              </tr>
-              <tr>
-                <th>価格（個室）</th>
-                <td><%= number_to_currency(@house.private_price, :precision => 0, :unit => "￥") %><td>
-              </tr>
-              <tr>
-                <th>運営ステータス</th>
-                <% if @house.is_valid == true %>
-                  <td> 営業中 </td>
-                <% else %>
-                  <td> 閉館 </td>
-                <% end %>
-              </tr>
-            </table>
-            <div class="container">
-              <h1>紹介文</h1>
-              <%= @house.introduction %>
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column is-5">
+              <figure class="image">
+              <% if @house.house_image? %>
+                <%= image_tag @house.house_image.third.url %><br>
+              <% else %>
+                <%= image_tag 'third_house_noimage.png' %><br>
+              <% end %>
+              </figure>
+              <div>
+              <% @house.house_categories.each do |house_categories| %>
+                <%= house_categories.category.name %>
+              <% end %>
+              </div>
             </div>
-          </div>
+
+            <div class="is-6 is-offset-1">
+              <table class="table">
+                <tr>
+                  <th>ゲストハウス名</th>
+                  <td><%= @house.name %><td>
+                </tr>
+                <tr>
+                  <th>都道府県</th>
+                  <td><%= @house.prefecture.name %><td>
+                </tr>
+                <tr>
+                  <th>郵便番号</th>
+                  <td><%= @house.postcode %><td>
+                </tr>
+                <tr>
+                  <th>住所</th>
+                  <td><%= @house.address %><td>
+                </tr>
+                <tr>
+                  <th>キャッチコピー</th>
+                  <td><%= @house.copy %><td>
+                </tr>
+                <tr>
+                  <th>価格（相部屋）</th>
+                  <td><%= number_to_currency(@house.domitory_price, :precision => 0, :unit => "￥") %><td>
+                </tr>
+                <tr>
+                  <th>価格（個室）</th>
+                  <td><%= number_to_currency(@house.private_price, :precision => 0, :unit => "￥") %><td>
+                </tr>
+                <tr>
+                  <th>運営ステータス</th>
+                  <% if @house.is_valid == true %>
+                    <td> 営業中 </td>
+                  <% else %>
+                    <td> 閉館 </td>
+                  <% end %>
+                </tr>
+              </table>
+              <div class="container">
+                <h1>紹介文</h1>
+                <%= @house.introduction %>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <%= render 'layouts/footer' %>
