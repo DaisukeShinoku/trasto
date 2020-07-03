@@ -1,0 +1,2 @@
+$("#bookmark_form").html("<%= escape_javascript(render 'user/bookmarks/unbookmark', house: @house ) %>");
+$("#bookers").html('<%= @house.bookmarks.count %>人がお気に入りに登録');

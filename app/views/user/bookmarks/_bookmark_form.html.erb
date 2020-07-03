@@ -1,0 +1,7 @@
+          <div id="bookmark_form">
+            <% if house.bookmark_by?(current_user) %>
+              <%= render 'user/bookmarks/unbookmark', house: house %>
+            <% else %>
+              <%= render 'user/bookmarks/bookmark', house: house %>
+            <% end %>
+          </div>

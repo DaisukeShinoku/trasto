@@ -17,14 +17,6 @@ class ImagesUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [640, 480]
   end
 
-  version :fourth do
-    process resize_to_fill: [960, 720]
-  end
-
-  version :fifth do
-    process resize_to_fill: [1600, 1200]
-  end
-
   # Choose what kind of storage to use for this uploader:
   # 環境ごとに保存先変更/デフォルトではstorage :fileがコメントアウトで入っている
   if Rails.env.development?

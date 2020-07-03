@@ -1,0 +1,63 @@
+      <div class="has-text-centered">
+        <figure class="image">
+          <% if house.house_image? %>
+            <%= image_tag house.house_image.second.url %><br>
+          <% else %>
+            <%= image_tag 'noimage_second.png' %><br>
+          <% end %>
+        </figure>
+      </div>
+      <aside class="is-medium menu">
+      <ul class="menu-list">
+        <li>
+          <a><strong><%= house.name %></strong><br>
+          <small><%= house.prefecture.name %></small></a>
+        </li>
+        <li>
+          <a>
+          <small>
+          ドミトリー:<%= house.domitory_price %>円〜<br>
+          個室:<%= house.private_price %>円〜
+          </small>
+          </a>
+        </li>
+        <li class="has-text-centered">
+          <%= link_to house_stories_path(house) do %>
+            <span class="tag is-link is-medium"><%= house.stories.count %>件のストーリー</span>
+          <% end %>
+        </li>
+        <li class="has-text-centered">
+          <%= link_to house_stories_path(house) do %>
+            <span class="tag is-link is-medium"><%= house.stories.count %>件の応援コメント</span>
+          <% end %>
+        </li>
+        <% if logged_in? %>
+          <%= render 'shared/stats_house', house: house %>
+        <% end %>
+        <% if logged_in? %>
+        </li>
+        <li class="has-text-centered">
+          <% if house.bookmark_by?(current_user) %>
+            <%= link_to house_bookmarks_path(house, redirect_id: 0), method: :delete do %>
+              <p class="button is-danger">『お気に入り』を解除</p>
+            <% end %>
+          <% else %>
+            <%= link_to house_bookmarks_path(house, redirect_id: 0), method: :post do %>
+              <p class="button is-danger is-light">『お気に入り』に登録</p>
+            <% end %>
+          <% end %>
+        </li>
+        <li class="has-text-centered">
+          <% if house.listed_by?(current_user) %>
+            <%= link_to house_to_go_lists_path(house, redirect_id: 0), method: :delete do %>
+              <p class="button is-danger">『行きたい！』を解除</p>
+            <% end %>
+          <% else %>
+            <%= link_to house_to_go_lists_path(house, redirect_id: 0), method: :post do %>
+              <p class="button is-danger is-light">『行きたい！』に登録</p>
+            <% end %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+      </aside>

@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_121201) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["house_id"], name: "index_bookmarks_on_house_id"
+    t.index ["user_id", "house_id"], name: "index_bookmarks_on_user_id_and_house_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_121201) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tweet_id"], name: "index_favorites_on_tweet_id"
+    t.index ["user_id", "tweet_id"], name: "index_favorites_on_user_id_and_tweet_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
@@ -123,6 +125,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_121201) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["story_id"], name: "index_story_bookmarks_on_story_id"
+    t.index ["user_id", "story_id"], name: "index_story_bookmarks_on_user_id_and_story_id", unique: true
     t.index ["user_id"], name: "index_story_bookmarks_on_user_id"
   end
 
@@ -143,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_121201) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["house_id"], name: "index_to_go_lists_on_house_id"
+    t.index ["user_id", "house_id"], name: "index_to_go_lists_on_user_id_and_house_id", unique: true
     t.index ["user_id"], name: "index_to_go_lists_on_user_id"
   end
 
@@ -153,6 +157,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_121201) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tweet_id"], name: "index_tweet_comments_on_tweet_id"
+    t.index ["user_id", "tweet_id", "created_at"], name: "index_tweet_comments_on_user_id_and_tweet_id_and_created_at"
     t.index ["user_id"], name: "index_tweet_comments_on_user_id"
   end
 
@@ -178,6 +183,8 @@ ActiveRecord::Schema.define(version: 2020_07_02_121201) do
     t.string "avatar"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.index ["account_name"], name: "index_users_on_account_name", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "bookmarks", "houses"
