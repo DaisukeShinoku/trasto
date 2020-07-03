@@ -29,6 +29,12 @@ class User::TweetsController < ApplicationController
     @tweets = Tweet.all.first(20)
   end
 
+  def show
+    @tweet = Tweet.find(params[:id])
+    @tweet_comments = @tweet.tweet_comments.all
+    @tweet_comment = TweetComment.new
+  end
+
   private
 
     def tweet_params

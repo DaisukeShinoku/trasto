@@ -1,8 +1,6 @@
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
+<%= render 'shared/flash' %>
 
   <div class="columns is-full">
     <div class="column is-3">
@@ -10,57 +8,17 @@
     </div>
     <div class="column is-9">
       <div class="columns is-multiline">
-        <div class="column is-8">
+        <div class="column is-10">
           <div></div>
           <br>
           <h1>今の気持ちをツイートしよう</h1>
-          <%= form_for(@tweet) do |f| %>
-            <%= render 'shared/error_messages', object: f.object %>
-            <div class="field">
-              <%= f.text_area :content, :size=>"80x6", placeholder: "今の気持ちをツイートしよう..." %>
-              <%= f.file_field :tweet_picture %>
-            </div>
-            <%= f.submit "Post", class: "button is-primary" %>
-          <% end %>
+          <%= render partial: "tweet_form" %>
           <div></div>
           <br>
-          <% @tweets.each do |tweet| %>
-            <div class="box">
-              <article class="media">
-                <div class="media-left">
-                  <% if tweet.user.avatar? %>
-                    <%= image_tag tweet.user.avatar.xs.url %><br>
-                  <% else %>
-                    <%= image_tag 'noimage_xs.png' %><br>
-                  <% end %>
-                </div>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <strong><%= link_to tweet.user.display_name, tweet.user %></strong>
-                      <small>@<%= tweet.user.account_name %></small>
-                      <small><%= l tweet.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
-                      <small>
-                        <% if current_user?(tweet.user) %>
-                          <%= link_to "delete", tweet, method: :delete, data: { confirm: "本当に削除しますか?" } %>
-                        <% end %>
-                      </small>
-                      <br>
-                      <%= sanitize(simple_format(tweet.content), :tags => %w(p br)) %>
-                    </p>
-                  </div>
-                  <% if tweet.tweet_picture? %>
-                  <div class="content">
-                    <%= image_tag tweet.tweet_picture.third.url %>
-                  </div>
-                  <% end %>
-                </div>
-              </article>
-            </div>
-          <% end %>
+          <%# 各ツイートの呼び出し %>
+          <%= render partial: "tweet", collection: @tweets %>
         </div>
-        <div class="column is-4">
-          ?????
+        <div class="column is-2">
         </div>
       </div>
     </div>
