@@ -13,7 +13,7 @@
       <div class="columns is-multiline">
         <% @houses.each do |house| %>
           <div class="column is-4">
-             <%= link_to house_path(house) do %>
+             <%= link_to house_path(house), data: {"turbolinks" => false} do %>
               <% if house.house_image? %>
                 <%= image_tag house.house_image.second.url %>
               <% else %>

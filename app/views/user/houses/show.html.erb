@@ -5,12 +5,82 @@
       <% end %>
 
   <div class="columns is-full">
-    <div class="column is-3">
-      // ジャンル検索？？
+    <div class="column is-3 has-background-info-light">
+      <div class="has-text-centered">
+        <figure class="image">
+          <% if @house.house_image? %>
+            <%= image_tag @house.house_image.second.url %><br>
+          <% else %>
+            <%= image_tag 'noimage_second.png' %><br>
+          <% end %>
+        </figure>
+      </div>
+      <aside class="is-medium menu">
+      <ul class="menu-list">
+        <li>
+          <a><strong><%= @house.name %></strong><br>
+          <small><%= @house.prefecture.name %></small></a>
+        </li>
+        <li>
+          <a>
+          <small>
+          ドミトリー:<%= @house.domitory_price %>円〜<br>
+          個室:<%= @house.private_price %>円〜
+          </small>
+          </a>
+        </li>
+        <li>
+          <a><small><%= @house.stories.count %>件のストーリー</small></a>
+        </li>
+        <li>
+          <a><small><%= @house.stories.count %>件の応援コメント</small></a>
+        </li>
+        <% if logged_in? %>
+        <li>
+          <a><small><%= @house.stories.count %>人がお気に入りに登録</small></a>
+        </li>
+        <li>
+          <a><small><%= @house.stories.count %>人が行きたいリストに登録</small></a>
+        </li>
+        <li class="has-text-centered">
+        <%= link_to new_house_story_path(@house) do %>
+          <p class="button is-primary">&nbsp;&nbsp;ストーリーを投稿&nbsp;&nbsp;</p>
+        <% end %>
+        </li>
+        <li class="has-text-centered">
+        <%= link_to new_house_story_path(@house) do %>
+          <p class="button is-primary">&nbsp;応援コメントを投稿&nbsp;</p>
+        <% end %>
+        </li>
+        <li class="has-text-centered">
+          <% if @house.bookmark_by?(current_user) %>
+            <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :delete do %>
+              <p class="button is-danger">『お気に入り』を解除</p>
+            <% end %>
+          <% else %>
+            <%= link_to house_bookmarks_path(@house, redirect_id: 0), method: :post do %>
+              <p class="button is-danger is-light">『お気に入り』に登録</p>
+            <% end %>
+          <% end %>
+        </li>
+        <li class="has-text-centered">
+          <% if @house.listed_by?(current_user) %>
+            <%= link_to house_to_go_lists_path(@house, redirect_id: 0), method: :delete do %>
+              <p class="button is-danger">『行きたい！』を解除</p>
+            <% end %>
+          <% else %>
+            <%= link_to house_to_go_lists_path(@house, redirect_id: 0), method: :post do %>
+              <p class="button is-danger is-light">『行きたい！』に登録</p>
+            <% end %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+      </aside>
     </div>
     <div class="column is-9">
       <div class="columns is-multiline">
-        <div class="column is-7">
+        <div class="column is-8">
           <figure class="image">
           <% if @house.house_image? %>
             <%= image_tag @house.house_image.third.url %><br>
@@ -47,16 +117,62 @@
             <% end %>
           <% end %>
         </div>
-        <div class="column is-5">
-          <% if @house.images? %>
-            <figure>
-              <% @house.images.each do |image| %>
-                <%= image_tag(image.url) %>
-              <% end %>
-            </figure>
-          <% end %>
+        <div class="column is-4 ">
+          <div>
+            <% if @house.images? %>
+              <figure class="slide-a">
+                <% @house.images.each do |image| %>
+                <div class="slide-b">
+                  <%= image_tag(image.url, :class  => "slide-d") %>
+                </div>
+                <% end %>
+              </figure>
+            <% end %>
+          </div>
+          <div class="colimns is-multiline">
+            <div class="card-header-title">
+              <h1 class="has-text-centered"><strong>この宿でのストーリー</h1></strong>
+            </div>
+            <% @stories.each do |story| %>
+              <div class="card story-card has-background-grey-lighter">
+                <div class="card-image">
+                  <% if story.story_image? %>
+                    <%= image_tag story.story_image.second.url %>
+                  <% else %>
+                    <%= image_tag 'noimage_second.png' %>
+                  <% end %>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-left">
+                      <figure>
+                        <% if story.user.avatar? %>
+                          <%= image_tag story.user.avatar.xs.url %>
+                        <% else %>
+                          <%= image_tag 'noimage_xs.png' %>
+                        <% end %>
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4"><%= story.user.display_name %></p>
+                      <p class="subtitle is-6"><%= story.user.account_name %></p>
+                    </div>
+                  </div>
+                  <div class="content">
+                  <%= link_to house_story_path(@house, story), data: {"turbolinks" => false} do %>
+                    <strong><%= story.title %></strong>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <div class="card-header-title  has-text-centered">
+              <%= link_to '他のストーリーを読む', house_stories_path(@house) %>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 

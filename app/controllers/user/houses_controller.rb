@@ -7,6 +7,7 @@ class User::HousesController < ApplicationController
 
   def show
     @house = House.find(params[:id])
+    @stories = Story.where(house_id: @house.id).first(2)
   end
 
     # ログイン済みユーザーかどうか確認

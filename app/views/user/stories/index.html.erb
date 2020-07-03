@@ -87,7 +87,7 @@
               <div class="box">
                 <article class="media">
                   <div class="media-left">
-                    <%= link_to house_story_path(@house, story) do %>
+                    <%= link_to house_story_path(@house, story), data: {"turbolinks" => false} do %>
                       <% if story.story_image? %>
                         <%= image_tag story.story_image.first.url %>
                       <% else %>
@@ -98,7 +98,7 @@
                   <div class="media-content">
                     <div class="content">
                       <p>
-                        <%= link_to house_story_path(@house, story) do %>
+                        <%= link_to house_story_path(@house, story), data: {"turbolinks" => false} do %>
                         <strong><%= story.title %></strong><br>
                         <% end %>
                         <small><%= l story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small>
