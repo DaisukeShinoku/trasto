@@ -7,5 +7,6 @@ class CreateTweetComments < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :tweet_comments, [:user_id, :tweet_id, :created_at]
   end
 end

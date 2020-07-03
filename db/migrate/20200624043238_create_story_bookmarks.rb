@@ -6,5 +6,6 @@ class CreateStoryBookmarks < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :story_bookmarks, [:user_id, :story_id], unique: true
   end
 end

@@ -5,14 +5,22 @@ class User::BookmarksController < ApplicationController
     @house = House.find(params[:house_id])
     bookmark = @house.bookmarks.new(user_id: current_user.id)
     bookmark.save
-    redirect_to request.referer
+    # redirect_to request.referer
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
   end
 
   def destroy
     @house = House.find(params[:house_id])
     bookmark = current_user.bookmarks.find_by(house_id: @house.id)
     bookmark.destroy
-    redirect_to request.referer
+    # redirect_to request.referer
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
   end
 
   def index
