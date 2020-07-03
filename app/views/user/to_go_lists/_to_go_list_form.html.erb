@@ -1,0 +1,7 @@
+          <div id="to_go_list_form">
+            <% if house.listed_by?(current_user) %>
+              <%= render 'user/to_go_lists/unto_go_list', house: house %>
+            <% else %>
+              <%= render 'user/to_go_lists/to_go_list', house: house %>
+            <% end %>
+          </div>

@@ -16,26 +16,25 @@
             <%= image_tag 'noimage_third.png' %><br>
           <% end %>
           </figure>
-          <h1><strong><%= @house.name%>/<%= @house.prefecture.name %></strong></h1><br>
-          <h1>ドミトリー:<%= @house.domitory_price %>円〜/個室:<%= @house.private_price %>円〜</h1><br>
-          <h1>住所:<%= @house.address %></h1><br>
+          <div class="columns is-multiline">
+            <div class="column is-8">
+              <h1><strong><%= @house.name%>/<%= @house.prefecture.name %></strong></h1><br>
+              <h1>ドミトリー:<%= @house.domitory_price %>円〜/個室:<%= @house.private_price %>円〜</h1><br>
+              <h1>住所:<%= @house.address %></h1><br>
+            </div>
+            <div class="column is-4">
+              <% if logged_in? %>
+                <%= render 'user/bookmarks/bookmark_form', house: @house %>
+                <br>
+                <%= render 'user/to_go_lists/to_go_list_form', house: @house %>
+              <% end %>
+            </div>
+          </div>
           <% if logged_in? %>
             <div><%= link_to 'この宿へのストーリーを投稿する', new_house_story_path(@house), class: 'button is-primary' %></div><br>
             <div><%= link_to 'この宿への応援コメントを投稿する', '#', class: 'button is-primary' %></div><br>
           <% end %>
           <div><%= link_to 'この宿に投稿されたストーリーを読む', house_stories_path(@house), class: 'button is-info' %></div><br>
-          <% if logged_in? %>
-            <%= render 'user/bookmarks/bookmark_form', house: @house %>
-            <% if @house.listed_by?(current_user) %>
-              <%= link_to house_to_go_lists_path(@house, redirect_id: 0), method: :delete do %>
-                <p class="button is-danger">行きたいリストから解除</p>
-              <% end %>
-            <% else %>
-              <%= link_to house_to_go_lists_path(@house, redirect_id: 0), method: :post do %>
-                <p class="button is-danger is-light">行きたいリストに登録</p>
-              <% end %>
-            <% end %>
-          <% end %>
         </div>
         <div class="column is-4 ">
           <div>

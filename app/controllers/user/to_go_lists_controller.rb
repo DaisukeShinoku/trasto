@@ -5,14 +5,22 @@ class User::ToGoListsController < ApplicationController
     @house = House.find(params[:house_id])
     to_go_list = @house.to_go_lists.new(user_id: current_user.id)
     to_go_list.save
-    redirect_to request.referer
+    # redirect_to request.referer
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
   end
 
   def destroy
     @house = House.find(params[:house_id])
     to_go_list = current_user.to_go_lists.find_by(house_id: @house.id)
     to_go_list.destroy
-    redirect_to request.referer
+    # redirect_to request.referer
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
   end
 
   def index

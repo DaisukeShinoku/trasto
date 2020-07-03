@@ -1,0 +1,2 @@
+$("#to_go_list_form").html("<%= escape_javascript(render 'user/to_go_lists/unto_go_list', house: @house ) %>");
+$("#togolisters").html('<%= @house.to_go_lists.count %>人が行きたい！に登録');
