@@ -19,7 +19,19 @@
           <div class="columns is-multiline">
             <div class="column is-8">
               <h1><strong><%= @house.name%>/<%= @house.prefecture.name %></strong></h1><br>
-              <h1>ドミトリー:<%= @house.domitory_price %>円〜/個室:<%= @house.private_price %>円〜</h1><br>
+              <% if @house.is_valid == true %>
+                <% if @house.domitory_price && @house.private_price%>
+                  <h1>ドミトリー:<%= number_to_currency(@house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
+                    個室:<%= number_to_currency(@house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</h1>
+                <% elsif @house.domitory_price %>
+                  <h1>ドミトリー:<%= number_to_currency(@house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</h1>
+                <% elsif @house.private_price %>
+                  <h1>個室:<%= number_to_currency(@house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</h1>
+                <% end %>
+              <% else%>
+                <h1>休館中 or 閉館中</h1>
+              <% end %>
+              <br>
               <h1>住所:<%= @house.address %></h1><br>
             </div>
             <div class="column is-4">
@@ -32,9 +44,62 @@
           </div>
           <% if logged_in? %>
             <div><%= link_to 'この宿へのストーリーを投稿する', new_house_story_path(@house), class: 'button is-primary' %></div><br>
-            <div><%= link_to 'この宿への応援コメントを投稿する', '#', class: 'button is-primary' %></div><br>
           <% end %>
           <div><%= link_to 'この宿に投稿されたストーリーを読む', house_stories_path(@house), class: 'button is-info' %></div><br>
+          <div class="box">
+            <% @house_comments.each do |house_comment| %>
+            <article class="media">
+              <div class="media-left">
+                <% if house_comment.user.avatar? %>
+                  <%= image_tag house_comment.user.avatar.xs.url %><br>
+                <% else %>
+                  <%= image_tag 'noimage_xs.png' %><br>
+                <% end %>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong><%= link_to house_comment.user.display_name, house_comment.user %></strong>
+                    <small>@<%= house_comment.user.account_name %></small>
+                    <small>
+                      <% if current_user?(house_comment.user) %>
+                        <%= link_to "delete", house_house_comment_path(@house, house_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                      <% end %>
+                    </small>
+                    <br>
+                    <%= sanitize(simple_format(house_comment.content), :tags => %w(p br)) %>
+                  </p>
+                </div>
+              </div>
+              <div class="media-right">
+                <small><%= l house_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+              </div>
+            </article>
+            <% end %>
+            <h1><%= @house.name %>に応援コメントを投稿しよう！</h1>
+            <article class="media">
+              <div class="media-left">
+                <% if current_user.avatar? %>
+                  <%= image_tag current_user.avatar.xs.url %><br>
+                <% else %>
+                  <%= image_tag 'noimage_xs.png' %><br>
+                <% end %>
+              </div>
+              <div class="media-content">
+                <%#= form_for(shallow_args(@house, @house_comment), url: house_comments_path)do |f| %>
+                <%= form_for(@house_comment, url:house_comments_path) do |f| %>
+                  <%= render 'shared/error_messages', object: f.object %>
+                  <div class="field">
+                    <%= f.text_area :content, :size=>"60x6", placeholder: "#{@house.name}を応援しよう..." %>
+                  </div>
+                  <%= f.submit "応援！", class: "button is-primary" %>
+                <% end %>
+              </div>
+            </article>
+            <%= link_to house_comments_path(@house) do %>
+              <p class="has-text-right">>>>応援コメントをもっと読む（全<%= @house.house_comments.count %>件）</p>
+            <% end %>
+          </div>
         </div>
         <div class="column is-4 ">
           <div>

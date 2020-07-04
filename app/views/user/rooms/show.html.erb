@@ -1,10 +1,6 @@
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
-
-  <h1>DM</h1>
+<%= render 'shared/flash' %>
 
   <h4>参加者</h4>
   <% @entries.each do |e| %>
@@ -15,5 +11,6 @@
     <div id="message-container">
       <%= render @messages %>
     </div>
-  <%= render 'roomfooter' %>
 </div>
+
+<%= render 'roomfooter' %>
