@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  mount_uploader :category_image, CategoryImageUploader
+
   has_many :house_categories
   has_many :houses, through: :house_categories
   # accepts_nested_attributes_for :house_categories

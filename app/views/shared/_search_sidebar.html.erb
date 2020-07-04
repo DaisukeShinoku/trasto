@@ -1,0 +1,28 @@
+      <aside class="menu">
+        <p class="menu-label">
+          カテゴリーから探す
+        </p>
+        <ul class="menu-list">
+          <% categories.each do |category| %>
+            <li><%= link_to category.name, houses_path(category_id: category.id) %></li>
+          <% end %>
+            <li><%= link_to "他のカテゴリで探す", categories_path %></li>
+        </ul>
+        <p class="menu-label">
+          エリアで探す
+        </p>
+        <ul class="menu-list">
+          <li><a>北海道</a></li>
+          <li><a>東北</a></li>
+          <li><a>北関東</a></li>
+          <li><a>首都圏</a></li>
+          <li><a>北陸</a></li>
+          <li><a>甲信越</a></li>
+          <li><a>東海</a></li>
+          <li><a>近畿</a></li>
+          <li><a>山陽・山陰</a></li>
+          <li><a>四国</a></li>
+          <li><a>九州</a></li>
+          <li><a>沖縄</a></li>
+        </ul>
+      </aside>
