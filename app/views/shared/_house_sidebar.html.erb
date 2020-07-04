@@ -15,10 +15,18 @@
         </li>
         <li>
           <a>
-          <small>
-          ドミトリー:<%= house.domitory_price %>円〜<br>
-          個室:<%= house.private_price %>円〜
-          </small>
+            <% if house.is_valid == true %>
+              <% if house.domitory_price && house.private_price%>
+                <small>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜<br>
+                  個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</small>
+              <% elsif house.domitory_price %>
+                <small>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</small>
+              <% elsif house.private_price %>
+                <small>個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</small>
+              <% end %>
+            <% else%>
+                <small>休館中 or 閉館中</small>
+            <% end %>
           </a>
         </li>
         <li class="has-text-centered">

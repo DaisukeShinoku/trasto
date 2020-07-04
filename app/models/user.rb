@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  has_many :house_comments, dependent: :destroy
   has_many :stories, dependent: :destroy
   has_many :story_comments, dependent: :destroy
   has_many :story_bookmarks, dependent: :destroy

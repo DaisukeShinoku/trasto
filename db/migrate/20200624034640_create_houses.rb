@@ -5,8 +5,8 @@ class CreateHouses < ActiveRecord::Migration[6.0]
       t.string :postcode, null: false
       t.integer :prefecture_code, null: false
       t.string :address, null: false
-      t.integer :domitory_price, null: false
-      t.integer :private_price, null: false
+      t.integer :domitory_price
+      t.integer :private_price
       t.string :copy
       t.text :introduction
       t.boolean :is_valid, default:true, null: false

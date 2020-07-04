@@ -8,6 +8,8 @@ class User::HousesController < ApplicationController
   def show
     @house = House.find(params[:id])
     @stories = Story.where(house_id: @house.id).first(2)
+    @house_comments = HouseComment.where(house_id: @house.id).last(5)
+    @house_comment = HouseComment.new
   end
 
     # ログイン済みユーザーかどうか確認

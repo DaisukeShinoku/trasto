@@ -355,7 +355,7 @@ House.create!(
   postcode: '8914205',
   prefecture_code: '46',
   address: '熊毛郡屋久島町宮之浦1567',
-  domitory_price: '0',
+  # domitory_price: '0',
   private_price: '2500',
   copy: '一人旅好きが自然と集まる屋久島の有名宿',
   introduction: "屋久島で人気の素泊まり宿。
@@ -500,7 +500,7 @@ House.create!(
   postcode: '4210123',
   prefecture_code: '22',
   address: '静岡市駿河区石部27-11',
-  domitory_price: '0',
+  # domitory_price: '0',
   private_price: '3500',
   copy: 'ゲストハウス兼カレー屋さん',
   introduction: "ネパール出身のご主人と、日本人の奥様が二人三脚で営むアットホームなゲストハウス兼カレー屋さん。
@@ -721,7 +721,7 @@ House.create!(
   prefecture_code: '1',
   address: '札幌市中央区南8条西8丁目515 南八条アーバンライフ201号室',
   domitory_price: '2500',
-  private_price: '0',
+  # private_price: '0',
   copy: '暮らすように旅しよう',
   introduction: "縁家は10階建ての大きなマンションの一室にあります。
   初めてお越しになるゲストさんは『こんな所にゲストハウスが！？』と驚きますが、縁家の重い扉を開けた瞬間に、その緊張はどこかへと吹っ飛ぶことでしょう。
@@ -757,7 +757,7 @@ House.create!(
   postcode: '9071751',
   prefecture_code: '47',
   address: '八重山郡竹富町波照間5251',
-  domitory_price: '0',
+  # domitory_price: '0',
   private_price: '2800',
   copy: '日本の最南端にある素敵な出会い',
   introduction: '日本最南端の有人島にあるゲストハウスNami。どこか懐かしさを感じるその佇まいは夏休みに田舎のおばあちゃんの家に帰ってきた時の感覚を思い出させます。広々とした庭に置かれた大きなテーブルを囲んであなたも”ゆんたく（おしゃべり）”を楽しみませんか？',

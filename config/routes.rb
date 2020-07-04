@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       end
     end
     resources :houses do
+      member do
+        resources :house_comments, only: [:create, :index]
+      end
       resources :stories do
         member do
           resources :story_comments, only: [:create, :index]
@@ -37,6 +40,7 @@ Rails.application.routes.draw do
         end
         resources :story_comments, only: [:destroy]
       end
+      resources :house_comments, only: [:destroy]
       resource :bookmarks, only: %i[create destroy]
       resource :to_go_lists, only: %i[create destroy]
       get :bookmarks, on: :collection
