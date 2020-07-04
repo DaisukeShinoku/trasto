@@ -1,0 +1,38 @@
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3">
+      <%= render 'shared/search_sidebar', categories: @categories %>
+    </div>
+    <div class="column is-9">
+    <h1><strong>カテゴリーの一覧</strong></h1>
+    <br>
+      <section class="container">
+        <div class="level-item">
+          <div class="columns is-multiline is-centered cards-container">
+            <% @categories_all.each do |category| %>
+            <div class="column is-one-quarter">
+              <article class="message is-primary">
+                  <div class="message-header">
+                      <p><%= link_to category.name, houses_path(category_id: category.id) %></p>
+                  </div>
+                  <div class="message-body">
+                    <% if category.category_image? %>
+                      <%= image_tag category.category_image.url %>
+                    <% else %>
+                      <%= image_tag 'noimage_category.png' %>
+                    <% end %>
+                  </div>
+              </article>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

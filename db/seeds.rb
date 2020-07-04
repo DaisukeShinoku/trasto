@@ -147,82 +147,98 @@ end
 # 1
 Category.create!(
   name: '何もないを楽しむ',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/nothing.jpg")
 )
 # 2
 Category.create!(
   name: '観光地へのアクセス良好',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/access.jpg")
 )
 # 3
 Category.create!(
   name: '旅人同士でワイワイ',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/tabibito.jpg")
 )
 # 4
 Category.create!(
   name: '静かな時間を過ごせる',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/silence.jpg")
 )
 # 5
 Category.create!(
   name: '設備が充実',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/facility.jpg")
 )
 # 6
 Category.create!(
   name: '不便を楽しむ',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/fuben.jpg")
 )
 # 7
 Category.create!(
   name: '女性の一人旅でも安心',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/woman.jpg")
 )
 # 8
 Category.create!(
   name: 'ワイルドを楽しむ',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/wild.jpg")
 )
 # 9
 Category.create!(
   name: 'スタッフがフレンドリー',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/friendly.jpg")
 )
 # 10
 Category.create!(
   name: 'スタッフとの距離感が絶妙',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/kyori.jpg")
 )
 # 11
 Category.create!(
   name: '海を楽しむ',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/sea.jpg")
 )
 # 12
 Category.create!(
   name: '山を楽しむ',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/mountain.jpg")
 )
 # 13
 Category.create!(
   name: '街を楽しむ',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/city.jpg")
 )
 # 14
 Category.create!(
   name: '食事可能',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/meal.jpg")
 )
 # 15
 Category.create!(
   name: 'バー併設',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/bar.jpg")
 )
 # 16
 Category.create!(
   name: 'カフェ併設',
-  is_valid: '1'
+  is_valid: '1',
+  category_image: open("#{Rails.root}/db/fixtures/category/cafe.jpg")
 )
 
 #ゲストハウス
