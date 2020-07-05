@@ -12,17 +12,8 @@
           エリアで探す
         </p>
         <ul class="menu-list">
-          <li><a>北海道</a></li>
-          <li><a>東北</a></li>
-          <li><a>北関東</a></li>
-          <li><a>首都圏</a></li>
-          <li><a>北陸</a></li>
-          <li><a>甲信越</a></li>
-          <li><a>東海</a></li>
-          <li><a>近畿</a></li>
-          <li><a>山陽・山陰</a></li>
-          <li><a>四国</a></li>
-          <li><a>九州</a></li>
-          <li><a>沖縄</a></li>
+        <% house_areas.each do |house_area| %>
+          <li><%= link_to house_area.name, houses_path(house_area_id: house_area.id) %></li>
+        <% end %>
         </ul>
       </aside>

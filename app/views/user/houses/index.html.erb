@@ -4,10 +4,9 @@
 
   <div class="columns is-full">
     <div class="column is-3">
-      <%= render 'shared/search_sidebar', categories: @categories %>
+      <%= render 'shared/search_sidebar', {categories: @categories, house_areas: @house_areas} %>
     </div>
     <div class="column is-9">
-      <h1><strong>全国のゲストハウス一覧</strong></h1><br>
       <%= render 'index', houses: @houses %>
     </div>
   </div>
