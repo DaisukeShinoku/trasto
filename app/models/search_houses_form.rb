@@ -13,17 +13,16 @@ class SearchHousesForm
     # houses = search_by_house_area || search_by_category
     # houses = search_by_house_area && search_by_category
     # p search_by_house_area && search_by_category
-    houses = search_by_hoge
+    houses = search_by_all
     houses
   end
 
   private
 
 
-  def search_by_hoge
+  def search_by_all
 
     if !category_id.present? && !house_area_id.present?
-      p 8888888888888888888888
       return houses
     end
 
@@ -33,19 +32,14 @@ class SearchHousesForm
     if house_area_id.present?
       house_area = HouseArea.find(house_area_id)
       area_search = house_area.houses
-      p 22222222222222222222
-      p area_search
     end
 
     if category_id.present?
       category = Category.find(category_id)
-      cate_search = category.houses
-      p 333333333333333
-      p cate_search
+      category_search = category.houses
     end
 
-    houses = area_search.concat(cate_search)
-
+    houses = area_search.concat(category_search)
   end
 
   # def search_by_category
