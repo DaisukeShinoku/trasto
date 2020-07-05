@@ -3,26 +3,18 @@ class HouseImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  process resize_to_fill: [1600, 900]
+  process resize_to_fill: [1600, 1200]
 
   version :first do
-    process resize_to_fill: [160, 90]
+    process resize_to_fill: [160, 120]
   end
 
   version :second do
-    process resize_to_fill: [320, 180]
+    process resize_to_fill: [320, 240]
   end
 
   version :third do
-    process resize_to_fill: [640, 360]
-  end
-
-  version :fourth do
-    process resize_to_fill: [960, 540]
-  end
-
-  version :fifth do
-    process resize_to_fill: [1600, 900]
+    process resize_to_fill: [640, 480]
   end
 
   # Choose what kind of storage to use for this uploader:

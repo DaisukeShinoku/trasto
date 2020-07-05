@@ -1,23 +1,31 @@
-<div>
-  <div>
-    <%= form_for(:session, url: login_path) do |f| %>
+<div class="container main-content">
 
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :remember_me, class: "checkbox level" do %>
-        <%= f.check_box :remember_me, class: "level-item" %>
-        <span class="level-item">Remember me on this computer</span>
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
       <% end %>
 
-      <%= f.submit "Log in", class: "button is-primary"%>
-    <% end %>
+  <div class="colums is-full">
+    <div class="colum is-full">
+    <%= form_for(:session, url: login_path) do |f| %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <%= f.label :remember_me, class: "checkbox" do %>
+          <%= f.check_box :remember_me %>
+          <p>Remember me on this computer</p>
+        <% end %>
+
+        <%= f.submit "Log in", class: "button is-primary"%>
+      <% end %>
+
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    </div>
   </div>
+
 </div>
 
 <%= render 'layouts/footer' %>

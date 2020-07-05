@@ -13,11 +13,8 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
-  <body class="has-navbar-fixed-top" >
+  <body>
       <%= render 'layouts/header' %>
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
       <%= yield %>
   </body>
 </html>

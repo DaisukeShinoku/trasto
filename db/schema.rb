@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_095135) do
+ActiveRecord::Schema.define(version: 2020_07_05_023951) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email"
@@ -25,11 +25,13 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["house_id"], name: "index_bookmarks_on_house_id"
+    t.index ["user_id", "house_id"], name: "index_bookmarks_on_user_id_and_house_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
+    t.string "category_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_valid", default: true, null: false
@@ -50,7 +52,14 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tweet_id"], name: "index_favorites_on_tweet_id"
+    t.index ["user_id", "tweet_id"], name: "index_favorites_on_user_id_and_tweet_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "house_areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "house_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -62,19 +71,33 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.index ["house_id"], name: "index_house_categories_on_house_id"
   end
 
+  create_table "house_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "content", null: false
+    t.bigint "user_id", null: false
+    t.bigint "house_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["house_id"], name: "index_house_comments_on_house_id"
+    t.index ["user_id", "house_id", "created_at"], name: "index_house_comments_on_user_id_and_house_id_and_created_at"
+    t.index ["user_id"], name: "index_house_comments_on_user_id"
+  end
+
   create_table "houses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "postcode", null: false
     t.integer "prefecture_code", null: false
     t.string "address", null: false
-    t.integer "domitory_price", null: false
-    t.integer "private_price", null: false
+    t.integer "domitory_price"
+    t.integer "private_price"
     t.string "copy"
     t.text "introduction"
     t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "house_image"
+    t.json "images"
+    t.bigint "house_area_id", null: false
+    t.index ["house_area_id"], name: "index_houses_on_house_area_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -112,6 +135,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "story_image"
     t.index ["house_id"], name: "index_stories_on_house_id"
+    t.index ["user_id", "house_id", "created_at"], name: "index_stories_on_user_id_and_house_id_and_created_at"
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
@@ -121,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["story_id"], name: "index_story_bookmarks_on_story_id"
+    t.index ["user_id", "story_id"], name: "index_story_bookmarks_on_user_id_and_story_id", unique: true
     t.index ["user_id"], name: "index_story_bookmarks_on_user_id"
   end
 
@@ -131,6 +156,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["story_id"], name: "index_story_comments_on_story_id"
+    t.index ["user_id", "story_id", "created_at"], name: "index_story_comments_on_user_id_and_story_id_and_created_at"
     t.index ["user_id"], name: "index_story_comments_on_user_id"
   end
 
@@ -140,6 +166,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["house_id"], name: "index_to_go_lists_on_house_id"
+    t.index ["user_id", "house_id"], name: "index_to_go_lists_on_user_id_and_house_id", unique: true
     t.index ["user_id"], name: "index_to_go_lists_on_user_id"
   end
 
@@ -150,6 +177,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tweet_id"], name: "index_tweet_comments_on_tweet_id"
+    t.index ["user_id", "tweet_id", "created_at"], name: "index_tweet_comments_on_user_id_and_tweet_id_and_created_at"
     t.index ["user_id"], name: "index_tweet_comments_on_user_id"
   end
 
@@ -175,6 +203,8 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
     t.string "avatar"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.index ["account_name"], name: "index_users_on_account_name", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "bookmarks", "houses"
@@ -185,6 +215,9 @@ ActiveRecord::Schema.define(version: 2020_06_30_095135) do
   add_foreign_key "favorites", "users"
   add_foreign_key "house_categories", "categories"
   add_foreign_key "house_categories", "houses"
+  add_foreign_key "house_comments", "houses"
+  add_foreign_key "house_comments", "users"
+  add_foreign_key "houses", "house_areas"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "stories", "houses"

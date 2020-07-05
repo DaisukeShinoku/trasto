@@ -1,12 +1,39 @@
-<div id="tweet-<%= tweet.id %>" class="tweet" >
-  <% if tweet.user.avatar? %>
-    <%= image_tag tweet.user.avatar.small.url %><br>
-  <% else %>
-    <%= image_tag 'small_noimage.png' %><br>
-  <% end %>
-  <span><%= link_to tweet.user.display_name, tweet.user %></span>
-  <span><%= tweet.content %></span>
-  <span>
-    Posted <%= time_ago_in_words(tweet.created_at) %> ago.
-  </span>
-</div>
+            <div class="box">
+              <article class="media">
+                <div class="media-left">
+                  <% if tweet.user.avatar? %>
+                    <%= image_tag tweet.user.avatar.xs.url %><br>
+                  <% else %>
+                    <%= image_tag 'noimage_xs.png' %><br>
+                  <% end %>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong><%= link_to tweet.user.display_name, tweet.user %></strong>
+                      <small>@<%= tweet.user.account_name %></small>
+                      <small><%= l tweet.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                      <small>
+                        <% if current_user?(tweet.user) %>
+                          <%= link_to "delete", tweet, method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                        <% end %>
+                      </small>
+                      <br>
+                      <%= sanitize(simple_format(tweet.content), :tags => %w(p br)) %>
+                    </p>
+                  </div>
+                  <% if tweet.tweet_picture? %>
+                  <div class="content has-text-centered">
+                    <%= image_tag tweet.tweet_picture.third.url %>
+                  </div>
+                  <% end %>
+                </div>
+                <div class="media-right">
+                  <%= render 'user/favorites/favorite_form', tweet: tweet %>
+                  <%= link_to tweet_path(tweet.id) do%>
+                  <i class="fas fa-comment fa-fw fa-lg" ></i>
+                  <%= tweet.tweet_comments.count %>
+                  <% end %>
+                </div>
+              </article>
+            </div>

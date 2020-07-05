@@ -1,3 +1,9 @@
+<div class="container main-content">
+
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
   <table class="table">
     <tr class="active">
       <th>アカウント名</th>
@@ -24,7 +30,7 @@
         <% if user.avatar? %>
           <%= image_tag user.avatar.small.url %>
         <% else %>
-          <%= image_tag 'small_noimage.png' %>
+          <%= image_tag 'noimage_first.png' %>
         <% end %>
       </td>
       <td>
@@ -33,3 +39,4 @@
     </tr>
   <% end %>
   </table>
+</div>

@@ -1,33 +1,45 @@
-  <table class="table">
-    <tr class="active">
-      <th>アカウント名</th>
-      <th>表示名</th>
-      <th>email</th>
-      <th>ステータス</th>
-      <th>画像</th>
-      <th></th>
-    </tr>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= link_to user.account_name, user_path(user.id) %></td>
-      <td><%= user.display_name %></td>
-      <td><%= user.email %></td>
-      <td>
-        <% if user.is_valid == true %>
-          <%= "有効" %>
-        <% else %>
-          <%= "退会済み" %>
+<div class="container main-content">
+  <div class="columns is-full">
+    <div class="column is-full">
+      <div class="columns is-multiline">
+        <% @users.each do |user| %>
+          <div class="column is-full">
+            
+              <div class="box">
+                <article class="media">
+                  <div class="media-left">
+                    <%= link_to user_path(user.id) do %>
+                      <% if user.avatar? %>
+                        <%= image_tag user.avatar.small.url %>
+                      <% else %>
+                        <%= image_tag 'noimage_first.png' %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                    <%= link_to user_path(user.id) do %>
+                      <strong><%= user.display_name %></strong>
+                    <% end %>
+                    <br>
+                      <small>@<%= user.account_name %></small><br>
+                      <small><%= user.introduction.truncate(100) %></small>
+                    </div>
+                  </div>
+                  <div class="media-right">
+                    <small><span class="tag is-link">ツイート:<%= user.tweets.count %></span></small><br>
+                    <small><span class="tag is-link">ストーリー:<%= user.stories.count %></span></small><br>
+                    <small><span class="tag is-link">フォロー<%= user.following.count %></span></small><br>
+                    <small><span class="tag is-link">フォロワー<%= user.followers.count %></span></small>
+                  </div>
+                </article>
+              </div>
+            
+          </div>
         <% end %>
-      </td>
-      <td>
-        <% if user.avatar? %>
-          <%= image_tag user.avatar.small.url %>
-        <% else %>
-          <%= image_tag 'small_noimage.png' %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </table>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= render 'layouts/footer' %>

@@ -1,10 +1,15 @@
-<div>
+<div class="container main-content">
+
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
   <%= @user.account_name %>
   <%= @user.display_name %>
   <% if @user.avatar? %>
     <%= image_tag @user.avatar.medium.url %>
   <% else %>
-    <%= image_tag 'medium_noimage.png' %>
+    <%= image_tag 'noimage_second.png' %>
   <% end %>
   <% if current_user.admin? %>
     <%= link_to "管理者として編集", edit_admin_user_path(@user.id) %>

@@ -1,4 +1,9 @@
-<div class="container">
+<div class="container main-content">
+
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
   <div class="columns is-full">
     <div class="column is-3">
       // ジャンル検索？？
@@ -12,7 +17,7 @@
               <% if bookmark.house.house_image? %>
                 <%= image_tag bookmark.house.house_image.second.url %>
               <% else %>
-                <%= image_tag 'second_house_noimage.png' %>
+                <%= image_tag 'noimage_second.png' %>
               <% end %>
               <p><strong><%= bookmark.house.name %></strong>/<%= bookmark.house.prefecture.name %></p>
             <% end %>

@@ -1,0 +1,18 @@
+            <div class="level">
+              <div class="level-left">
+                <a href="<%= following_user_path(user) %>">
+                  <strong id="following" class="stat">
+                    <%= user.following.count %>
+                  </strong>
+                  フォロー
+                </a>
+              </div>
+              <div class="level-right">
+                <a href="<%= followers_user_path(user) %>">
+                  <strong id="followers" class="stat">
+                    <%= user.followers.count %>
+                  </strong>
+                  フォロワー
+                </a>
+              </div>
+            </div>

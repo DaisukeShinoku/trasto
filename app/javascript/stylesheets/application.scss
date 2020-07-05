@@ -1,6 +1,13 @@
 @import "bulma";
 @import "bulma/sass/utilities/_all.sass";
 @import "bulma/sass/grid/columns.sass";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
+
+.main-content{
+  padding-top: 68px;
+  padding-bottom: 12px;
+}
 
 .header-link{
   a:link {color:white; text-decoration:none }
@@ -44,4 +51,13 @@ roomfooter {
 .slide-c{
   height: 440px;
   width :100%;
+}
+
+.slide-d{
+  height: 303px;
+  width :100%;
+}
+
+.story-card{
+  margin-bottom: 1rem;
 }

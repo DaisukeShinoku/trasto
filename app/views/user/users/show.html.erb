@@ -1,61 +1,51 @@
-<div class="container">
+<div class="container main-content">
+
+      <% flash.each do |message_type, message| %>
+        <div class="notification is-<%= message_type %>"><%= message %></div>
+      <% end %>
+
   <div class="columns is-full">
     <div class="column is-4">
       <table class="table">
         <tr>
           <div>
             <div>
-              <td><h1><%= @user.display_name %>さん</h1>
+              <td><h1><strong><%= @user.display_name %></strong></h1>
             </div>
             <div>
-              <h5>@<%= @user.account_name %></h5></td>
+              <h5><small>@<%= @user.account_name %></small></h5></td>
             </div>
           </div>
         </tr>
         <tr>
-          <td><%= @user.introduction %></td>
+          <td><%= sanitize(simple_format(@user.introduction), :tags => %w(p br)) %></td>
         </tr>
         <tr>
           <td>
             <% if @user.avatar? %>
               <%= image_tag @user.avatar.medium.url %>
             <% else %>
-              <%= image_tag 'medium_noimage.png' %>
+              <%= image_tag 'noimage_second.png' %>
             <% end %>
           </td>
         </tr>
         <tr>
           <td>
-            <div class="level">
-              <div class="level-left">
-                <a href="<%= following_user_path(@user) %>">
-                  <strong id="following" class="stat">
-                    <%= @user.following.count %>
-                  </strong>
-                  フォロー
-                </a>
-              </div>
-              <div class="level-right">
-                <a href="<%= followers_user_path(@user) %>">
-                  <strong id="followers" class="stat">
-                    <%= @user.followers.count %>
-                  </strong>
-                  フォロワー
-                </a>
-              </div>
-            </div>
+            <%= render 'user/relationships/stats', user: @user %>
           </td>
         </tr>
         <tr>
           <td>
-            <% if current_user?(@user) %>
+            <%= render 'user/relationships/follow_form', user: @user %>
+          </td>
+        </tr>
+        <% if current_user?(@user) %>
+        <tr>
+          <td>
               <%= link_to "ユーザー情報を編集", edit_user_path(@user.id), class: 'button is-success' %>
-            <% end %>
           </td>
         </tr>
-        <tr>
-          <td><%= link_to "Follow", "#", class: 'button is-success' %></td>
-        </tr>
+        <% end %>
         <tr>
           <td>
           <% if @user.id == current_user.id %>
@@ -82,7 +72,59 @@
       </table>
     </div>
     <div class="column is-8">
-    kouzityuu
+      <h1><strong><%= @user.display_name %>のストーリー</strong></h1><br>
+      <div class="columns is-multiline">
+          <% @user.stories.each do |story| %>
+            <div class="column is-full">
+              <div class="box">
+                <article class="media">
+                  <div class="media-left">
+                    <%= link_to house_story_path(story.house, story) do %>
+                      <% if story.story_image? %>
+                        <%= image_tag story.story_image.first.url %>
+                      <% else %>
+                        <%= image_tag 'noimage_first.png' %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <%= link_to house_story_path(story.house, story) do %>
+                        <strong><%= story.title %></strong><br>
+                        <% end %>
+                        <small><%= l story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small>
+                        <br>
+                        <small><%= story.content.truncate(100) %></small>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="media-right">
+                  <%= link_to user_path(story.user_id) do %>
+                    <div>
+                        <% if story.user.avatar? %>
+                          <%= image_tag story.user.avatar.xs.url %>
+                        <% else %>
+                          <%= image_tag 'noimage_xs.png' %>
+                        <% end %>
+                    </div>
+                    <p>
+                      <small>@<%= story.user.account_name %></small>
+                    </p>
+                    <p>
+                      <small>
+                        <% if current_user.id == story.user_id %>
+                          <%= link_to "delete", house_story_path(story.house, story), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                        <% end %>
+                      </small>
+                    </p>
+                  </div>
+                  <% end %>
+                </article>
+              </div>
+            </div>
+          <% end %>
+      </div>
     </div>
   </div>
 </div>

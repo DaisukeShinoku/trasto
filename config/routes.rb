@@ -16,14 +16,32 @@ Rails.application.routes.draw do
     end
     get  '/signup',  to: 'users#new'
     resources :messages, :only => [:create]
-    resources :tweets
+    resources :relationships,       only: [:create, :destroy]
+    resources :categories, :only => [:index]
+    resources :tweets do
+      resources :tweet_comments, only: [:destroy]
+      resource :favorites, only: [:create, :destroy]
+      member do
+        resources :tweet_comments, only: [:create]
+      end
+    end
     resources :rooms, :only => [:create, :show, :index] do
       member do
         get :show_additionally, to: 'rooms#show_additionally'
       end
     end
     resources :houses do
-      resources :stories
+      member do
+        resources :house_comments, only: [:create, :index]
+      end
+      resources :stories do
+        member do
+          resources :story_comments, only: [:create, :index]
+          resources :story_bookmarks, only: [:create, :destroy]
+        end
+        resources :story_comments, only: [:destroy]
+      end
+      resources :house_comments, only: [:destroy]
       resource :bookmarks, only: %i[create destroy]
       resource :to_go_lists, only: %i[create destroy]
       get :bookmarks, on: :collection

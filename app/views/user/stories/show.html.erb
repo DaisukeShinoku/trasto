@@ -1,44 +1,141 @@
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns is-vcentered">
-          <div class="column is-5">
-            <figure class="image">
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3 has-background-info-light">
+      <%= render 'shared/house_sidebar', house: @house %>
+    </div>
+    <div class="column is-9">
+      <div class="columns is-multiline">
+        <div class="column is-8">
+          <figure class="image">
             <% if @story.story_image? %>
               <%= image_tag @story.story_image.third.url %><br>
             <% else %>
-              <%= image_tag 'third_story_noimage.png' %><br>
+              <%= image_tag 'noimage_third.png' %><br>
             <% end %>
-            </figure>
+          </figure>
+        </div>
+        <div class="column is-4">
+          <div>サブ画像をいれる予定</div>
+        </div>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-2">
+          <%= link_to user_path(@story.user_id) do %>
+          <div>
+              <% if @story.user.avatar? %>
+                <%= image_tag @story.user.avatar.xs.url %>
+              <% else %>
+                <%= image_tag 'noimage_xs.png' %>
+              <% end %>
           </div>
-
-          <div class="is-6 is-offset-1">
-            <table class="table">
-              <tr>
-                <th>タイトル</th>
-                <td><%= @story.name %><td>
-              </tr>
-              <tr>
-                <th>投稿したユーザー</th>
-                <td><%= @story.user.display_name %><td>
-              </tr>
-              <tr>
-                <th>訪問したゲストハウス</th>
-                <td><%= @story.house.name %><td>
-              </tr>
-              <tr>
-                <th>訪問日</th>
-                <td><%= @story.visit_date %><td>
-              </tr>
-            </table>
-            <div class="container">
-              <h1>本文</h1>
-              <%= @story.title %>
+          <p>
+              <small>@<%= @story.user.account_name %></small>
+          </p>
+          <p>
+              <small>
+              <% if current_user.id == @story.user_id %>
+                <%= link_to "delete", house_story_path(@house, @story), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+              <% end %>
+              </small>
+          </p>
+          <% end %>
+        </div>
+        <div class="column is-10">
+            <div class="columns is-multiline">
+              <div class="column is-8">
+                <h1><strong><%= @story.title %></strong></h1>
+              </div>
+              <div class="column is-4">
+                <p class="level-item"><small><%= @story.house.name %></small></p>
+                <p class="level-item"><small><%= l @story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small></p>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <%= safe_join(@story.content.split("\n"), tag(:br)) %>
+        </div>
+      </div>
+      <div>
+        <div class="columns is-multiline">
+          <div class="column is-8">
+            <h1>ストーリーにコメントを残そう</h1>
+              <%#= form_for(@tweet) do |f| %>
+              <%#= form_for(shallow_args(@house, @story), url:house_stories_path )do |f| %>
+              <%#= form_for(@house, url:admin_houses_path) do |f| %>
+              <%#= form_with model: @story_comment do |f| %>
+              <%#= form_for(shallow_args2(@house, @story, @story_comment), url:house_story_story_comments_path )do |f| %>
+              <%#= form_for(shallow_args2(@house, @story, @story_comment), url:house_story_comments_path )do |f| %>
+              <%= form_for(@story_comment, url:house_story_comments_path) do |f| %>
+              <%#= form_for(@story_comment, url:house_story_story_comments_path) do |f| %>
+              <div class="field">
+                <%= f.text_area :content, :size=>"80x6", placeholder: "コメントしよう..." %>
+              </div>
+              <%#= f.hidden_field :house_id, :value => @story.house_id %>
+              <%#= f.hidden_field :story_id, :value => @story.id %>
+              <%#= f.hidden_field :id, :value => @story.id %>
+              <%= f.submit "コメント", class: "button is-primary" %>
+              <% end %>
+          </div>
+          <div class="column is-4">
+            <div>
+              <% if logged_in? %>
+                <% if @story.story_bookmark_by?(current_user) %>
+                  <%= link_to house_story_bookmark_path(@story, redirect_id: 0), method: :delete do %>
+                    <p class="button is-danger">お気に入りリストから解除</p>
+                  <% end %>
+                <% else %>
+                  <%= link_to house_story_bookmarks_path(@story, redirect_id: 0), method: :post do %>
+                    <p class="button is-danger is-light">お気に入りリストに登録</p>
+                  <% end %>
+                <% end %>
+              <% end %>
             </div>
           </div>
+        </div>
+          <% @story_comments.each do |story_comment| %>
+            <div class="box">
+              <article class="media">
+                <div class="media-left">
+                  <% if story_comment.user.avatar? %>
+                    <%= image_tag story_comment.user.avatar.xs.url %><br>
+                  <% else %>
+                    <%= image_tag 'noimage_xs.png' %><br>
+                  <% end %>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong><%= link_to story_comment.user.display_name, story_comment.user %></strong>
+                      <small>@<%= story_comment.user.account_name %></small>
+                      <small><%= l story_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                      <small>
+                        <% if current_user.id == story_comment.user_id %>
+                          <%= link_to "delete", house_story_story_comment_path(@house, @story, story_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                        <% end %>
+                      </small>
+                      <br>
+                      <%= sanitize(simple_format(story_comment.content), :tags => %w(p br)) %>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          <% end %>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <%= link_to house_story_comments_path do %>
+            <p>>>このストーリーへのコメントを一覧で表示</p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <%= render 'layouts/footer' %>

@@ -12,12 +12,17 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  has_many :house_comments, dependent: :destroy
   has_many :stories, dependent: :destroy
+  has_many :story_comments, dependent: :destroy
+  has_many :story_bookmarks, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :to_go_lists, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :tweets, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :tweet_comments, dependent: :destroy
 
   has_many :active_relationships, class_name:"Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -53,9 +58,9 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-  # ユーザーをフォローする
-  def follow(other_user)
-    following << other_user
+   # ユーザーをフォローする
+   def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
   end
 
   # ユーザーをフォロー解除する

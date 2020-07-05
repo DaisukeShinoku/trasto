@@ -6,5 +6,6 @@ class CreateToGoLists < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :to_go_lists, [:user_id, :house_id], unique: true
   end
 end

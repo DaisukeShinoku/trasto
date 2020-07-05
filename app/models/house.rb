@@ -1,18 +1,21 @@
 class House < ApplicationRecord
   mount_uploader :house_image, HouseImageUploader
+  mount_uploaders :images, ImagesUploader
 
-  has_many :house_categories
+  has_many :house_categories, dependent: :destroy
+  has_many :house_comments, dependent: :destroy
+  has_many :stories, dependent: :destroy
   has_many :categories, through: :house_categories
   has_many :bookmarks, dependent: :destroy
   has_many :to_go_lists, dependent: :destroy
+
+  belongs_to :house_area
 
   with_options presence: true do
     validates :name
     validates :postcode
     validates :prefecture_code
     validates :address
-    validates :domitory_price    
-    validates :private_price
   end
 
   include JpPrefecture
