@@ -27,7 +27,7 @@ class SearchHousesForm
     end
 
     area_search = []
-    cate_search = []
+    category_search = []
 
     if house_area_id.present?
       house_area = HouseArea.find(house_area_id)
