@@ -241,6 +241,67 @@ Category.create!(
   category_image: open("#{Rails.root}/db/fixtures/category/cafe.jpg")
 )
 
+# 1
+HouseArea.create!(
+  name: '北海道'
+)
+
+# 2
+HouseArea.create!(
+  name: '東北'
+)
+
+# 3
+HouseArea.create!(
+  name: '北関東'
+)
+
+# 4
+HouseArea.create!(
+  name: '首都圏'
+)
+
+# 5
+HouseArea.create!(
+  name: '北陸'
+)
+
+# 6
+HouseArea.create!(
+  name: '甲信越'
+)
+
+# 7
+HouseArea.create!(
+  name: '東海'
+)
+
+# 8
+HouseArea.create!(
+  name: '近畿'
+)
+
+# 9
+HouseArea.create!(
+  name: '山陽・山陰'
+)
+
+# 10
+HouseArea.create!(
+  name: '四国'
+)
+
+# 11
+HouseArea.create!(
+  name: '九州'
+)
+
+# 12
+HouseArea.create!(
+  name: '沖縄'
+)
+
+
 #ゲストハウス
 
 # 1
@@ -256,6 +317,7 @@ House.create!(
   夕方には初めましての旅人たちとまるで家族のように卓を囲んでお酒を飲む。「何もしないことをしにくる」、これこそが究極の贅沢だと気づかせてくれる沖縄北部のゲストハウス。
   元・木下大サーカスのアクロバット芸人の女将”結ねえ”の司会で始まる毎晩8時からの”おかず交換会”は毎日でも参加したいほどの面白さ！",
   is_valid: '1',
+  house_area_id: '12',
   house_image: open("#{Rails.root}/db/fixtures/musubiya/zakimusubiya05.jpg"),
   # images: open("#{Rails.root}/db/fixtures/musubiya/musubikana4.jpg")
     # "#{Rails.root}/db/fixtures/musubiya/musubiya-moai4.jpg",
@@ -302,6 +364,7 @@ House.create!(
   「ますや旅館」の屋号を受け継ぎ、元々ある良いところを残しつつ、３ヶ月の改装を経て完成したマスヤゲストハウス。
   地元の方やスタッフと一緒に、のんびり楽しく、宿と諏訪での時間をお過ごしください。",
   is_valid: '1',
+  house_area_id: '6',
   house_image: open("#{Rails.root}/db/fixtures/masuya/mgkana6.jpg"),
   # images: open("#{Rails.root}/db/fixtures/masuya/mgkana1.jpg"),
           # open("#{Rails.root}/db/fixtures/masuya/mgkana4.jpg"),
@@ -342,6 +405,7 @@ House.create!(
   大きな観光スポットはないけれど、言葉では表せない「安らぎ」がここにはあります。
   「なにもしない」が最高の贅沢。忙しい日常はお家に置いて、小鹿野町でのんびりまったり休憩しませんか？",
   is_valid: '0',
+  house_area_id: '4',
   house_image: open("#{Rails.root}/db/fixtures/ogagesu/daioganogh.jpg"),
 )
 
@@ -377,6 +441,7 @@ House.create!(
   introduction: "屋久島で人気の素泊まり宿。
   ホームページ等は持たず、予約は電話のみという営業スタイルだが、オーナーさんの人柄と、チェックイン後の心地良い距離感からか全国にファンがいる知る人ぞ知る宿。",
   is_valid: '1',
+  house_area_id: '11',
   house_image: open("#{Rails.root}/db/fixtures/seikouudoku/daiseikoudoku.jpg"),
 )
 
@@ -412,6 +477,7 @@ House.create!(
   introduction: "ここは三重県、東海道五十三次の宿場町『関宿』。
                 江戸から明治にかけての歴史的建物が200軒ほど残る町並みの中心に、日本全国からいろんな旅人が集まる、楽しいお宿です!!",
   is_valid: '1',
+  house_area_id: '7',
   house_image: open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana5.jpg"),
   # images: open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana2.jpg"),
           # open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana3.jpg"),
@@ -450,6 +516,7 @@ House.create!(
   copy: '囲炉裏のある小さなお宿',
   introduction: "湘南よりも山のほう 大仏さまのずっと奥に、あかり灯る一軒家 大きな囲炉裏と、家を守る大きな柱 宮大工により造られた、あたたかな木のおうち 畳のにおい、陽だまり縁側 どこか懐かしい、おばあちゃん家のような ここに流れるのは、きっとこころから安らぐ時間 どうぞゆるりお過ごしください",
   is_valid: '1',
+  house_area_id: '4',
   house_image: open("#{Rails.root}/db/fixtures/kamagesu/kamagesukana1.jpg"),
   # images: open("#{Rails.root}/db/fixtures/kamagesu/kamagesukana2.jpg"),
 )
@@ -487,6 +554,7 @@ House.create!(
   食事の提供はありませんが毎日自炊や石垣牛や島料理の美味しいお店に食べることも。
   夜はリビングに集まってみんなとゆんたく(おしゃべり)！自分のおうちのようにゆっくりやすんで友達作っていい思い出たくさん作ってまた帰ってきてね〜。",
   is_valid: '1',
+  house_area_id: '12',
   house_image: open("#{Rails.root}/db/fixtures/gettouya/daigettouya.jpg"),
 )
 
@@ -522,6 +590,7 @@ House.create!(
   introduction: "ネパール出身のご主人と、日本人の奥様が二人三脚で営むアットホームなゲストハウス兼カレー屋さん。
   ゲストとの一期一会の出会いを大切にしている素敵なお宿",
   is_valid: '1',
+  house_area_id: '7',
   house_image: open("#{Rails.root}/db/fixtures/romey/dairomey.jpg"),
 )
 
@@ -558,6 +627,7 @@ House.create!(
   ゲストさんの想い、目標や夢に手が届く宿を目指しています。
   訪れるすべてのゲストさんの笑顔を願い、皆様のお越しを心からお待ちしております。",
   is_valid: '1',
+  house_area_id: '7',
   house_image: open("#{Rails.root}/db/fixtures/tau/tau_ryo3.jpg"),
   # images: open("#{Rails.root}/db/fixtures/tau/tau_ryo1.jpg"),
           # open("#{Rails.root}/db/fixtures/tau/tau_ryo2.jpg"),
@@ -595,6 +665,7 @@ House.create!(
   introduction: "沖縄の海まで徒歩１分のゲストハウス。
   東シナ海沿いの静かな一軒家で味わう優雅な沖縄時間♪人の温かみ、極上の琉球創作料理に南国の島酒で心の底から笑顔になって下さい。",
   is_valid: '1',
+  house_area_id: '12',
   house_image: open("#{Rails.root}/db/fixtures/yagu/yagukana3.jpg"),
   # images: open("#{Rails.root}/db/fixtures/yagu/yagukana1.jpg"),
   # open("#{Rails.root}/db/fixtures/yagu/yagukana2.jpg"),
@@ -635,6 +706,7 @@ House.create!(
   海ではダイビングはもちろん、ドルフィンスイムやホエールウォッチング、スキンダイブに島巡りボート。
   山はトレッキングに数々の展望台。1便やりすごして8~9泊してもやることいっぱい。",
   is_valid: '1',
+  house_area_id: '4',
   house_image: open("#{Rails.root}/db/fixtures/free/free1.jpg"),
 )
 
@@ -672,6 +744,7 @@ House.create!(
   関東屈指の美しさを誇る御宿の海から徒歩5分、駅から徒歩8分、スーパーから徒歩2分の御宿中心街にひっそりと佇んでいます。
   帰ってきたらすぐに浴びられる外シャワーがあるので、海水浴やサーフィンも快適。ツーリングなどの拠点にもご利用ください。皆様のお越しを心よりお待ちしております",
   is_valid: '1',
+  house_area_id: '4',
   house_image: open("#{Rails.root}/db/fixtures/free/free2.jpg"),
 )
 
@@ -707,6 +780,7 @@ House.create!(
   introduction: "ゲストハウスの魅力に取り憑かれバックパッカーとして世界を旅した五島出身のオーナーが、「いつか、ゲストハウスを、自分が生まれ育った島に作りたい！」という思いを形にした宿。
   旅人の気持ちがわかるオーナーだから作れる居心地の良い宿です",
   is_valid: '1',
+  house_area_id: '12',
   house_image: open("#{Rails.root}/db/fixtures/free/free3.jpg"),
 )
 
@@ -744,6 +818,7 @@ House.create!(
   中に入れば、北の大地とは思えないユルい雰囲気と居心地の良さ。まるでホームステイに来たようなアットホームな空気感が自慢の宿です。
   ホテルや旅館では味わえない、素敵な一期一会の出会いが待っています。",
   is_valid: '1',
+  house_area_id: '1',
   house_image: open("#{Rails.root}/db/fixtures/free/free4.jpg"),
 )
 
@@ -778,6 +853,7 @@ House.create!(
   copy: '日本の最南端にある素敵な出会い',
   introduction: '日本最南端の有人島にあるゲストハウスNami。どこか懐かしさを感じるその佇まいは夏休みに田舎のおばあちゃんの家に帰ってきた時の感覚を思い出させます。広々とした庭に置かれた大きなテーブルを囲んであなたも”ゆんたく（おしゃべり）”を楽しみませんか？',
   is_valid: '1',
+  house_area_id: '12',
   house_image: open("#{Rails.root}/db/fixtures/free/free5.jpg"),
 )
 
@@ -812,6 +888,7 @@ House.create!(
   copy: '鎌倉の暮らしを亀時間で旅する宿',
   introduction: '鎌倉時代に港町として栄えた材木座に、宮大工によって建てられた築94年の歴史を持つ古民家をゲストハウスに改装しました。海まで徒歩3分、鎌倉の暮らしをゆっくりお楽しみください。',
   is_valid: '1',
+  house_area_id: '4',
   house_image: open("#{Rails.root}/db/fixtures/free/free6.jpg"),
 )
 

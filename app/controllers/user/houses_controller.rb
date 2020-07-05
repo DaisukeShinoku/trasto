@@ -2,13 +2,15 @@ class User::HousesController < ApplicationController
 
   def index
     @houses = SearchHousesForm.new(params).result
-    @categories = Category.where(is_valid: true).first(5)
+    @categories = Category.where(is_valid: true).shuffle.first(5)
+    @house_areas = HouseArea.all
   end
 
   def show
     @house = House.find(params[:id])
     @stories = Story.where(house_id: @house.id).shuffle.first(2)
     @categories = Category.where(is_valid: true).shuffle.first(5)
+    @house_areas = HouseArea.all
     @house_comments = HouseComment.where(house_id: @house.id).last(5)
     @house_comment = HouseComment.new
   end

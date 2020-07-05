@@ -9,6 +9,8 @@ class House < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :to_go_lists, dependent: :destroy
 
+  belongs_to :house_area
+
   with_options presence: true do
     validates :name
     validates :postcode

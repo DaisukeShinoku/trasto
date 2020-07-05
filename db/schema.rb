@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_04_041450) do
+ActiveRecord::Schema.define(version: 2020_07_05_023951) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email"
@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(version: 2020_07_04_041450) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "house_areas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "house_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -90,6 +96,8 @@ ActiveRecord::Schema.define(version: 2020_07_04_041450) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "house_image"
     t.json "images"
+    t.bigint "house_area_id", null: false
+    t.index ["house_area_id"], name: "index_houses_on_house_area_id"
   end
 
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -209,6 +217,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_041450) do
   add_foreign_key "house_categories", "houses"
   add_foreign_key "house_comments", "houses"
   add_foreign_key "house_comments", "users"
+  add_foreign_key "houses", "house_areas"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "stories", "houses"
