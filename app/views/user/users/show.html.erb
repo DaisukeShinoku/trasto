@@ -24,7 +24,7 @@
       </div>
       <div class="columns is-multiline">
         <div class="column is-full">
-          <h1><strong><%= @user.display_name %>のツイート</strong></h1>
+          <h1><strong><%= @user.display_name %>のツブヤキ</strong></h1>
         </div>
         <div class="column is-full">
           <%= render partial: "user/tweets/tweet", collection: @tweets %>
@@ -33,7 +33,7 @@
       <div class="columns is-multiline is-full">
         <div class="column is-full has-text-right">
         <%= link_to tweets_user_path(@user) do %>
-          <h1><strong>>><%= @user.display_name %>のツイートをもっと見る</strong></h1>
+          <h1><strong>>><%= @user.display_name %>のツブヤキをもっと見る</strong></h1>
         <% end %>
         </div>
       </div>

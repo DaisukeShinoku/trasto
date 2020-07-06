@@ -38,9 +38,11 @@
                     </p>
                     <p>
                       <small>
+                      <% if logged_in? %>
                         <% if current_user.id == story.user_id %>
                           <%= link_to "delete", house_story_path(story.house, story), method: :delete, data: { confirm: "本当に削除しますか?" } %>
                         <% end %>
+                      <% end %>
                       </small>
                     </p>
                   </div>

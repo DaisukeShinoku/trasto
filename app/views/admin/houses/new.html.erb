@@ -32,6 +32,10 @@
               <td><%= f.text_field :address %><td>
             </tr>
             <tr>
+              <th><%= f.label :house_area, 'エリア(選択)' %></th>
+              <td><%= f.collection_select :house_area_id, HouseArea.all, :id, :name %><td>
+            </tr>
+            <tr>
               <th><%= f.label :copy, 'キャッチコピー' %></th>
               <td><%= f.text_field :copy %><td>
             </tr>

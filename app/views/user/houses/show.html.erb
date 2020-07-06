@@ -76,6 +76,7 @@
               </div>
             </article>
             <% end %>
+            <% if logged_in? %>
             <h1><%= @house.name %>に応援コメントを投稿しよう！</h1>
             <article class="media">
               <div class="media-left">
@@ -96,6 +97,7 @@
                 <% end %>
               </div>
             </article>
+            <% end %>
             <%= link_to house_comments_path(@house) do %>
               <p class="has-text-right">>>>応援コメントをもっと読む（全<%= @house.house_comments.count %>件）</p>
             <% end %>

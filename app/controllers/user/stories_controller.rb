@@ -1,5 +1,5 @@
 class User::StoriesController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destory]
   before_action :correct_user,   only: [:edit, :update, :destory]
 
   def index
@@ -63,7 +63,7 @@ end
   private
 
   def story_params
-    params.require(:story).permit(:title, :content, :visit_date, :story_image)
+    params.require(:story).permit(:title, :content, :visit_date, :story_image, {images: []})
   end
 
     # ログイン済みユーザーかどうか確認

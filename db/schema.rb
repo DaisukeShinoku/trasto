@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_023951) do
+ActiveRecord::Schema.define(version: 2020_07_06_080624) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_023951) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "story_image"
+    t.json "images"
     t.index ["house_id"], name: "index_stories_on_house_id"
     t.index ["user_id", "house_id", "created_at"], name: "index_stories_on_user_id_and_house_id_and_created_at"
     t.index ["user_id"], name: "index_stories_on_user_id"

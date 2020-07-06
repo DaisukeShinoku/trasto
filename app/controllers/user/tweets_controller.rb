@@ -9,10 +9,10 @@ class User::TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
-      flash[:success] = "ツイートしました!"
+      flash[:success] = "ツブヤキしました!"
       redirect_to tweets_url
     else
-      flash[:warning] = "ツイートに失敗しました"
+      flash[:warning] = "ツブヤキに失敗しました"
       redirect_to tweets_url
     end
   end
@@ -20,7 +20,7 @@ class User::TweetsController < ApplicationController
   def destroy
     @tweet = Tweet.find(params[:id])
     @tweet.destroy
-    flash[:danger] = "ツイートを削除しました"
+    flash[:danger] = "ツブヤキを削除しました"
     redirect_to request.referrer || root_url
   end
 

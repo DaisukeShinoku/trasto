@@ -1,4 +1,6 @@
 class User::RoomsController < ApplicationController
+  before_action :logged_in_user
+
   def create
     @room = Room.create
     @entry1 = Entry.create(:room_id => @room.id, :user_id => current_user.id)
