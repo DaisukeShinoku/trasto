@@ -68,8 +68,10 @@
                       <small>@<%= story_comment.user.account_name %></small>
                       <small><%= l story_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
                       <small>
-                        <% if current_user.id == story_comment.user_id %>
-                          <%= link_to "delete", house_story_story_comment_path(@house, @story, story_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                        <% if logged_in? %>
+                          <% if current_user.id == story_comment.user_id %>
+                            <%= link_to "delete", house_story_story_comment_path(@house, @story, story_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                          <% end %>
                         <% end %>
                       </small>
                       <br>

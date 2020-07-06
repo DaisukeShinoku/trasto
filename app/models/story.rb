@@ -1,5 +1,6 @@
 class Story < ApplicationRecord
   mount_uploader :story_image, StoryImageUploader
+  mount_uploaders :images, ImagesUploader
 
   belongs_to :user
   belongs_to :house

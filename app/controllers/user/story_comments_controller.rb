@@ -1,4 +1,6 @@
 class User::StoryCommentsController < ApplicationController
+  before_action :logged_in_user, only: [:create, :destory]
+
   def index
     @story = Story.find(params[:id])
     @house = House.find(params[:house_id])

@@ -1,7 +1,7 @@
           <%= form_for(@tweet) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
             <div class="field">
-              <%= f.text_area :content, :size=>"80x6", placeholder: "今の気持ちをツイートしよう..." %>
+              <%= f.text_area :content, :size=>"80x6", placeholder: "今の気持ちをツブヤキしよう..." %>
               <%= f.file_field :tweet_picture %>
             </div>
             <%= f.submit "Post", class: "button is-primary" %>

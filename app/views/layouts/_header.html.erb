@@ -1,10 +1,14 @@
 <%# <div class="hero-head"> %>
   <header class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item">
-        <%= image_tag 'logo.png' %>
-      </a>
-
+      <%#= link_to root_path, data: {"turbolinks" => false} do%>
+      <div class="navbar-item logo-header">
+        <%#= link_to root_path, data: {"turbolinks" => false} do%>
+          <%= image_tag 'logo.png' %>
+        <%# end %>
+          <%#= link_to image_tag("logo.png"), root_path, data: {"turbolinks" => false} %>
+      </div>
+      <%# end %>
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -15,48 +19,48 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
       <% if logged_in? %>
-        <p class="header-link" ><%= link_to ' Home ', root_path, data: {"turbolinks" => false} %></p>
-        <p class="header-link" ><%= link_to ' Guesthouse ', houses_path %></p>
-        <p class="header-link" ><%= link_to ' Story ', "#" %></p>
-        <p class="header-link" ><%= link_to ' Tweet ', tweets_path %></p>
-        <p class="header-link" ><%= link_to ' User ', users_path %></p>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
-          </a>
-
-          <div class="navbar-dropdown">
-
-              <p class="header-link" ><%= link_to 'Mypage', user_path(current_user) %></p>
-
- 
-              <p class="header-link" ><%= link_to 'Setting', edit_user_path(current_user) %></p>
-
-            <hr class="navbar-divider">
- 
-              <p class="header-link" ><%= link_to 'About', "#" %></p>
-              <p class="header-link" ><%= link_to 'Contact', "#" %></p>
-
-          </div>
+        <!-- <p class="header-link" ><%= link_to ' Home ', root_path, data: {"turbolinks" => false} %></p> -->
+        <p class="header-link" ><%= link_to ' ゲストハウス ', houses_path %></p>
+        <p class="header-link" ><%= link_to ' ツブヤキ ', tweets_path %></p>
+        <p class="header-link" ><%= link_to ' ユーザー ', users_path %></p>
         <% else %>
-          <p class="header-link" ><%= link_to ' Home ', root_path, data: {"turbolinks" => false} %></p>
-          <p class="header-link" ><%= link_to ' Guesthouse ', houses_path %></p>
-          <p class="header-link" ><%= link_to ' Story ', "#" %></p>
+          <!-- <p class="header-link" ><%= link_to ' Home ', root_path, data: {"turbolinks" => false} %></p> -->
+          <p class="header-link" ><%= link_to ' ゲストハウスを探す ', houses_path %></p>
+          <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
         <% end %>
         </div>
       </div>
 
       <div class="navbar-end">
+        <% if logged_in? %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </a>
+
+          <div class="navbar-dropdown">
+
+              <p class="header-link" ><%= link_to 'マイページ', user_path(current_user) %></p>
+
+ 
+              <p class="header-link" ><%= link_to '登録情報の編集', edit_user_path(current_user) %></p>
+
+            <hr class="navbar-divider">
+ 
+              <p class="header-link" ><%= link_to 'trastoについて', "#" %></p>
+              <p class="header-link" ><%= link_to 'お問い合わせ', "#" %></p>
+
+          </div>
+          <% end %>
         <div class="navbar-item">
           <div class="buttons">
           <%# if logged_in_admin? %>
             <%#= link_to 'Log out(Admin)', admin_logout_path, method: :delete, class: 'button is-danger' %>
           <% if logged_in? %>
-            <%= link_to 'Log out', logout_path, method: :delete, class: 'button is-danger' %>
+            <%= link_to 'ログアウト', logout_path, method: :delete, class: 'button is-danger' %>
           <% else %>
-            <%= link_to 'Sign Up', signup_path, class: 'button is-primary' %>
-            <%= link_to 'Log in', login_path, class: 'button is-light' %>
+            <%= link_to 'ユーザー登録', signup_path, class: 'button is-primary' %>
+            <%= link_to 'ログイン', login_path, class: 'button is-light' %>
           <% end %>
           </div>
         </div>
