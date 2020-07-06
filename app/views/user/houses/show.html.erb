@@ -18,7 +18,8 @@
           </figure>
           <div class="columns is-multiline">
             <div class="column is-8">
-              <h1><strong><%= @house.name%>/<%= @house.prefecture.name %></strong></h1><br>
+              <h1><strong><%= @house.name %></strong><small>&nbsp;&nbsp;(&nbsp;<%= @house.prefecture.name %>&nbsp;)</small></h1><br>
+              <h1><strong><%= @house.copy %></strong></h1><br>
               <% if @house.is_valid == true %>
                 <% if @house.domitory_price && @house.private_price%>
                   <h1>ドミトリー:<%= number_to_currency(@house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
@@ -40,6 +41,11 @@
                 <br>
                 <%= render 'user/to_go_lists/to_go_list_form', house: @house %>
               <% end %>
+            </div>
+          </div>
+          <div class="columns is-multiline">
+            <div class="column is-full">
+              <%= sanitize(simple_format(@house.introduction), :tags => %w(p br)) %>
             </div>
           </div>
           <% if logged_in? %>

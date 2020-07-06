@@ -9,6 +9,10 @@
   padding-bottom: 12px;
 }
 
+.admin-notice{
+  padding-top: 68px;
+}
+
 .header-link{
   a:link {color:white; text-decoration:none }
   a:visited { color:white; text-decoration:none }
@@ -20,10 +24,8 @@
   padding-left:12px;
 }
 
-.logo-header{
-  // line-height: 56px;
-  // height: 56px;
-  margin: auto 0;
+.header-logo{
+  margin-top: 4px;
 }
 
 .navbar-dropdown{
