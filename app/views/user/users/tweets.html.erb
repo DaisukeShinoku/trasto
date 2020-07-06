@@ -4,19 +4,12 @@
 
   <div class="columns is-full">
     <div class="column is-3">
-      // ？？
+      <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
     <div class="column is-9">
       <div class="columns is-multiline">
         <div class="column is-full">
-          <div></div>
-          <br>
-          <h1>今の気持ちをツイートしよう</h1>
-          <%= render partial: "tweet_form" %>
-          <div></div>
-          <br>
-          <%# 各ツイートの呼び出し %>
-          <%= render partial: "tweet", collection: @tweets %>
+          <%= render partial: "user/tweets/tweet", collection: @tweets %>
         </div>
       </div>
     </div>

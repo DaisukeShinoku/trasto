@@ -5,11 +5,13 @@ class User::UsersController < ApplicationController
 
   def index
     @users = User.all
+    @currentUserEntry=Entry.where(user_id: current_user.id)
   end
 
   def show
-    @user=User.find(params[:id])
-    @tweets = @user.tweets.all
+    @user = User.find(params[:id])
+    @tweets = @user.tweets.shuffle.first(3)
+    @stories = @user.stories.shuffle.first(3)
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id
@@ -69,6 +71,25 @@ class User::UsersController < ApplicationController
     @title = "フォロー"
     @user  = User.find(params[:id])
     @users = @user.following.all
+    @user = User.find(params[:id])
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
     render 'show_follow'
   end
 
@@ -76,7 +97,72 @@ class User::UsersController < ApplicationController
     @title = "フォロワー"
     @user  = User.find(params[:id])
     @users = @user.followers.all
+    @user = User.find(params[:id])
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
     render 'show_follow'
+  end
+
+  def tweets
+    @user = User.find(params[:id])
+    @tweets = @user.tweets.all
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
+  end
+
+  def stories
+    @user = User.find(params[:id])
+    @stories = @user.stories.all
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   private

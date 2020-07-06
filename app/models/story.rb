@@ -11,7 +11,7 @@ class Story < ApplicationRecord
   validates :visit_date, presence: true
   validates :content, length: {maximum: 3000}
 
-  # お気に入り判定 → vies側で呼び出し
+  # お気に入りストーリー判定 → view側で呼び出し
   def story_bookmark_by?(user)
     story_bookmarks.where(user_id: user.id).exists?
   end
