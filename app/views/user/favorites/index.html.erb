@@ -1,0 +1,59 @@
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3">
+      <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
+    </div>
+    <div class="column is-9">
+      <h1><strong><%= @user.display_name%>がいいねしたツイート</strong></h1><br>
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <% @favorites.each do |favorite| %>
+            <div class="box is">
+              <article class="media">
+                <div class="media-left">
+                  <% if favorite.tweet.user.avatar? %>
+                    <%= image_tag favorite.tweet.user.avatar.xs.url %><br>
+                  <% else %>
+                    <%= image_tag 'noimage_xs.png' %><br>
+                  <% end %>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong><%= link_to favorite.tweet.user.display_name, favorite.tweet.user %></strong>
+                      <small>@<%= favorite.tweet.user.account_name %></small>
+                      <small><%= l favorite.tweet.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                      <small>
+                        <% if current_user?(favorite.tweet.user) %>
+                          <%= link_to "delete", favorite.tweet, method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                        <% end %>
+                      </small>
+                      <br>
+                      <%= sanitize(simple_format(favorite.tweet.content), :tags => %w(p br)) %>
+                    </p>
+                  </div>
+                  <% if favorite.tweet.tweet_picture? %>
+                  <div class="content has-text-centered">
+                    <%= image_tag favorite.tweet.tweet_picture.third.url %>
+                  </div>
+                  <% end %>
+                </div>
+                <div class="media-right">
+                  <%= render 'user/favorites/favorite_form', tweet: favorite.tweet %>
+                  <%= link_to tweet_path(favorite.tweet.id) do%>
+                  <i class="fas fa-comment fa-fw fa-lg" ></i>
+                  <%= favorite.tweet.tweet_comments.count %>
+                  <% end %>
+                </div>
+              </article>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>

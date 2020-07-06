@@ -1,8 +1,6 @@
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
+<%= render 'shared/flash' %>
 
   <h1>Update your profile</h1>
   <div>

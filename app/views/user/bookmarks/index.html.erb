@@ -6,14 +6,14 @@
 
   <div class="columns is-full">
     <div class="column is-3">
-      // ジャンル検索？？
+      <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
-    <div class="column is-10">
-      <h1><strong><%= @user.display_name%>さんのお気に入りのゲストハウス一覧</strong></h1><br>
+    <div class="column is-9">
+      <h1><strong><%= @user.display_name%>のお気に入りのゲストハウス一覧</strong></h1><br>
       <div class="columns is-multiline">
-        <% @bookmarks.each  do |bookmark| %>
+        <% @bookmarks.each do |bookmark| %>
           <div class="column is-4">
-             <%= link_to house_path(bookmark.house) do %>
+             <%= link_to house_path(bookmark.house), data: {"turbolinks" => false} do %>
               <% if bookmark.house.house_image? %>
                 <%= image_tag bookmark.house.house_image.second.url %>
               <% else %>
@@ -22,10 +22,16 @@
               <p><strong><%= bookmark.house.name %></strong>/<%= bookmark.house.prefecture.name %></p>
             <% end %>
             <% if bookmark.house.is_valid == true %>
-              <p>ドミトリー:<%= number_to_currency(bookmark.house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
-                個室:<%= number_to_currency(bookmark.house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
-            <% else %>
-              <p>閉館中</p>
+              <% if bookmark.house.domitory_price && bookmark.house.private_price%>
+                <p>ドミトリー:<%= number_to_currency(bookmark.house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
+                  個室:<%= number_to_currency(bookmark.house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+              <% elsif bookmark.house.domitory_price %>
+                <p>ドミトリー:<%= number_to_currency(bookmark.house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+              <% elsif bookmark.house.private_price %>
+                <p>個室:<%= number_to_currency(bookmark.house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+              <% end %>
+            <% else%>
+              <p>休館中 or 閉館中</p>
             <% end %>
           </div>
         <% end %>

@@ -1,0 +1,68 @@
+          <div class="columns is-multiline">
+            <div class="column is-9">
+              <%= link_to user_path(user) do %>
+                <h1><strong><%= user.display_name %></strong></h1>
+                <h5><small>@<%= user.account_name %></small></h5>
+              <% end %>
+            </div>
+            <div class="column is-2">
+            <% if current_user?(user) %>
+              <%= link_to edit_user_path(user) do %>
+                <i class="fas fa-wrench fa-2x"></i>
+              <% end %>
+            <% end %>
+            </div>
+          </div>
+      <table class="table">
+        <tr>
+          <td><%= sanitize(simple_format(user.introduction), :tags => %w(p br)) %></td>
+        </tr>
+        <tr>
+          <td>
+            <% if user.avatar? %>
+              <%= image_tag user.avatar.medium.url %>
+            <% else %>
+              <%= image_tag 'noimage_second.png' %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= render 'user/relationships/stats', user: user %>
+          </td>
+        </tr>
+        <% if user.id == current_user.id %>
+        <% else %>
+        <tr>
+          <td>
+            <%= render 'user/relationships/follow_form', user: user %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <% if isRoom == true %>
+              <%= link_to "メッセージを送る", "/rooms/#{roomId}", class: 'button is-success' , data: {"turbolinks" => false} %>
+            <% else %>
+              <%= form_for room do |f| %>
+                <%= fields_for entry do |e| %>
+                  <%= e.hidden_field :user_id, :value=> user.id %>
+                <% end %>
+                <%= f.submit "チャットを始める", class: 'button is-success', data: {"turbolinks" => false} %>
+              <% end %>
+            <% end %>
+          <td>
+        </tr>
+        <% end %>
+        <tr>
+          <td><%= link_to "お気に入りゲストハウス", bookmark_user_path(user.id), class: 'button is-warning is-light'%></td>
+        </tr>
+        <tr>
+          <td><%= link_to "行きたいゲストハウス", to_go_list_user_path(user.id), class: 'button is-warning is-light'%></td>
+        </tr>
+        <tr>
+          <td><%= link_to "お気に入りストーリー", story_bookmark_user_path(user.id), class: 'button is-warning is-light'%></td>
+        </tr>
+        <tr>
+          <td><%= link_to "「いいね」したツイート", favorite_user_path(user.id), class: 'button is-warning is-light'%></td>
+        </tr>
+      </table>

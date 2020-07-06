@@ -82,17 +82,10 @@
               <% end %>
           </div>
           <div class="column is-4">
+            <div></div><br>
             <div>
               <% if logged_in? %>
-                <% if @story.story_bookmark_by?(current_user) %>
-                  <%= link_to house_story_bookmark_path(@story, redirect_id: 0), method: :delete do %>
-                    <p class="button is-danger">お気に入りリストから解除</p>
-                  <% end %>
-                <% else %>
-                  <%= link_to house_story_bookmarks_path(@story, redirect_id: 0), method: :post do %>
-                    <p class="button is-danger is-light">お気に入りリストに登録</p>
-                  <% end %>
-                <% end %>
+                <%= render 'user/story_bookmarks/story_bookmark_form', story: @story %>
               <% end %>
             </div>
           </div>

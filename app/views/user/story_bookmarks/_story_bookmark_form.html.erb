@@ -1,0 +1,7 @@
+          <div id="story_bookmark_form">
+            <% if story.story_bookmark_by?(current_user) %>
+              <%= render 'user/story_bookmarks/story_unbookmark', story: story %>
+            <% else %>
+              <%= render 'user/story_bookmarks/story_bookmark', story: story %>
+            <% end %>
+          </div>
