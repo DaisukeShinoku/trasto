@@ -17,6 +17,7 @@ class User::StoriesController < ApplicationController
   def new
     @house = House.find(params[:house_id])
     @story = Story.new
+    @kind = "新規登録"
   end
 
 def create
@@ -36,6 +37,7 @@ end
 def edit
   @house = House.find(params[:house_id])
   @story = Story.find(params[:id])
+  @kind = "ストーリーを更新"
 end
 
 def update

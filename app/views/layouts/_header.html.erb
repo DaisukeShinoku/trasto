@@ -1,14 +1,10 @@
 <%# <div class="hero-head"> %>
   <header class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <%#= link_to root_path, data: {"turbolinks" => false} do%>
-      <div class="navbar-item logo-header">
-        <%#= link_to root_path, data: {"turbolinks" => false} do%>
-          <%= image_tag 'logo.png' %>
-        <%# end %>
-          <%#= link_to image_tag("logo.png"), root_path, data: {"turbolinks" => false} %>
+      <div class="navbar-item">
+          <%= link_to image_tag("logo.png"), root_path, data: {"turbolinks" => false}, class: "header-logo" %>
       </div>
-      <%# end %>
+
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -18,18 +14,28 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-      <% if logged_in? %>
-        <!-- <p class="header-link" ><%= link_to ' Home ', root_path, data: {"turbolinks" => false} %></p> -->
-        <p class="header-link" ><%= link_to ' ゲストハウス ', houses_path %></p>
-        <p class="header-link" ><%= link_to ' ツブヤキ ', tweets_path %></p>
-        <p class="header-link" ><%= link_to ' ユーザー ', users_path %></p>
+        <% if logged_in? %>
+          <% if admin? %>
+            <p class="header-link" ><%= link_to ' ゲストハウス(ユーザー版) ', houses_path %></p>
+            <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
+            <p class="header-link" ><%= link_to ' ツブヤキ(ユーザー版) ', tweets_path %></p>
+            <p class="header-link" ><%= link_to ' ユーザー(ユーザー版) ', users_path %></p>
+            <p class="header-link" ><%= link_to ' ゲストハウス(管理者版) ', admin_houses_path %></p>
+            <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
+            <p class="header-link" ><%= link_to ' ツブヤキ(管理者版) ', tweets_path %></p>
+            <p class="header-link" ><%= link_to ' ユーザー(管理者版) ', admin_users_path %></p>
+          <% else %>
+            <p class="header-link" ><%= link_to ' ゲストハウス ', houses_path %></p>
+            <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
+            <p class="header-link" ><%= link_to ' ツブヤキ ', tweets_path %></p>
+            <p class="header-link" ><%= link_to ' ユーザー ', users_path %></p>
+          <% end %>
         <% else %>
-          <!-- <p class="header-link" ><%= link_to ' Home ', root_path, data: {"turbolinks" => false} %></p> -->
           <p class="header-link" ><%= link_to ' ゲストハウスを探す ', houses_path %></p>
           <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
         <% end %>
-        </div>
       </div>
+    </div>
 
       <div class="navbar-end">
         <% if logged_in? %>

@@ -6,7 +6,7 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <%= form_for(@house, url:admin_houses_path) do |f| %>
+        <%= form_for(@house, url:admin_house_path) do |f| %>
       <%= collection_check_boxes(:house, :category_ids, Category.all, :id, :name) do |category| %>
           <%= category.label do %>
               <%= category.check_box %>
@@ -64,7 +64,7 @@
             </tr>
             <tr>
               <th></th>
-              <td><%= f.submit "新規登録" , class: "button is-primary"  %></td>
+              <td><%= f.submit "情報を更新" , class: "button is-primary"  %></td>
             </tr>
           </table>
   <% end %>

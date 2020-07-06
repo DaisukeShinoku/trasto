@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     # get '/top', to: 'admins#top'
     resources :users
     resources :houses
-    resources :categories, only: [:index, :create, :edit, :update]
+    resources :categories
   end
 
 end

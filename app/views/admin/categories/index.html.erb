@@ -1,39 +1,75 @@
+<div class="notification is-danger admin-notice">管理者のページです</div>
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3">
+      <%= link_to new_admin_house_path do %>
+        <div class="notification is-warning">ゲストハウス新規登録</div><br>
       <% end %>
-
-  <h1>カテゴリー一覧</h1>
-
-  <%= form_for(@category, url:admin_categories_path) do |f| %>
-
-      <div class="field">
-        <p>カテゴリー追加</p>
-        <%= f.text_field :name %>
-        有効 <%= f.radio_button :is_valid, true %>
-        無効 <%= f.radio_button :is_valid, false %> 
-        <%= f.submit '追加', class: 'button is-primary' %>
-      </div>
-  <% end %>
-
-  <table class="table">
-    <tr>
-      <th>カテゴリーID</th>
-      <th></th>
-    </tr>
-    <% @categories.each do |category| %>
-    <tr>
-        <td> <%= category.name %> </td>
-      <% if category.is_valid == true %>
-        <td> 有効 </td>
-      <% else %>
-        <td> 無効 </td>
+      <aside class="menu">
+        <p class="menu-label">
+          カテゴリーから探す
+        </p>
+        <ul class="menu-list">
+          <% @categories.each do |category| %>
+            <li><%= link_to category.name, admin_houses_path(category_id: category.id) %></li>
+          <% end %>
+            <li><%= link_to "全てのジャンルを見る", admin_categories_path %></li>
+        </ul>
+        <p class="menu-label">
+          エリアで探す
+        </p>
+        <ul class="menu-list">
+        <% @house_areas.each do |house_area| %>
+          <li><%= link_to house_area.name, admin_houses_path(house_area_id: house_area.id) %></li>
+        <% end %>
+        </ul>
+      </aside>
+    </div>
+    <div class="column is-9">
+      <%= form_for(@category, url:admin_categories_path) do |f| %>
+          <div class="field">
+            <p>カテゴリー追加</p>
+            <%= f.text_field :name %>
+            有効 <%= f.radio_button :is_valid, true %>
+            無効 <%= f.radio_button :is_valid, false %> 
+            <%= f.file_field :category_image %>
+            <%= f.submit '追加', class: 'button is-primary' %>
+          </div>
       <% end %>
-        <td> <%= link_to "編集する", edit_admin_category_path(category), class: 'button is-primary' %></td>
-    </tr>
-    <% end %>
-  </table>
+    <h1><strong>カテゴリーの一覧</strong></h1>
+    <br>
+      <section class="container">
+        <div class="level-item">
+          <div class="columns is-multiline is-centered cards-container">
+            <% @categories_all.each do |category| %>
+            <div class="column is-one-quarter">
+              <article class="message is-primary">
+                  <div class="message-header">
+                      <p><%= link_to category.name, admin_houses_path(category_id: category.id) %></p>
+                  </div>
+                  <div class="message-body">
+                    <% if category.category_image? %>
+                      <%= image_tag category.category_image.url %>
+                    <% else %>
+                      <%= image_tag 'noimage_category.png' %>
+                    <% end %>
+                  </div>
+                  <div class="message-body">
+                  <%= link_to "編集する", edit_admin_category_path(category), class: 'button is-warning' %>
+                  <%= link_to "削除する", admin_category_path(category), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'button is-danger' %>
+                  </div>
+              </article>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
 </div>
 
 <%= render 'layouts/footer' %>
