@@ -1,14 +1,12 @@
+<div class="notification is-danger admin-notice">管理者のページです</div>
 <div class="container main-content">
 
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
-    <div class="column is-3">
-      // ？？
-    </div>
-    <div class="column is-9">
+    <div class="column is-full">
       <div class="columns is-multiline">
-        <div class="column is-10">
+        <div class="column is-full">
             <div class="box">
               <article class="media">
                 <div class="media-left">
@@ -21,13 +19,11 @@
                 <div class="media-content">
                   <div class="content">
                     <p>
-                      <strong><%= link_to @tweet.user.display_name, @tweet.user %></strong>
+                      <strong><%= link_to @tweet.user.display_name, admin_user_path(@tweet.user) %></strong>
                       <small>@<%= @tweet.user.account_name %></small>
                       <small><%= l @tweet.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
                       <small>
-                        <% if current_user?(@tweet.user) %>
-                          <%= link_to "delete", @tweet, method: :delete, data: { confirm: "本当に削除しますか?" } %>
-                        <% end %>
+                        <%= link_to "管理者として削除", admin_tweet_path(@tweet.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
                       </small>
                       <br>
                       <%= sanitize(simple_format(@tweet.content), :tags => %w(p br)) %>
@@ -46,13 +42,11 @@
                           <div class="media-content">
                             <div class="content">
                               <p>
-                                <strong><%= link_to tweet_comment.user.display_name, tweet_comment.user %></strong>
+                                <strong><%= link_to tweet_comment.user.display_name, admin_user_path(tweet_comment.user) %></strong>
                                 <small>@<%= tweet_comment.user.account_name %></small>
                                 <small><%= l tweet_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
                                 <small>
-                                  <% if current_user?(tweet_comment.user) %>
-                                    <%= link_to "delete", tweet_tweet_comment_path(@tweet, tweet_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
-                                  <% end %>
+                                  <%= link_to "管理者として削除", admin_tweet_tweet_comment_path(@tweet, tweet_comment), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
                                 </small>
                                 <br>
                                 <%= sanitize(simple_format(tweet_comment.content), :tags => %w(p br)) %>
@@ -78,13 +72,11 @@
                           <div class="media-content">
                             <div class="content">
                               <p>
-                                <strong><%= link_to tweet_comment.user.display_name, tweet_comment.user %></strong>
+                                <strong><%= link_to tweet_comment.user.display_name, admin_user_path(tweet_comment.user) %></strong>
                                 <small>@<%= tweet_comment.user.account_name %></small>
                                 <small><%= l tweet_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
                                 <small>
-                                  <% if current_user?(tweet_comment.user) %>
-                                    <%= link_to "delete", tweet_tweet_comment_path(@tweet, tweet_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
-                                  <% end %>
+                                  <%= link_to "管理者として削除", admin_tweet_tweet_comment_path(@tweet, tweet_comment), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
                                 </small>
                                 <br>
                                 <%= sanitize(simple_format(tweet_comment.content), :tags => %w(p br)) %>
@@ -97,36 +89,14 @@
                   <% end %>
                 </div>
                 <div class="media-right">
-                  <%= render 'user/favorites/favorite_form', tweet: @tweet %>
                   <i class="fas fa-comment fa-fw fa-lg" ></i>
                   <%= @tweet.tweet_comments.count %>
                 </div>
               </article>
-              <article class="media">
-                <div class="media-left">
-                  <% if current_user.avatar? %>
-                    <%= image_tag current_user.avatar.xs.url %><br>
-                  <% else %>
-                    <%= image_tag 'noimage_xs.png' %><br>
-                  <% end %>
-                </div>
-                <div class="media-content">
-                  <%= form_for(shallow_args(@tweet, @tweet_comment), url:tweet_comments_path )do |f| %>
-                    <%= render 'shared/error_messages', object: f.object %>
-                    <div class="field">
-                      <%= f.text_area :content, :size=>"80x6", placeholder: "ツブヤキにコメントしよう..." %>
-                    </div>
-                    <%= f.submit "Post", class: "button is-primary" %>
-                  <% end %>
-                </div>
-              </article>
             </div>
-        </div>
-        <div class="column is-2">
         </div>
       </div>
     </div>
   </div>
 </div>
 <%= render 'layouts/footer' %>
-

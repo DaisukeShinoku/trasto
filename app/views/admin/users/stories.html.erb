@@ -1,0 +1,66 @@
+<div class="notification is-danger admin-notice">管理者のページです</div>
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3">
+      <%= render 'shared/admin_user_sidebar', user: @user %>
+    </div>
+    <div class="column is-9">
+      <h1><strong><%= @user.display_name %>のストーリー</strong></h1><br>
+      <div class="columns is-multiline">
+          <% @stories.each do |story| %>
+            <div class="column is-full">
+              <div class="box">
+                <article class="media">
+                  <div class="media-left">
+                    <%= link_to admin_house_story_path(story.house, story), data: {"turbolinks" => false} do %>
+                      <% if story.story_image? %>
+                        <%= image_tag story.story_image.first.url %>
+                      <% else %>
+                        <%= image_tag 'noimage_first.png' %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <%= link_to admin_house_story_path(story.house, story), data: {"turbolinks" => false} do %>
+                        <strong><%= story.title %></strong><br>
+                        <% end %>
+                        <small><%= l story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small>
+                        <br>
+                        <small><%= story.content.truncate(100) %></small>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="media-right">
+                  <%= link_to admin_user_path(story.user_id) do %>
+                    <div>
+                        <% if story.user.avatar? %>
+                          <%= image_tag story.user.avatar.xs.url %>
+                        <% else %>
+                          <%= image_tag 'noimage_xs.png' %>
+                        <% end %>
+                    </div>
+                    <p>
+                      <small>@<%= story.user.account_name %></small>
+                    </p>
+                    <p>
+                      <small>
+                          <%= link_to "管理者として削除", admin_house_story_path(story.house, story), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
+                      </small>
+                    </p>
+                  </div>
+                  <% end %>
+                </article>
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

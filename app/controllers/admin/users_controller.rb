@@ -32,6 +32,16 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_url
   end
 
+  def tweets
+    @user = User.find(params[:id])
+    @tweets = @user.tweets.all
+  end
+
+  def stories
+    @user = User.find(params[:id])
+    @stories = @user.stories.all
+  end
+
   private
   def user_params
     params.require(:user).permit(:account_name, :display_name, :email, :password, :password_confirmation, :introduction, :avatar, :is_valid)
