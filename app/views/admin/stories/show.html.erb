@@ -1,0 +1,116 @@
+<div class="notification is-danger admin-notice">管理者のページです</div>
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3 has-background-info-light">
+      <%= render 'shared/admin_house_sidebar', house: @house %>
+    </div>
+    <div class="column is-9">
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <figure class="image">
+            <% if @story.story_image? %>
+              <%= image_tag @story.story_image.third.url %><br>
+            <% else %>
+              <%= image_tag 'noimage_third.png' %><br>
+            <% end %>
+          </figure>
+        </div>
+      </div>
+      <div class="columns is-multiline">
+            <% if @story.images? %>
+                <% @story.images.each do |image| %>
+                <div class="column is-3">
+                  <%= image_tag(image.url) %>
+                </div>
+                <% end %>
+            <% end %>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-2">
+          <%= link_to admin_user_path(@story.user_id) do %>
+          <div>
+              <% if @story.user.avatar? %>
+                <%= image_tag @story.user.avatar.xs.url %>
+              <% else %>
+                <%= image_tag 'noimage_xs.png' %>
+              <% end %>
+          </div>
+          <p>
+              <small>@<%= @story.user.account_name %></small>
+          </p>
+          <p>
+              <small>
+                <%= link_to "管理者として削除", admin_house_story_path(@house, @story), method: :delete, data: { confirm: "本当に削除しますか?" },  class: 'button is-danger' %>
+                <%#= link_to '管理者として情報を編集', edit_admin_house_story_path(@house, @story), class: 'button is-warning' %>
+              </small>
+          </p>
+          <% end %>
+        </div>
+        <div class="column is-10">
+            <div class="columns is-multiline">
+              <div class="column is-8">
+                <h1><strong><%= @story.title %></strong></h1>
+              </div>
+              <div class="column is-4">
+                <p class="level-item"><small><%= @story.house.name %></small></p>
+                <p class="level-item"><small><%= l @story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small></p>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <%= safe_join(@story.content.split("\n"), tag(:br)) %>
+        </div>
+      </div>
+      <div>
+        <div class="columns is-multiline">
+          <div class="column is-8">
+          </div>
+          <div class="column is-4">
+          </div>
+        </div>
+          <h1><strong>このストーリーへのコメント</strong></h1>
+          <% @story_comments.each do |story_comment| %>
+            <div class="box">
+              <article class="media">
+                <div class="media-left">
+                  <% if story_comment.user.avatar? %>
+                    <%= image_tag story_comment.user.avatar.xs.url %><br>
+                  <% else %>
+                    <%= image_tag 'noimage_xs.png' %><br>
+                  <% end %>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong><%= link_to story_comment.user.display_name, admin_user_path(story_comment.user) %></strong>
+                      <small>@<%= story_comment.user.account_name %></small>
+                      <small><%= l story_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                      <small>
+                        <%= link_to "管理者として削除", admin_house_story_story_comment_path(@house, @story, story_comment), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
+                      </small>
+                      <br>
+                      <%= sanitize(simple_format(story_comment.content), :tags => %w(p br)) %>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          <% end %>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <%= link_to admin_house_story_comments_path do %>
+            <p>>>このストーリーへのコメントを一覧で表示</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

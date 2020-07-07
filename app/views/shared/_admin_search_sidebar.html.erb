@@ -1,0 +1,22 @@
+      <%= link_to new_admin_house_path do %>
+        <div class="notification is-warning">ゲストハウス新規登録</div><br>
+      <% end %>
+      <aside class="menu">
+        <p class="menu-label">
+          カテゴリーから探す
+        </p>
+        <ul class="menu-list">
+          <% categories.each do |category| %>
+            <li><%= link_to category.name, admin_houses_path(category_id: category.id) %></li>
+          <% end %>
+            <li><%= link_to "全てのジャンルを見る", admin_categories_path %></li>
+        </ul>
+        <p class="menu-label">
+          エリアで探す
+        </p>
+        <ul class="menu-list">
+        <% house_areas.each do |house_area| %>
+          <li><%= link_to house_area.name, admin_houses_path(house_area_id: house_area.id) %></li>
+        <% end %>
+        </ul>
+      </aside>

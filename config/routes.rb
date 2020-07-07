@@ -58,7 +58,18 @@ Rails.application.routes.draw do
     # delete '/logout',  to: 'admins#destroy'
     # get '/top', to: 'admins#top'
     resources :users
-    resources :houses
+    resources :houses do
+      member do
+        resources :house_comments, only: [:index]
+      end
+      resources :stories, :only => [:destroy, :show, :index] do
+        member do
+          resources :story_comments, only: [:index]
+        end
+        resources :story_comments, only: [:destroy]
+      end
+      resources :house_comments, only: [:destroy]
+    end
     resources :categories
   end
 

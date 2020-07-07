@@ -1,42 +1,57 @@
+<div class="notification is-danger admin-notice">管理者のページです</div>
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
+<%= render 'shared/flash' %>
 
-  <h1>管理者としてユーザーを編集</h1>
-  <div>
-    <div>
-      <%= form_for(@user, url:admin_user_path, method: :patch) do |f| %>
-        <%= f.label :account_name %>
-        <%= f.text_field :account_name %>
+      <div class="container">
+        <%= form_for(@user, url:admin_user_path, method: :patch) do |f| %>
+          <table class="table">
+            <tr>
+              <th><%= f.label :account_name, "アカウント名"%></th>
+              <td><%= f.text_field :account_name, :size=>"70" %><td>
+            </tr>
+            <tr>
+              <th><%= f.label :display_name, "表示名"%></th>
+              <td><%= f.text_field :display_name, :size=>"70"%><td>
+            </tr>
+            <tr>
+              <th><%= f.label :email, 'メールアドレス' %></th>
+              <td><%= f.text_field :email, :size=>"70" %><td>
+            </tr>
+            <tr>
+              <th><%= f.label :password, 'パスワード' %></th>
+              <td><%= f.password_field :password, :size=>"70" %><td>
+            </tr>
+            <tr>
+              <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
+              <td><%= f.password_field :password_confirmation, :size=>"70" %><td>
+            </tr>
+            <tr>
+              <th><%= f.label :introduction, '紹介文' %></th>
+              <td><%= f.text_area :introduction, :size=>"100x30"%><td>
+            </tr>
+            <tr>
+              <th><%= f.label :avatar, 'プロフィール写真を設定' %></th>
+              <td><%= f.file_field :avatar %><td>
+            </tr>
+            <tr>
+              <th><%= f.label :is_valid, 'ステータス' %></th>
+              <td>
+                <% if current_user.admin? %>
+                  <%= f.radio_button :is_valid, true %>
+                  <%= f.label :is_valid, "有効", value: true %>
+                  <%= f.radio_button :is_valid, false %>
+                  <%= f.label :is_valid, "退会済み", value: false %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th></th>
+              <td><%= f.submit "情報を更新" , class: "button is-primary"  %></td>
+            </tr>
+          </table>
+       <% end %>
+      </div>
 
-        <%= f.label :display_name %>
-        <%= f.text_field :display_name %>
-
-        <%= f.label :email %>
-        <%= f.email_field :email %>
-
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-
-        <%= f.label :password_confirmation, "Confirmation" %>
-        <%= f.password_field :password_confirmation %>
-
-        <%= f.label :introduction %>
-        <%= f.text_field :introduction %>
-
-        <%= f.file_field :avatar %>
-
-        <% if current_user.admin? %>
-          <%= f.radio_button :is_valid, true %>
-          <%= f.label :is_valid, "有効", value: true %>
-          <%= f.radio_button :is_valid, false %>
-          <%= f.label :is_valid, "退会済み", value: false %>
-        <% end %>
-
-        <%= f.submit "編集内容を保存する" %>
-      <% end %>
-    </div>
-  </div>
 </div>
+<%= render 'layouts/footer' %>

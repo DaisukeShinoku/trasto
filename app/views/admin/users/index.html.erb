@@ -1,42 +1,49 @@
+<div class="notification is-danger admin-notice">管理者のページです</div>
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
+<%= render 'shared/flash' %>
 
-  <table class="table">
-    <tr class="active">
-      <th>アカウント名</th>
-      <th>表示名</th>
-      <th>表示名</th>
-      <th>email</th>
-      <th>ステータス</th>
-      <th>画像</th>
-      <th></th>
-    </tr>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= link_to user.account_name, admin_user_path(user.id) %></td>
-      <td><%= user.display_name %></td>
-      <td><%= user.email %></td>
-      <td>
-        <% if user.is_valid == true %>
-          <%= "有効" %>
-        <% else %>
-          <%= "退会済み" %>
+      <div class="columns is-multiline">
+        <% @users.each do |user| %>
+          <div class="column is-full">
+            
+              <div class="box">
+                <article class="media">
+                  <div class="media-left">
+                    <%= link_to admin_user_path(user.id) do %>
+                      <% if user.avatar? %>
+                        <%= image_tag user.avatar.small.url %>
+                      <% else %>
+                        <%= image_tag 'noimage_first.png' %>
+                      <% end %>
+                    <% end %>
+                    <% if user.is_valid == true %>
+                    <span class="tag is-primary"><%= "有効" %></span>
+                    <% else %>
+                    <span class="tag is-danger"><%= "退会済み" %></span>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                    <%= link_to admin_user_path(user.id) do %>
+                      <strong><%= user.display_name %></strong>
+                    <% end %>
+                    <br>
+                      <small>@<%= user.account_name %></small><br>
+                      <small><%= user.introduction.truncate(100) %></small>
+                    </div>
+                  </div>
+                  <div class="media-right">
+                    <small><span class="tag is-link">ツブヤキ:<%= user.tweets.count %></span></small><br>
+                    <small><span class="tag is-link">ストーリー:<%= user.stories.count %></span></small><br>
+                    <small><span class="tag is-link">フォロー<%= user.following.count %></span></small><br>
+                    <small><span class="tag is-link">フォロワー<%= user.followers.count %></span></small><br>
+                  </td>
+                  </div>
+                </article>
+              </div>
+            
+          </div>
         <% end %>
-      </td>
-      <td>
-        <% if user.avatar? %>
-          <%= image_tag user.avatar.small.url %>
-        <% else %>
-          <%= image_tag 'noimage_first.png' %>
-        <% end %>
-      </td>
-      <td>
-          <%= link_to "delete", admin_user_url(user.id), method: :delete,data: { confirm: "You sure?" } %>
-      </td>
-    </tr>
-  <% end %>
-  </table>
+      </div>
 </div>
