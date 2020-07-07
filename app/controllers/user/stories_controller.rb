@@ -59,7 +59,7 @@ def destroy
   @house = @story.house
   @story.destroy
   flash[:warning] = "ストーリーを削除しました"
-  redirect_to request.referrer || root_url
+  redirect_to house_stories_url(@story.house_id)
 end
 
   private

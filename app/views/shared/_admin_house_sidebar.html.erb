@@ -1,0 +1,51 @@
+      <div class="has-text-centered">
+        <figure class="image">
+          <%= link_to admin_house_path(house) do %>
+            <% if house.house_image? %>
+              <%= image_tag house.house_image.second.url %><br>
+            <% else %>
+              <%= image_tag 'noimage_second.png' %><br>
+            <% end %>
+          <% end %>
+        </figure>
+      </div>
+      <aside class="is-medium menu">
+      <ul class="menu-list">
+        <li>
+          <a>
+            <%= link_to admin_house_path(house) do %>
+              <strong><%= house.name %></strong><br>
+              <small><%= house.prefecture.name %></small>
+            <% end %>
+          </a>
+        </li>
+        <li>
+          <a>
+            <%= link_to admin_house_path(house) do %>
+              <% if house.is_valid == true %>
+                <% if house.domitory_price && house.private_price%>
+                  <small>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜<br>
+                    個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</small>
+                <% elsif house.domitory_price %>
+                  <small>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</small>
+                <% elsif house.private_price %>
+                  <small>個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</small>
+                <% end %>
+              <% else%>
+                  <small>休館中 or 閉館中</small>
+              <% end %>
+            <% end %>
+          </a>
+        </li>
+        <li class="has-text-centered">
+          <%= link_to admin_house_stories_path(house) do %>
+            <span class="tag is-link is-medium"><%= house.stories.count %>件のストーリー</span>
+          <% end %>
+        </li>
+        <li class="has-text-centered">
+          <%= link_to admin_house_comments_path(house) do %>
+            <span class="tag is-link is-medium"><%= house.house_comments.count %>件の応援コメント</span>
+          <% end %>
+        </li>
+      </ul>
+      </aside>

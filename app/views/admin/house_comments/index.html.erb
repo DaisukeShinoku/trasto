@@ -1,0 +1,49 @@
+<div class="notification is-danger admin-notice">管理者のページです</div>
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3 has-background-info-light">
+      <%= render 'shared/admin_house_sidebar', house: @house %>
+    </div>
+    <div class="column is-9">
+      <h1><strong><%= @house.name %>への応援コメント</strong></h1><br>
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <% @house_comments.each do |house_comment| %>
+            <div class="box">
+              <article class="media is-full">
+                <div class="media-left">
+                  <% if house_comment.user.avatar? %>
+                    <%= image_tag house_comment.user.avatar.xs.url %><br>
+                  <% else %>
+                    <%= image_tag 'noimage_xs.png' %><br>
+                  <% end %>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong><%= link_to house_comment.user.display_name, admin_user_path(house_comment.user) %></strong>
+                      <small>@<%= house_comment.user.account_name %></small>
+                      <small>
+                        <%= link_to "管理者として削除", admin_house_house_comment_path(@house, house_comment), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
+                      </small>
+                      <br>
+                      <%= house_comment.content %>
+                    </p>
+                  </div>
+                </div>
+                <div class="media-left">
+                  <small><%= l house_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                </div>
+              </article>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

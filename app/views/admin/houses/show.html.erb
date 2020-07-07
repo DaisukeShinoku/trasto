@@ -5,25 +5,7 @@
 
   <div class="columns is-full">
     <div class="column is-3">
-      <aside class="menu">
-        <p class="menu-label">
-          カテゴリーから探す
-        </p>
-        <ul class="menu-list">
-          <% @categories.each do |category| %>
-            <li><%= link_to category.name, admin_houses_path(category_id: category.id) %></li>
-          <% end %>
-            <li><%= link_to "全てのジャンルを見る", admin_categories_path %></li>
-        </ul>
-        <p class="menu-label">
-          エリアで探す
-        </p>
-        <ul class="menu-list">
-        <% @house_areas.each do |house_area| %>
-          <li><%= link_to house_area.name, admin_houses_path(house_area_id: house_area.id) %></li>
-        <% end %>
-        </ul>
-      </aside>
+      <%= render 'shared/admin_search_sidebar', {categories: @categories, house_areas: @house_areas} %>
     </div>
     <div class="column is-9">
       <div class="columns is-multiline">
@@ -75,8 +57,8 @@
               <%= sanitize(simple_format(@house.introduction), :tags => %w(p br)) %>
             </div>
           </div>
-          <div><%= link_to 'この宿に投稿されたストーリーを読む', house_stories_path(@house), class: 'button is-info' %></div><br>
-          <div><%= link_to 'この宿に投稿された応援コメントを読む', house_comments_path(@house), class: 'button is-info' %></div>
+          <div><%= link_to 'この宿に投稿されたストーリーを読む', admin_house_stories_path(@house), class: 'button is-info' %></div><br>
+          <div><%= link_to 'この宿に投稿された応援コメントを読む', admin_house_comments_path(@house), class: 'button is-info' %></div>
     </div>
   </div>
 </div>

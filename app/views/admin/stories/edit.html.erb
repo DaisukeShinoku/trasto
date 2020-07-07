@@ -1,0 +1,46 @@
+<div class="notification is-danger admin-notice">管理者のページです</div>
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3 has-background-info-light">
+      <%= render 'shared/admin_house_sidebar', house: @house %>
+    </div>
+    <div class="column is-9">
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <%= form_for(shallow_args(@house, @story), url:admin_house_story_path )do |f| %>
+            <table class="table">
+              <tr>
+                <th><%= f.label :title, 'タイトル' %></th>
+                <td><%= f.text_field :title, :size=>"100"%></td>
+              </tr>
+              <tr>
+                <th><%= f.label :visit_date, '訪問日時' %></th>
+                <td><%= f.date_field :visit_date %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :story_image, '画像を登録' %></th>
+                <td><%= f.file_field :story_image %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :images, 'サブ画像(4枚まで)' %></th>
+                <td><%= f.file_field :images, multiple: true %></td>
+              </tr>
+              <tr>
+                <th><%= f.label :content, '本文' %></th>
+                <td><%= f.text_area :content, :size=>"100x30"%></td>
+              </tr>
+              <tr>
+                <th></th>
+                <td><%= f.submit "管理者として更新" , class: "button is-warning"  %></td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>
