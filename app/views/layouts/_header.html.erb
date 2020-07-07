@@ -1,4 +1,3 @@
-<%# <div class="hero-head"> %>
   <header class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <div class="navbar-item">
@@ -60,17 +59,14 @@
           <% end %>
         <div class="navbar-item">
           <div class="buttons">
-          <%# if logged_in_admin? %>
-            <%#= link_to 'Log out(Admin)', admin_logout_path, method: :delete, class: 'button is-danger' %>
           <% if logged_in? %>
             <%= link_to 'ログアウト', logout_path, method: :delete, class: 'button is-danger' %>
           <% else %>
             <%= link_to 'ユーザー登録', signup_path, class: 'button is-primary' %>
-            <%= link_to 'ログイン', login_path, class: 'button is-light' %>
+            <%= link_to 'ログイン', login_path, class: 'button is-light is-primary' %>
           <% end %>
           </div>
         </div>
       </div>
     </div>
   </header>
-<%# </div> %>
