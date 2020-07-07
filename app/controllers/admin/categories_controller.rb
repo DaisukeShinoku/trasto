@@ -1,5 +1,4 @@
 class Admin::CategoriesController < ApplicationController
-  # before_action :logged_in_admin
   before_action :admin_user
 
   def index

@@ -57,7 +57,12 @@ Rails.application.routes.draw do
     # post '/login', to: 'admins#create'
     # delete '/logout',  to: 'admins#destroy'
     # get '/top', to: 'admins#top'
-    resources :users
+    resources :users do
+      member do
+        get :tweets
+        get :stories
+      end
+    end
     resources :houses do
       member do
         resources :house_comments, only: [:index]
@@ -71,6 +76,9 @@ Rails.application.routes.draw do
       resources :house_comments, only: [:destroy]
     end
     resources :categories
+    resources :tweets do
+      resources :tweet_comments, only: [:destroy]
+    end
   end
 
 end
