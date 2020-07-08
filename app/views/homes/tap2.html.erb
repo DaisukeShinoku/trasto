@@ -1,0 +1,84 @@
+<%= render 'layouts/header' %>
+<section class="hero is-fullheight  main-content has-background-light">
+
+<div class="container">
+
+  <%= render 'shared/flash' %>
+
+    <div class="columns is-full">
+      <div class="column is-3">
+        <%= render 'shared/search_sidebar', {categories: @categories, house_areas: @house_areas} %>
+      </div>
+      <div class="column is-9">
+        <div class="is-divider"></div>
+        <br>
+        <div class="columns is-multiline has-background-white">
+          <div class="column is-full">
+            <h1><strong>オススメのゲストハウス</strong></h1>
+          </div>
+          <div class="tile is-ancestor">
+            <% @houses.first(3).each do |house| %>
+              <div class="tile is-parent">
+                <div class="card story-card has-background-white">
+                  <div class="card-image">
+                    <% if house.house_image? %>
+                      <%= image_tag house.house_image.second.url %>
+                    <% else %>
+                      <%= image_tag 'noimage_second.png' %>
+                    <% end %>
+                  </div>
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-content">
+                        <%= link_to house_path(house), data: {"turbolinks" => false} do %>
+                          <p class="title is-5"><%= house.name %></p>
+                          <p class="subtitle is-6"><%= house.copy %></p>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="column is-full has-text-right">
+            <%= link_to houses_path do %>
+              <h1><strong>>>ゲストハウスをさがす</strong></h1>
+            <% end %>
+          </div>
+        </div>
+        <div class="is-divider"></div>
+        <br>
+        <div class="columns is-multiline has-background-white">
+          <div class="column is-full">
+            <h1><strong>新しいストーリー</strong></h1>
+          </div>
+          <div class="column is-full">
+            <%= render 'user/stories/index', {stories: @stories} %>
+          </div>
+          <div class="column is-full has-text-right">
+            <%= link_to houses_path do %>
+              <h1><strong>>>ゲストハウスをさがしてストーリーをもっとみる</strong></h1>
+            <% end %>
+          </div>
+        </div>
+        <div class="is-divider"></div>
+        <br>
+        <div class="columns is-multiline has-background-white">
+          <div class="column is-full">
+            <h1><strong>新しいツブヤキ</strong></h1>
+          </div>
+          <div class="column is-full">
+            <%= render partial: "user/tweets/tweet", collection: @tweets %>
+          </div>
+          <div class="column is-full has-text-right">
+            <%= link_to tweets_path do %>
+              <h1><strong>>>ツブヤキをもっとみる</strong></h1>
+            <% end %>
+          </div>
+        </div>
+      </div>
+</div>
+
+</section>
+<%= render 'layouts/footer' %>

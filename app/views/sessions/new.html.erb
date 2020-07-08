@@ -1,8 +1,7 @@
+<%= render 'layouts/header' %>
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
+<%= render 'shared/flash' %>
 
   <div class="colums is-full">
     <div class="colum is-full">
