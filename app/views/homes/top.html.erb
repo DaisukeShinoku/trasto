@@ -108,13 +108,13 @@
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">初めての方</p>
-            <p class="title"><%= link_to ' 会員登録 ', signup_path, class: "has-text-white is-size-4" %></p>
+            <p class="title"><%= link_to ' ユーザー登録 ', signup_path, class: "has-text-white is-size-4" %></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading has-text-white">登録なしで試す</p>
-            <p class="title"><%= link_to ' ゲストハウス検索 ', signup_path, class: "has-text-white is-size-4" %></p>
+            <p class="title"><%= link_to ' ゲストハウス検索 ', houses_path, class: "has-text-white is-size-4" %></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
@@ -150,15 +150,15 @@
               </div>
               <br>
               <div class="has-text-left">
-                <%= link_to ' >>会員登録をしてからtrastoをはじめる方はこちら ', signup_path, class: "has-text-right has-text-grey is-size-5" %>
+                <%= link_to ' >>ユーザー登録をしてからtrastoをはじめる方はこちら ', signup_path, class: "has-text-right has-text-grey is-size-5" %>
               </div>
               <br>
               <div class="has-text-left">
-                <%= link_to ' >>すでにtrastoへの登録を済ませている方はこちら ', signup_path, class: "has-text-right has-text-grey is-size-5" %>
+                <%= link_to ' >>すでにtrastoへの登録を済ませている方はこちら ', login_path, class: "has-text-right has-text-grey is-size-5" %>
               </div>
               <br>
               <div class="has-text-left">
-                <%= link_to ' >>登録なしでtrastoを試してみたい方はこちら ', signup_path, class: "has-text-right has-text-grey is-size-5" %>
+                <%= link_to ' >>登録なしでtrastoを試してみたい方はこちら ', houses_path, class: "has-text-right has-text-grey is-size-5" %>
               </div>
             </div>
             <div class="column is-6" >

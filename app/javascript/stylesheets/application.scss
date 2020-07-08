@@ -3,11 +3,21 @@
 @import "bulma/sass/grid/columns.sass";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
-// .top-image{
-  // background-image: url("/images/beach.jpg");
+.login-hero{
+  background-image: url("/images/beach.jpg");
   // background-image: image-url("musubiya-moai4.jpg'");
-  // background-size: cover;
-// }
+  background-size: cover;
+}
+
+.signup-hero{
+  background-image: url("/images/hateroad2.jpg");
+  // background-image: image-url("musubiya-moai4.jpg'");
+  background-size: cover;
+}
+
+.avatar-form{
+  display: none;
+}
 
 .top-footer{
   padding-top: 24px;
