@@ -40,10 +40,11 @@ class User::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      flash[:success] = "trastoへようこそ!"
+      redirect_to root_url
     else
-      render 'new'
+      flash.now[:warning] = "新規ユーザー登録に失敗しました"
+      render action: :new
     end
   end
 
@@ -54,9 +55,10 @@ class User::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "プロフィールを更新しました"
       redirect_to @user
     else
+      flash.now[:warning] = "プロフィールの更新に失敗しました"
       render 'edit'
     end
   end

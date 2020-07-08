@@ -1,16 +1,21 @@
 <%= render 'layouts/header' %>
-<div class="container main-content">
+
+<section class="hero is-fullheight  main-content has-background-light">
+
+<div class="container">
 
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
     <div class="column is-3">
+    <div class="is-divider"></div>
+    <br>
       <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
     <div class="column is-9">
       <div class="columns is-multiline is-full">
         <div class="column is-full">
-          <h1><strong><%= @user.display_name %>のストーリー</strong></h1>
+          <p class="has-text-weight-bold is-size-6"><%= @user.display_name %>のストーリー</p>
         </div>
         <div class="column is-full">
           <%= render 'user/stories/index', {stories: @stories} %>
@@ -25,7 +30,7 @@
       </div>
       <div class="columns is-multiline">
         <div class="column is-full">
-          <h1><strong><%= @user.display_name %>のツブヤキ</strong></h1>
+          <p class="has-text-weight-bold is-size-6"><%= @user.display_name %>のツブヤキ</p>
         </div>
         <div class="column is-full">
           <%= render partial: "user/tweets/tweet", collection: @tweets %>
@@ -41,5 +46,7 @@
     </div>
   </div>
 </div>
+
+</section>
 
 <%= render 'layouts/footer' %>

@@ -1,5 +1,8 @@
 <%= render 'layouts/header' %>
-<div class="container main-content">
+
+<section class="hero is-fullheight  main-content has-background-light">
+
+<div class="container">
 
 <%= render 'shared/flash' %>
 
@@ -10,10 +13,16 @@
     <div class="column is-9">
       <div class="columns is-multiline">
         <div class="column is-full">
+          <p class="has-text-weight-bold is-size-6"><%= @user.display_name %>のツブヤキ</p>
+          <div class="is-divider"></div>
+          <br>
           <%= render partial: "user/tweets/tweet", collection: @tweets %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+</section>
+
 <%= render 'layouts/footer' %>

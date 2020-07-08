@@ -36,11 +36,12 @@
   </div>
 </section>
 
-<%= render 'shared/flash' %>
+<%#= render 'shared/flash' %>
 
     <section class="hero is-fullheight">
         <div class="hero-body signup-hero has-background-primary-light">
             <div class="container has-text-centered">
+              <%= render 'shared/flash' %>
                 <div class="column is-8 is-offset-2">
                   <h3 class="title has-text-grey">新規ユーザー登録</h3>
                   <%= form_for(@user) do |f| %>
