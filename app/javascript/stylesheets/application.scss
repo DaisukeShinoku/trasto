@@ -3,6 +3,32 @@
 @import "bulma/sass/grid/columns.sass";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
+// .top-image{
+  // background-image: url("/images/beach.jpg");
+  // background-image: image-url("musubiya-moai4.jpg'");
+  // background-size: cover;
+// }
+
+.top-footer{
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.fa-arrow-circle-up:hover{
+  color:hsl(171, 100%, 41%);
+  background-color:none;
+}
+
+#back-to-top a{
+  background :none;
+  color:hsl(171, 100%, 41%);
+}
+
+#back-to-top a:hover{
+  background :none;
+  color:black;
+}
+
 
 .main-content{
   padding-top: 68px;
@@ -68,4 +94,8 @@ roomfooter {
 
 .story-card{
   margin-bottom: 1rem;
+}
+
+.slide-e{
+  width :100%;
 }

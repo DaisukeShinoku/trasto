@@ -1,4 +1,7 @@
-      <aside class="menu">
+      <aside class="menu has-background-white">
+        <ul class="menu-list has-text-centered">
+          <%= link_to "ゲストハウスをさがす", houses_path, class: "has-text-weight-bold" %>
+        </ul>
         <p class="menu-label">
           カテゴリーから探す
         </p>
@@ -6,7 +9,7 @@
           <% categories.each do |category| %>
             <li><%= link_to category.name, houses_path(category_id: category.id) %></li>
           <% end %>
-            <li><%= link_to "他のカテゴリで探す", categories_path %></li>
+            <li><%= link_to "他のカテゴリで探す", categories_path, class: "has-text-right" %></li>
         </ul>
         <p class="menu-label">
           エリアで探す
