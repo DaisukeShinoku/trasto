@@ -2,6 +2,7 @@
 
 
 <%= render 'layouts/header' %>
+
 <section class="hero is-fullheight  main-content has-background-light">
 
 <div class="container">
@@ -82,9 +83,14 @@
         </div>
       </div>
 </div>
+<br>
 
 </section>
 <%= render 'layouts/footer' %>
+
+        <div id="back-to-top" style="position:fixed;right:25px;bottom:5px">
+          <a href="#"><i class="fas fa-arrow-alt-circle-up fa-3x"></i></a>
+        </div>
 
 
 <% else %>
@@ -128,10 +134,9 @@
   </div>
 </section>
 
-<%= render 'shared/flash' %>
-
         <div class="container">
           <div class="column is-12">
+            <%= render 'shared/flash' %>
           </div>
           <div class="columns is-multiline">
             <div class="column is-6 has-vertically-aligned-content">
@@ -195,6 +200,10 @@
       </div>
     </div>
   </footer>
+
+        <div id="back-to-top" style="position:fixed;right:25px;bottom:5px">
+          <a href="#"><i class="fas fa-arrow-alt-circle-up fa-3x"></i></a>
+        </div>
 
 
 <% end %>

@@ -1,5 +1,8 @@
 <%= render 'layouts/header' %>
-<div class="container main-content">
+
+<section class="hero is-fullheight  main-content has-background-light">
+
+<div class="container">
 
 <%= render 'shared/flash' %>
 
@@ -12,6 +15,9 @@
       <%= render 'index', users: @users %>
     </div>
   </div>
-</>
+
+</div>
+
+</section>
 
 <%= render 'layouts/footer' %>

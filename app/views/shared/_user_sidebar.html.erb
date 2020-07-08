@@ -1,19 +1,28 @@
-          <div class="columns is-multiline">
-            <div class="column is-9">
-              <%= link_to user_path(user) do %>
-                <h1><strong><%= user.display_name %></strong></h1>
-                <h5><small>@<%= user.account_name %></small></h5>
-              <% end %>
-            </div>
-            <div class="column is-2">
-            <% if current_user?(user) %>
-              <%= link_to edit_user_path(user) do %>
-                <i class="fas fa-wrench fa-2x"></i>
-              <% end %>
-            <% end %>
-            </div>
-          </div>
+      <aside class="menu has-background-white" >
       <table class="table">
+        <tr>
+          <td>
+            <div class="columns is-multiline">
+              <div class="column is-10">
+                <%= link_to user_path(user) do %>
+                  <h1><strong><%= user.display_name %></strong></h1>
+                  <h5><small>@<%= user.account_name %></small></h5>
+                <% end %>
+              </div>
+              <div class="column is-2">
+              <% if current_user?(user) %>
+                <%= link_to edit_user_path(user) do %>
+                  <i class="fas fa-wrench fa-2x"></i>
+                <% end %>
+              <% end %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <%# <table class="table"> %>
+        <%# <tr> %>
+          <!-- <td><p class="has-text-weight-bold is-size-6 has-text-centered"><%= user.display_name %>のプロフィール</p></td> -->
+        <%# </tr> %>
         <tr>
           <td><%= sanitize(simple_format(user.introduction), :tags => %w(p br)) %></td>
         </tr>
@@ -66,3 +75,4 @@
           <td><%= link_to "「いいね」したツブヤキ", favorite_user_path(user.id), class: 'button is-warning is-light'%></td>
         </tr>
       </table>
+      </aside>
