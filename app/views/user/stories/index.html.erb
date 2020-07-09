@@ -4,11 +4,11 @@
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
-    <div class="column is-3 has-background-info-light">
+    <div class="column is-3">
       <%= render 'shared/house_sidebar', house: @house %>
     </div>
     <div class="column is-9">
-      <h1><strong><%= @house.name %>のストーリー</strong></h1><br>
+      <h1 class="is-size-5"><strong><%= @house.name %>のストーリー</strong></h1><br>
       <%= render 'index', {stories: @stories} %>
     </div>
   </div>

@@ -1,4 +1,5 @@
-      <div class="has-text-centered">
+    <div class="box has-background-white">
+      <div class="has-text-centered ">
         <figure class="image">
           <% if house.house_image? %>
             <%= image_tag house.house_image.second.url %><br>
@@ -35,8 +36,8 @@
           <% end %>
         </li>
         <li class="has-text-centered">
-          <%= link_to house_stories_path(house) do %>
-            <span class="tag is-link is-medium"><%= house.stories.count %>件の応援コメント</span>
+          <%= link_to house_comments_path(house) do %>
+            <span class="tag is-link is-medium"><%= house.house_comments.count %>件の応援コメント</span>
           <% end %>
         </li>
         <% if logged_in? %>
@@ -49,3 +50,4 @@
         <% end %>
       </ul>
       </aside>
+    </div>

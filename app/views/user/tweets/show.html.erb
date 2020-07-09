@@ -1,11 +1,12 @@
 <%= render 'layouts/header' %>
-<div class="container main-content">
+
+<div class="container main-content ">
 
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
     <div class="column is-3">
-      // ？？
+      <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
     <div class="column is-9">
       <div class="columns is-multiline">
@@ -115,7 +116,7 @@
                   <%= form_for(shallow_args(@tweet, @tweet_comment), url:tweet_comments_path )do |f| %>
                     <%= render 'shared/error_messages', object: f.object %>
                     <div class="field">
-                      <%= f.text_area :content, :size=>"80x6", placeholder: "ツブヤキにコメントしよう..." %>
+                      <%= f.text_area :content, class: "textarea is-midium is-info", type: "text", placeholder: "ツブヤキにコメントしよう...", autofocus: "" %>
                     </div>
                     <%= f.submit "Post", class: "button is-primary" %>
                   <% end %>
@@ -129,5 +130,6 @@
     </div>
   </div>
 </div>
+
 <%= render 'layouts/footer' %>
 

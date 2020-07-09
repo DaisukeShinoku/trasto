@@ -1,5 +1,6 @@
 <%= render 'layouts/header' %>
-<div class="container main-content">
+
+<div class="container main-content ">
 
 <%= render 'shared/flash' %>
 
@@ -8,19 +9,31 @@
       <%= render 'shared/search_sidebar', {categories: @categories, house_areas: @house_areas} %>
     </div>
     <div class="column is-9">
-      <div class="columns is-multiline">
-        <div class="column is-8">
-          <figure class="image">
-          <% if @house.house_image? %>
-            <%= image_tag @house.house_image.third.url %><br>
-          <% else %>
-            <%= image_tag 'noimage_third.png' %><br>
-          <% end %>
-          </figure>
-          <div class="columns is-multiline">
-            <div class="column is-8">
-              <h1><strong><%= @house.name %></strong><small>&nbsp;&nbsp;(&nbsp;<%= @house.prefecture.name %>&nbsp;)</small></h1><br>
-              <h1><strong><%= @house.copy %></strong></h1><br>
+      <div class="box has-background-white">
+        <div class="columns is-multiline">
+          <div class="column is-full">
+            <figure class="image">
+            <% if @house.house_image? %>
+              <%= image_tag @house.house_image.third.url %><br>
+            <% else %>
+              <%= image_tag 'noimage_third.png' %><br>
+            <% end %>
+            </figure>
+          </div>
+        </div>
+        <div class="columns is-multiline">
+              <% if @house.images? %>
+                  <% @house.images.each do |image| %>
+                  <div class="column is-3">
+                    <%= image_tag(image.url) %>
+                  </div>
+                  <% end %>
+              <% end %>
+        </div>
+        <div class="columns is-multiline">
+          <div class="column is-8">
+            <h1 class="is-size-4"><strong><%= @house.name %></strong><small>&nbsp;&nbsp;(&nbsp;<%= @house.prefecture.name %>&nbsp;)</small></h1><br>
+            <h1 class="is-size-5">><strong><%= @house.copy %></strong></h1><br>
               <% if @house.is_valid == true %>
                 <% if @house.domitory_price && @house.private_price%>
                   <h1>ドミトリー:<%= number_to_currency(@house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
@@ -31,140 +44,89 @@
                   <h1>個室:<%= number_to_currency(@house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</h1>
                 <% end %>
               <% else%>
-                <h1>休館中 or 閉館中</h1>
+                  <h1>休館中 or 閉館中</h1>
               <% end %>
+          <br>
+          <h1>住所:<%= @house.address %></h1><br>
+          </div>
+          <div class="column is-4">
+            <% if logged_in? %>
+              <%= render 'user/bookmarks/bookmark_form', house: @house %>
               <br>
-              <h1>住所:<%= @house.address %></h1><br>
-            </div>
-            <div class="column is-4">
-              <% if logged_in? %>
-                <%= render 'user/bookmarks/bookmark_form', house: @house %>
-                <br>
-                <%= render 'user/to_go_lists/to_go_list_form', house: @house %>
-              <% end %>
-            </div>
+              <%= render 'user/to_go_lists/to_go_list_form', house: @house %>
+            <% end %>
           </div>
-          <div class="columns is-multiline">
-            <div class="column is-full">
-              <%= sanitize(simple_format(@house.introduction), :tags => %w(p br)) %>
-            </div>
+        </div>
+        <div class="columns is-multiline">
+          <div class="column is-full">
+            <%= sanitize(simple_format(@house.introduction), :tags => %w(p br)) %>
           </div>
+        </div>
           <% if logged_in? %>
             <div><%= link_to 'この宿へのストーリーを投稿する', new_house_story_path(@house), class: 'button is-primary' %></div><br>
           <% end %>
-          <div><%= link_to 'この宿に投稿されたストーリーを読む', house_stories_path(@house), class: 'button is-info' %></div><br>
-          <div class="box">
-            <% @house_comments.each do |house_comment| %>
-            <article class="media">
-              <div class="media-left">
-                <% if house_comment.user.avatar? %>
-                  <%= image_tag house_comment.user.avatar.xs.url %><br>
-                <% else %>
-                  <%= image_tag 'noimage_xs.png' %><br>
-                <% end %>
-              </div>
-              <div class="media-content">
-                <div class="content">
-                  <p>
-                    <strong><%= link_to house_comment.user.display_name, house_comment.user %></strong>
-                    <small>@<%= house_comment.user.account_name %></small>
-                    <small>
-                      <% if current_user?(house_comment.user) %>
-                        <%= link_to "delete", house_house_comment_path(@house, house_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
-                      <% end %>
-                    </small>
-                    <br>
-                    <%= sanitize(simple_format(house_comment.content), :tags => %w(p br)) %>
-                  </p>
-                </div>
-              </div>
-              <div class="media-right">
-                <small><%= l house_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
-              </div>
-            </article>
-            <% end %>
-            <% if logged_in? %>
-            <h1><%= @house.name %>に応援コメントを投稿しよう！</h1>
-            <article class="media">
-              <div class="media-left">
-                <% if current_user.avatar? %>
-                  <%= image_tag current_user.avatar.xs.url %><br>
-                <% else %>
-                  <%= image_tag 'noimage_xs.png' %><br>
-                <% end %>
-              </div>
-              <div class="media-content">
-                <%#= form_for(shallow_args(@house, @house_comment), url: house_comments_path)do |f| %>
-                <%= form_for(@house_comment, url:house_comments_path) do |f| %>
-                  <%= render 'shared/error_messages', object: f.object %>
-                  <div class="field">
-                    <%= f.text_area :content, :size=>"60x6", placeholder: "#{@house.name}を応援しよう..." %>
-                  </div>
-                  <%= f.submit "応援！", class: "button is-primary" %>
-                <% end %>
-              </div>
-            </article>
-            <% end %>
-            <%= link_to house_comments_path(@house) do %>
-              <p class="has-text-right">>>>応援コメントをもっと読む（全<%= @house.house_comments.count %>件）</p>
-            <% end %>
-          </div>
-        </div>
-        <div class="column is-4 ">
-          <div>
-            <% if @house.images? %>
-              <figure class="slide-a">
-                <% @house.images.each do |image| %>
-                <div class="slide-b">
-                  <%= image_tag(image.url, :class  => "slide-d") %>
-                </div>
-                <% end %>
-              </figure>
-            <% end %>
-          </div>
-          <div class="colimns is-multiline">
-            <div class="card-header-title">
-              <h1 class="has-text-centered"><strong>この宿のストーリー</h1></strong>
-            </div>
-            <% @stories.each do |story| %>
-              <div class="card story-card has-background-grey-lighter">
-                <div class="card-image">
-                  <% if story.story_image? %>
-                    <%= image_tag story.story_image.second.url %>
-                  <% else %>
-                    <%= image_tag 'noimage_second.png' %>
-                  <% end %>
-                </div>
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
-                      <figure>
-                        <% if story.user.avatar? %>
-                          <%= image_tag story.user.avatar.xs.url %>
-                        <% else %>
-                          <%= image_tag 'noimage_xs.png' %>
-                        <% end %>
-                      </figure>
-                    </div>
-                    <div class="media-content">
-                      <p class="title is-4"><%= story.user.display_name %></p>
-                      <p class="subtitle is-6"><%= story.user.account_name %></p>
-                    </div>
-                  </div>
-                  <div class="content">
-                  <%= link_to house_story_path(@house, story), data: {"turbolinks" => false} do %>
-                    <strong><%= story.title %></strong>
-                  <% end %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-            <div class="card-header-title  has-text-centered">
-              <%= link_to '他のストーリーを読む', house_stories_path(@house) %>
-            </div>
-          </div>
-        </div>
+            <div><%= link_to 'この宿に投稿されたストーリーを読む', house_stories_path(@house), class: 'button is-info' %></div><br>
       </div>
+
+            <div class="box has-background-white">
+              <% @house_comments.each do |house_comment| %>
+                <article class="media has-background-white">
+                  <div class="media-left">
+                    <% if house_comment.user.avatar? %>
+                      <%= image_tag house_comment.user.avatar.xs.url %><br>
+                    <% else %>
+                      <%= image_tag 'noimage_xs.png' %><br>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <strong><%= link_to house_comment.user.display_name, house_comment.user %></strong>
+                        <small>@<%= house_comment.user.account_name %></small>
+                        <small>
+                          <% if current_user?(house_comment.user) %>
+                            <%= link_to "delete", house_house_comment_path(@house, house_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                          <% end %>
+                        </small>
+                        <br>
+                        <%= sanitize(simple_format(house_comment.content), :tags => %w(p br)) %>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="media-right">
+                    <small><%= l house_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                  </div>
+                </article>
+              <% end %>
+              <% if logged_in? %>
+                <div class="is-divider"></div>
+                <br>
+                <h1><%= @house.name %>に応援コメントを投稿しよう！</h1>
+                <article class="media">
+                  <div class="media-left">
+                    <% if current_user.avatar? %>
+                      <%= image_tag current_user.avatar.xs.url %><br>
+                    <% else %>
+                      <%= image_tag 'noimage_xs.png' %><br>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <%#= form_for(shallow_args(@house, @house_comment), url: house_comments_path)do |f| %>
+                    <%= form_for(@house_comment, url:house_comments_path) do |f| %>
+                      <%= render 'shared/error_messages', object: f.object %>
+                      <div class="field">
+                        <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "#{@house.name}を応援しよう...", autofocus: "" %>
+                      </div>
+                      <%= f.submit "応援！", class: "button is-primary" %>
+                    <% end %>
+                  </div>
+                </article>
+              <% end %>
+              <%= link_to house_comments_path(@house) do %>
+                <p class="has-text-right">>>>応援コメントをもっと読む（全<%= @house.house_comments.count %>件）</p>
+              <% end %>
+            </div>
+      
     </div>
   </div>
 </div>
