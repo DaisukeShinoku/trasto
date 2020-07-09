@@ -2,10 +2,6 @@ class User::TweetsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user,   only: :destroy
 
-  def new
-    @tweet = Tweet.new
-  end
-
   def create
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
@@ -27,12 +23,50 @@ class User::TweetsController < ApplicationController
   def index
     @tweet = Tweet.new
     @tweets = Tweet.all.first(20)
+    @user = current_user
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def show
     @tweet = Tweet.find(params[:id])
     @tweet_comments = @tweet.tweet_comments.all
     @tweet_comment = TweetComment.new
+    @user = @tweet.user
+    @currentUserEntry=Entry.where(user_id: current_user.id)
+    @userEntry=Entry.where(user_id: @user.id)
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   private

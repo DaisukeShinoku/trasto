@@ -8,7 +8,7 @@ class Story < ApplicationRecord
   has_many :story_comments, dependent: :destroy
   has_many :story_bookmarks, dependent: :destroy
 
-  validates :title, presence: true, length: {maximum: 50}
+  validates :title, presence: true, length: {maximum: 25}
   validates :visit_date, presence: true
   validates :content, length: {maximum: 3000}
 

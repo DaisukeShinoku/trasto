@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   scope module: :user do
-    resources :users do
+    get  '/signup',  to: 'users#new'
+    resources :users, :only => [:index, :show, :create, :edit, :update, :destroy]do
       member do
         get :bookmark, to: 'bookmarks#index'
         get :to_go_list, to: 'to_go_lists#index'
@@ -19,11 +20,10 @@ Rails.application.routes.draw do
         get :stories
       end
     end
-    get  '/signup',  to: 'users#new'
     resources :messages, :only => [:create]
     resources :relationships,       only: [:create, :destroy]
     resources :categories, :only => [:index]
-    resources :tweets do
+    resources :tweets, :only => [:create, :show, :index, :destroy] do
       resources :tweet_comments, only: [:destroy]
       resource :favorites, only: [:create, :destroy]
       member do

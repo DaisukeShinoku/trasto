@@ -8,16 +8,14 @@
       <%= render 'shared/house_sidebar', house: @house %>
     </div>
     <div class="column is-9">
-      <div class="columns is-multiline">
-      <div class="columns is-multiline">
-        <div class="column is-full">
-          <%= form_for(shallow_args(@house, @story), url:house_stories_path )do |f| %>
-            <%= render 'form', {f: f, kind: @kind } %>
-          <% end %>
-        </div>
+      <div class="container has-text-left">
+        <div class="is-divider"></div>
+        <br>
+        <h3 class="title has-text-grey">ストーリーを投稿</h3>
+        <%= form_for(shallow_args(@house, @story), url:house_stories_path )do |f| %>
+          <%= render 'form', {f: f, kind: @kind } %>
+        <% end %>
       </div>
-        <%#= render 'form', { house: @house, story:@story, kind:@kind } %>
-    </div>
   </div>
 </div>
 <%= render 'layouts/footer' %>
