@@ -22,8 +22,9 @@ class User::RoomsController < ApplicationController
   def show_additionally
     # ********** 以下を追加 **********
     # 追加のメッセージ10件を取得する
+    @room = Room.find(params[:id])
     last_id = params[:oldest_message_id].to_i - 1    
-    @messages = Message.includes(:user).order(:id).where(id: 1..last_id).last(10)
+    @messages = @room.messages.includes(:user).order(:id).where(id: 1..last_id).last(10)
     # ********** 以上を追加 **********
   end
 end

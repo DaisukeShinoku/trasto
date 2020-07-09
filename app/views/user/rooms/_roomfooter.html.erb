@@ -1,10 +1,9 @@
-<footer class="footer footerforroom" id="roomfooter">
+<footer class="footer footerforroom has-background-primary-light" id="roomfooter">
   <%= form_with model: @message do |f| %>
     <div class="control">
       <!-- ここは自動的に message_content というidが付きます。アンダーバーなので注意！ -->
       <%= f.text_area :content, class: 'form-control textarea', rows: '1', maxlength: '500' %>
     </div>
-
     <div class="control">
       <%= f.hidden_field :room_id, :value => @room.id %>
       <%= f.hidden_field :user_id, :value => current_user.id %>

@@ -54,3 +54,16 @@ $(function(){
   });
 
 });
+
+$(function(){
+
+  //#back-to-btmがクリックされたら下に戻る
+  // animateメソッドを使用
+  $('#back-to-btm a').click(function() {
+      $('html, body').animate({
+        scrollTop:$(document).height() - this.scrollTop() - this.height()
+      }, 800);
+      return false;
+  });
+
+});
