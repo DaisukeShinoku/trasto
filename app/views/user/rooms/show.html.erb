@@ -1,17 +1,95 @@
-<%= render 'layouts/header' %>
+  <header class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <%= link_to "trasto", root_path, data: {"turbolinks" => false}, class: "has-text-white has-text-weight-bold is-size-4" %>
+      </div>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <% if logged_in? %>
+          <% if admin? %>
+            <p class="header-link" ><%= link_to ' ゲストハウス(ユーザー版) ', houses_path %></p>
+            <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
+            <p class="header-link" ><%= link_to ' ツブヤキ(ユーザー版) ', tweets_path %></p>
+            <p class="header-link" ><%= link_to ' ユーザー(ユーザー版) ', users_path %></p>
+            <p class="header-link" ><%= link_to ' ゲストハウス(管理者版) ', admin_houses_path %></p>
+            <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
+            <p class="header-link" ><%= link_to ' ツブヤキ(管理者版) ', admin_tweets_path %></p>
+            <p class="header-link" ><%= link_to ' ユーザー(管理者版) ', admin_users_path %></p>
+          <% else %>
+            <p class="room-hader-notice has-background-primary-light	has-text-primary">
+              <% @entries.each do |e| %>
+                <% if e.user == current_user %>
+                <% else %>
+                <%= e.user.display_name%>さんとのチャットルームです
+                <% end %>
+              <% end %>
+            </p>
+            <p class="header-link" ><%= link_to ' ゲストハウス ', houses_path %></p>
+            <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
+            <p class="header-link" ><%= link_to ' ツブヤキ ', tweets_path %></p>
+            <p class="header-link" ><%= link_to ' ユーザー ', users_path %></p>
+          <% end %>
+        <% else %>
+          <p class="header-link" ><%= link_to ' ゲストハウスを探す ', houses_path %></p>
+          <!-- <p class="header-link" ><%= link_to ' Story ', "#" %></p> -->
+        <% end %>
+      </div>
+    </div>
+
+      <div class="navbar-end">
+        <% if logged_in? %>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+          </a>
+
+          <div class="navbar-dropdown">
+
+              <p class="header-link" ><%= link_to 'マイページ', user_path(current_user) %></p>
+
+ 
+              <p class="header-link" ><%= link_to '登録情報の編集', edit_user_path(current_user) %></p>
+
+            <hr class="navbar-divider">
+ 
+              <p class="header-link" ><%= link_to 'trastoについて', "#" %></p>
+              <p class="header-link" ><%= link_to 'お問い合わせ', "#" %></p>
+
+          </div>
+          <% end %>
+        <div class="navbar-item">
+          <div class="buttons">
+          <% if logged_in? %>
+            <%= link_to 'ログアウト', logout_path, method: :delete, class: 'button is-light is-primary' %>
+          <% else %>
+            <%= link_to 'ユーザー登録', signup_path, class: 'button is-light is-primary' %>
+            <%= link_to 'ログイン', login_path, class: 'button is-light is-primary' %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
 <div class="container main-content">
 
 <%= render 'shared/flash' %>
 
-  <h4>参加者</h4>
-  <% @entries.each do |e| %>
-    <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
-  <% end %>
-
-  <hr>
     <div id="message-container">
       <%= render @messages %>
     </div>
 </div>
 
 <%= render 'roomfooter' %>
+
+        <div id="back-to-btm" style="position:fixed;right:25px;top:70px">
+          <a href="#"><i class="fas fa-arrow-alt-circle-down fa-3x"></i></a>
+        </div>

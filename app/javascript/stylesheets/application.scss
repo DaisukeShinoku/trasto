@@ -39,6 +39,21 @@
   color:black;
 }
 
+.fa-arrow-circle-down:hover{
+  color:hsl(171, 100%, 41%);
+  background-color:none;
+}
+
+#back-to-btm a{
+  background :none;
+  color:hsl(171, 100%, 41%);
+}
+
+#back-to-btm a:hover{
+  background :none;
+  color:black;
+}
+
 
 .main-content{
   padding-top: 68px;
@@ -60,6 +75,13 @@
   padding-left:12px;
 }
 
+.room-hader-notice{
+  text-align:center;
+  line-height: 56px;
+  padding-right:12px;
+  padding-left:12px;
+}
+
 .header-logo{
   margin-top: 4px;
 }
@@ -68,23 +90,31 @@
   background-color:hsl(171, 100%, 41%);
 }
 
-#message-container {
-  max-width: 768px;
-  margin: 0 auto;
-  padding: 1rem 1rem 1rem 1rem;
-}
+.btn-ignore{
+  pointer-events: none;
+} 
+
+// #message-container {
+//   max-width: 768px;
+//   margin: 0 auto;
+//   padding: 1rem 1rem 1rem 1rem;
+// }
 
 // メッセージ投稿フォーム
-roomfooter {
-  max-width: 768px;
+// roomfooter {
+//   max-width: 768px;
   // padding: 1rem;
-  margin: 0 auto;
-}
+//   margin: 0 auto;
+// }
 
-.footerforroom{
-  background-color:rgb(54,54,54);
-  padding-top: 1rem;
-  // padding-bottom: 15rem;
+// .footerforroom{
+//   background-color:rgb(54,54,54);
+//   padding-top: 1rem;
+//   // padding-bottom: 15rem;
+// }
+
+.message-box{
+  padding:0.5rem;
 }
 
 // ユーザーがフォームサイズを自由に変更できる機能を停止させておく

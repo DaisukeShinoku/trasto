@@ -1,13 +1,13 @@
-        <li class="has-text-centered">
-          <%= link_to house_stories_path(house) do %>
-            <span class="tag is-link is-medium" id="bookers"><%= house.bookmarks.count %>人がお気に入りに登録</span>
-          <% end %>
+        <a class="btn-ignore">
+        <li class="has-text-centered btn-ignore">
+          <span class="tag is-link-light is-medium" id="bookers"><%= house.bookmarks.count %>人がお気に入りに登録</span>
         </li>
-        <li class="has-text-centered">
-          <%= link_to house_stories_path(house) do %>
-            <span class="tag is-link is-medium" id="togolisters"><%= house.to_go_lists.count %>人が行きたい！に登録</span>
-          <% end %>
+        </a>
+        <a class="btn-ignore">
+        <li class="has-text-centered btn-ignore">
+          <span class="tag is-link-light is-medium" id="togolisters"><%= house.to_go_lists.count %>人が行きたい！に登録</span>
         </li>
+        </a>
         <li class="has-text-centered">
         <%= link_to new_house_story_path(house) do %>
           <p class="button is-primary">&nbsp;&nbsp;ストーリーを投稿&nbsp;&nbsp;</p>

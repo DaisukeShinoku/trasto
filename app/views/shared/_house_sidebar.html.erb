@@ -1,5 +1,6 @@
     <div class="box has-background-white">
       <div class="has-text-centered ">
+        <%= link_to house_path(house) do %>
         <figure class="image">
           <% if house.house_image? %>
             <%= image_tag house.house_image.second.url %><br>
@@ -7,15 +8,18 @@
             <%= image_tag 'noimage_second.png' %><br>
           <% end %>
         </figure>
+        <% end %>
       </div>
       <aside class="is-medium menu">
       <ul class="menu-list">
         <li>
-          <a><strong><%= house.name %></strong><br>
-          <small><%= house.prefecture.name %></small></a>
+          <%= link_to house_path(house) do %>
+            <strong><%= house.name %></strong><br>
+            <small><%= house.prefecture.name %></small>
+          <% end %>
         </li>
         <li>
-          <a>
+          <a class="btn-ignore">
             <% if house.is_valid == true %>
               <% if house.domitory_price && house.private_price%>
                 <small>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜<br>
