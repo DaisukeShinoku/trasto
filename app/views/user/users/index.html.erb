@@ -11,6 +11,7 @@
     <div class="column is-9">
       <h1><strong>trastoに登録しているユーザー</strong></h1><br>
       <%= render 'index', users: @users %>
+      <%= paginate @users %>
     </div>
   </div>
 

@@ -68,3 +68,7 @@ gem 'bcrypt'
 gem 'jp_prefecture'
 
 gem 'dotenv-rails'
+
+gem 'kaminari'
+
+gem 'mail-iso-2022-jp'

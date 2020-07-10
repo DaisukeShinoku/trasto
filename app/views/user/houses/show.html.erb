@@ -33,7 +33,7 @@
         <div class="columns is-multiline">
           <div class="column is-8">
             <h1 class="is-size-4"><strong><%= @house.name %></strong><small>&nbsp;&nbsp;(&nbsp;<%= @house.prefecture.name %>&nbsp;)</small></h1><br>
-            <h1 class="is-size-5">><strong><%= @house.copy %></strong></h1><br>
+            <h1 class="is-size-5"><strong><%= @house.copy %></strong></h1><br>
               <% if @house.is_valid == true %>
                 <% if @house.domitory_price && @house.private_price%>
                   <h1>ドミトリー:<%= number_to_currency(@house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
