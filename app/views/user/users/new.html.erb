@@ -39,7 +39,7 @@
 <%#= render 'shared/flash' %>
 
     <section class="hero is-fullheight">
-        <div class="hero-body signup-hero has-background-primary-light">
+        <div class="hero-body login-hero has-background-primary-light">
             <div class="container has-text-centered">
               <%= render 'shared/flash' %>
                 <div class="column is-8 is-offset-2">
@@ -109,12 +109,11 @@
                         </div>
                         <%= f.submit "新規登録", class: "button is-block is-primary is-large is-fullwidth"%>
                       </form>
+                      <div class="has-text-right">
+                        <%= link_to ' >>ログインはこちらから ', login_path, class: "has-text-weight-bold is-size-5" %>
+                      </div>
                     </div>
                   <% end %>
-                    <br>
-                    <div class="has-text-right">
-                      <%= link_to ' >>ログインはこちらから ', login_path, class: "has-text-weight-bold has-text-grey is-size-5" %>
-                    </div>
                 </div>
             </div>
         </div>
