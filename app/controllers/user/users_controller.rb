@@ -41,7 +41,7 @@ class User::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "本登録のためのリンクをメールアドレスにお送りしました。"
+      flash[:warning] = "本登録のためのリンクをメールアドレスにお送りしました。"
       # log_in @user
       # flash[:success] = "trastoへようこそ!"
       redirect_to root_url

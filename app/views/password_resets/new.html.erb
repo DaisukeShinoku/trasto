@@ -43,10 +43,8 @@
             <div class="container has-text-centered">
               <%= render 'shared/flash' %>
                 <div class="column is-8 is-offset-2">
-                  <h3 class="title has-text-white">ログイン</h3>
-                  <hr class="login-hr">
-                  <p class="subtitle has-text-white">あなただけのゲストハウスの物語を語ろう</p>
-                  <%= form_for(:session, url: login_path) do |f| %>
+                  <h3 class="title has-text-grey">パスワードの再設定</h3>
+                  <%= form_for(:password_reset, url: password_resets_path) do |f| %>
                     <div class="box">
                       <form>
                         <div class="field">
@@ -54,25 +52,8 @@
                             <%= f.email_field :email, class: "input is-large", type: "email", placeholder: "メールアドレス", autofocus: "" %>
                           </div>
                         </div>
-                        <div class="field">
-                          <div class="control">
-                            <%= f.password_field :password, class: "input is-large", type: "password", placeholder: "パスワード" %>
-                            <div class="has-text-left">
-                            <%= link_to "(パスワードを忘れた方はこちらをクリック)", new_password_reset_path, class: "has-text-weight-bold is-size-6" %>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="field">
-                          <%= f.label :remember_me, class: "checkbox" do %>
-                            <p><%= f.check_box :remember_me %>
-                            次回から自動でログインする</p>
-                          <% end %>
-                        </div>
-                        <%= f.submit "ログイン", class: "button is-block is-info is-large is-fullwidth"%>
+                        <%= f.submit "パスワード再設定用のURLを発行", class: "button is-block is-info is-large is-fullwidth"%>
                       </form>
-                      <div class="has-text-right">
-                        <%= link_to ' >>ユーザー登録はこちらから ', signup_path, class: "has-text-weight-bold is-size-5" %>
-                      </div>
                     </div>
                   <% end %>
                 </div>
