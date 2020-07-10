@@ -4,7 +4,7 @@ class User::UsersController < ApplicationController
   before_action :admin_user,     only: [:destroy]
 
   def index
-    @users = User.all
+    @users = User.where(activated: true).page(params[:page]).per(20)
     @currentUserEntry=Entry.where(user_id: current_user.id)
   end
 
@@ -30,6 +30,7 @@ class User::UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+    redirect_to root_url and return unless @user.activated?
   end
 
   def new
@@ -39,8 +40,10 @@ class User::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "trastoへようこそ!"
+      @user.send_activation_email
+      flash[:info] = "本登録のためのリンクをメールアドレスにお送りしました。"
+      # log_in @user
+      # flash[:success] = "trastoへようこそ!"
       redirect_to root_url
     else
       flash.now[:warning] = "新規ユーザー登録に失敗しました"
