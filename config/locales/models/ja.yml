@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        account_name: アカウント名
+        display_name: 表示名
+        email: メールアドレス
+        password: パスワード
+        introduction: 紹介文
+        is_valid: ステータス
+        created_at: 登録日
+        updated_at: 更新日
+        avatar: プロフィール画像
+        remember_digest: ログイン状態
+        admin: 管理者権限
+        activation_digest: 有効状態
+        activated: 有効ステータス
+        activated_at: 有効日
+        reset_digest: リセット状態
+        reset_sent_at: リセット日
