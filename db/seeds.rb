@@ -5,11 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(
-  email: 'admin@admin.com',
-  password: '111111',
-  password_confirmation: '111111'
-)
 
 #ユーザー
 
@@ -22,73 +17,85 @@ User.create!(
   password_confirmation: '111111',
   introduction: "公式アカウントです",
   avatar: open("#{Rails.root}/db/fixtures/user/trasto.png"),
-  admin: true
+  admin: true,
+  activated: true,
+  activated_at: Time.zone.now
 )
 
 # 2
 User.create!(
-  account_name: 'user1',
+  account_name: 'user2',
   display_name: 'ネコ太郎',
-  email: '111@user.com',
-  password: '111111',
-  password_confirmation: '111111',
+  email: '222@user.com',
+  password: '222222',
+  password_confirmation: '222222',
   introduction: "吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。
   何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
   吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。",
-  avatar: open("#{Rails.root}/db/fixtures/user/user1.jpg")
+  avatar: open("#{Rails.root}/db/fixtures/user/user1.jpg"),
+  activated: true,
+  activated_at: Time.zone.now
 )
 
 # 3
 User.create!(
-  account_name: 'user2',
+  account_name: 'user3',
   display_name: '坊っちゃん',
-  email: '222@user.com',
-  password: '222222',
-  password_confirmation: '222222',
+  email: '333@user.com',
+  password: '333333',
+  password_confirmation: '333333',
   introduction: "親譲りの無鉄砲で小供の時から損ばかりしている。
   小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。
   なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。",
-  avatar: open("#{Rails.root}/db/fixtures/user/user2.jpg")
+  avatar: open("#{Rails.root}/db/fixtures/user/user2.jpg"),
+  activated: true,
+  activated_at: Time.zone.now
 )
 
 # 4
 User.create!(
-  account_name: 'user3',
+  account_name: 'user4',
   display_name: '漱石くん',
-  email: '333@user.com',
-  password: '333333',
-  password_confirmation: '333333',
+  email: '4444@user.com',
+  password: '444444',
+  password_confirmation: '444444',
   introduction: "私はまあ煩悶のものにご学問は売っが得るたですうなけれて、二二の人が別段しだによって説明なて、
   だからこの英語の自信が抜いがらが、彼らかが何の職業を発展が叱ると来るたものならうと話しが意味云え行くますだ。
   文章にそれで槙君がそれでまだ引き離すしものましなかった。",
-  avatar: open("#{Rails.root}/db/fixtures/user/user3.jpg")
+  avatar: open("#{Rails.root}/db/fixtures/user/user3.jpg"),
+  activated: true,
+  activated_at: Time.zone.now
 )
 
 # 5
 User.create!(
-  account_name: 'user4',
+  account_name: 'user5',
   display_name: 'マルチタスク',
-  email: '444@user.com',
-  password: '444444',
-  password_confirmation: '444444',
+  email: '555@user.com',
+  password: '555555',
+  password_confirmation: '555555',
   introduction: "それを人間に当てはめて、同時並行的に複数の仕事をこなせる人を
   「マルチタスク型人間」なんて言うみたいですね。
   複数のプロジェクトを同時進行で進められるとか。",
-  avatar: open("#{Rails.root}/db/fixtures/user/user4.jpg")
+  avatar: open("#{Rails.root}/db/fixtures/user/user4.jpg"),
+  activated: true,
+  activated_at: Time.zone.now
 )
 
 # 6
 User.create!(
-  account_name: 'user5',
+  account_name: 'user6',
   display_name: '集中ちゃん',
-  email: '555@user.com',
-  password: '555555',
-  password_confirmation: '555555',
+  email: '666@user.com',
+  password: '666666',
+  password_confirmation: '666666',
   introduction: "一度に一つの事に集中しなさいとか、
   一番重要なことを最初にしなさいとか、
   管理する方法を考えるより、管理する対象を少なくする方がいいとか、
   言っている事はかなりクラシックです。",
-  avatar: open("#{Rails.root}/db/fixtures/user/user5.jpg")
+  avatar: open("#{Rails.root}/db/fixtures/user/user5.jpg"),
+  activated: true,
+  activated_at: Time.zone.now
 )
 
 # 7以降
@@ -100,18 +107,20 @@ User.create!(
   password: '111111',
   password_confirmation: '111111',
   introduction: "僕はモブキャラです。主役にはなれません。僕はモブキャラです。主役にはなれません。
-  僕はモブキャラです。主役にはなれません。僕はモブキャラです。主役にはなれません。僕はモブキャラです。主役にはなれません。"
+  僕はモブキャラです。主役にはなれません。僕はモブキャラです。主役にはなれません。僕はモブキャラです。主役にはなれません。",
+  activated: true,
+  activated_at: Time.zone.now
 )
 end
 
-#ツイート
+#ツブヤキ
 
 2.times do |n|
   Tweet.create!(
   user_id: rand(2..6),
-  content: "「写真つきのツイート」「写真つきのツイート」「写真つきのツイート」
-  「写真つきのツイート」「写真つきのツイート」「写真つきのツイート」
-  「写真つきのツイート」「写真つきのツイート」「写真つきのツイート」",
+  content: "「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
+  「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
+  「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」",
   tweet_picture: open("#{Rails.root}/db/fixtures/free/free#{rand(1..11)}.jpg")
   )
 end
@@ -127,9 +136,9 @@ end
 3.times do |n|
   Tweet.create!(
   user_id: rand(2..6),
-  content: "「写真つきのツイート」「写真つきのツイート」「写真つきのツイート」
-  「写真つきのツイート」「写真つきのツイート」「写真つきのツイート」
-  「写真つきのツイート」「写真つきのツイート」「写真つきのツイート」",
+  content: "「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
+  「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
+  「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」",
   tweet_picture: open("#{Rails.root}/db/fixtures/free/free#{rand(1..11)}.jpg")
   )
 end
@@ -350,7 +359,129 @@ HouseCategory.create!(
   category_id: '11'
 )
 
+
 # 2
+House.create!(
+  name: 'ヤーグナの空',
+  postcode: '9040204',
+  prefecture_code: '47',
+  address: '沖縄県中頭郡嘉手納町字水釜４０８',
+  domitory_price: '3500',
+  private_price: '15000',
+  copy: '遊びと寛ぎの宿×海風のDining Bar',
+  introduction: "沖縄の海まで徒歩１分のゲストハウス。
+  東シナ海沿いの静かな一軒家で味わう優雅な沖縄時間♪人の温かみ、極上の琉球創作料理に南国の島酒で心の底から笑顔になって下さい。",
+  is_valid: '1',
+  house_area_id: '12',
+  house_image: open("#{Rails.root}/db/fixtures/yagu/yagukana3.jpg"),
+  # images: open("#{Rails.root}/db/fixtures/yagu/yagukana1.jpg"),
+  # open("#{Rails.root}/db/fixtures/yagu/yagukana2.jpg"),
+  # open("#{Rails.root}/db/fixtures/yagu/yagukana4.jpg"),
+)
+
+
+HouseCategory.create!(
+  house_id: '2',
+  category_id: '3'
+)
+
+HouseCategory.create!(
+  house_id: '2',
+  category_id: '7'
+)
+
+HouseCategory.create!(
+  house_id: '2',
+  category_id: '9'
+)
+
+HouseCategory.create!(
+  house_id: '2',
+  category_id: '11'
+)
+
+
+# 3
+House.create!(
+  name: '旅人宿 石垣屋',
+  postcode: '5191112',
+  prefecture_code: '24',
+  address: '亀山市関町中町445',
+  domitory_price: '2500',
+  private_price: '4500',
+  copy: '三重の古民家ゲストハウス',
+  introduction: "ここは三重県、東海道五十三次の宿場町『関宿』。
+                江戸から明治にかけての歴史的建物が200軒ほど残る町並みの中心に、日本全国からいろんな旅人が集まる、楽しいお宿です!!",
+  is_valid: '1',
+  house_area_id: '7',
+  house_image: open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana5.jpg"),
+  # images: open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana2.jpg"),
+          # open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana3.jpg"),
+          # open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana7.jpg"),
+          # open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana6.jpg")
+)
+
+HouseCategory.create!(
+  house_id: '3',
+  category_id: '2'
+)
+
+HouseCategory.create!(
+  house_id: '3',
+  category_id: '3'
+)
+
+HouseCategory.create!(
+  house_id: '3',
+  category_id: '5'
+)
+
+HouseCategory.create!(
+  house_id: '3',
+  category_id: '9'
+)
+
+
+
+# 4
+House.create!(
+  name: 'おがのゲストハウス',
+  postcode: '3680201',
+  prefecture_code: '11',
+  address: '秩父郡小鹿野町両神薄88',
+  domitory_price: '3500',
+  private_price: '4800',
+  copy: 'みんなの「楽しい」を詰め込んだ宿',
+  introduction: "穏やかで、のんびりとした空気に包まれた町、小鹿野。透き通った川の流れ、季節を感じさせてくれる山々、新鮮な野菜。
+  大きな観光スポットはないけれど、言葉では表せない「安らぎ」がここにはあります。
+  「なにもしない」が最高の贅沢。忙しい日常はお家に置いて、小鹿野町でのんびりまったり休憩しませんか？",
+  is_valid: '0',
+  house_area_id: '4',
+  house_image: open("#{Rails.root}/db/fixtures/ogagesu/daioganogh.jpg"),
+)
+
+HouseCategory.create!(
+  house_id: '4',
+  category_id: '1'
+)
+
+HouseCategory.create!(
+  house_id: '4',
+  category_id: '3'
+)
+
+HouseCategory.create!(
+  house_id: '4',
+  category_id: '7'
+)
+
+HouseCategory.create!(
+  house_id: '4',
+  category_id: '12'
+)
+
+
+# 5
 House.create!(
   name: 'マスヤゲストハウス',
   postcode: '3930062',
@@ -373,136 +504,23 @@ House.create!(
 )
 
 HouseCategory.create!(
-  house_id: '2',
+  house_id: '5',
   category_id: '1'
 )
 
 HouseCategory.create!(
-  house_id: '2',
+  house_id: '5',
   category_id: '3'
 )
 
 HouseCategory.create!(
-  house_id: '2',
+  house_id: '5',
   category_id: '7'
 )
 
 HouseCategory.create!(
-  house_id: '2',
+  house_id: '5',
   category_id: '15'
-)
-
-# 3
-House.create!(
-  name: 'おがのゲストハウス',
-  postcode: '3680201',
-  prefecture_code: '11',
-  address: '秩父郡小鹿野町両神薄88',
-  domitory_price: '3500',
-  private_price: '4800',
-  copy: 'みんなの「楽しい」を詰め込んだ宿',
-  introduction: "穏やかで、のんびりとした空気に包まれた町、小鹿野。透き通った川の流れ、季節を感じさせてくれる山々、新鮮な野菜。
-  大きな観光スポットはないけれど、言葉では表せない「安らぎ」がここにはあります。
-  「なにもしない」が最高の贅沢。忙しい日常はお家に置いて、小鹿野町でのんびりまったり休憩しませんか？",
-  is_valid: '0',
-  house_area_id: '4',
-  house_image: open("#{Rails.root}/db/fixtures/ogagesu/daioganogh.jpg"),
-)
-
-HouseCategory.create!(
-  house_id: '3',
-  category_id: '1'
-)
-
-HouseCategory.create!(
-  house_id: '3',
-  category_id: '3'
-)
-
-HouseCategory.create!(
-  house_id: '3',
-  category_id: '7'
-)
-
-HouseCategory.create!(
-  house_id: '3',
-  category_id: '12'
-)
-
-# 4
-House.create!(
-  name: '晴耕雨読',
-  postcode: '8914205',
-  prefecture_code: '46',
-  address: '熊毛郡屋久島町宮之浦1567',
-  # domitory_price: '0',
-  private_price: '2500',
-  copy: '一人旅好きが自然と集まる屋久島の有名宿',
-  introduction: "屋久島で人気の素泊まり宿。
-  ホームページ等は持たず、予約は電話のみという営業スタイルだが、オーナーさんの人柄と、チェックイン後の心地良い距離感からか全国にファンがいる知る人ぞ知る宿。",
-  is_valid: '1',
-  house_area_id: '11',
-  house_image: open("#{Rails.root}/db/fixtures/seikouudoku/daiseikoudoku.jpg"),
-)
-
-HouseCategory.create!(
-  house_id: '4',
-  category_id: '1'
-)
-
-HouseCategory.create!(
-  house_id: '4',
-  category_id: '3'
-)
-
-HouseCategory.create!(
-  house_id: '4',
-  category_id: '8'
-)
-
-HouseCategory.create!(
-  house_id: '4',
-  category_id: '11'
-)
-
-# 5
-House.create!(
-  name: '旅人宿 石垣屋',
-  postcode: '5191112',
-  prefecture_code: '24',
-  address: '亀山市関町中町445',
-  domitory_price: '2500',
-  private_price: '4500',
-  copy: '三重の古民家ゲストハウス',
-  introduction: "ここは三重県、東海道五十三次の宿場町『関宿』。
-                江戸から明治にかけての歴史的建物が200軒ほど残る町並みの中心に、日本全国からいろんな旅人が集まる、楽しいお宿です!!",
-  is_valid: '1',
-  house_area_id: '7',
-  house_image: open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana5.jpg"),
-  # images: open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana2.jpg"),
-          # open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana3.jpg"),
-          # open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana7.jpg"),
-          # open("#{Rails.root}/db/fixtures/ishigakiya/ishigakiyakana6.jpg")
-)
-
-HouseCategory.create!(
-  house_id: '5',
-  category_id: '2'
-)
-
-HouseCategory.create!(
-  house_id: '5',
-  category_id: '3'
-)
-
-HouseCategory.create!(
-  house_id: '5',
-  category_id: '5'
-)
-
-HouseCategory.create!(
-  house_id: '5',
-  category_id: '9'
 )
 
 # 6
@@ -655,21 +673,23 @@ HouseCategory.create!(
 
 # 10
 House.create!(
-  name: 'ヤーグナの空',
-  postcode: '9040204',
-  prefecture_code: '47',
-  address: '沖縄県中頭郡嘉手納町字水釜４０８',
-  domitory_price: '3500',
-  private_price: '15000',
-  copy: '遊びと寛ぎの宿×海風のDining Bar',
-  introduction: "沖縄の海まで徒歩１分のゲストハウス。
-  東シナ海沿いの静かな一軒家で味わう優雅な沖縄時間♪人の温かみ、極上の琉球創作料理に南国の島酒で心の底から笑顔になって下さい。",
+  name: '晴耕雨読',
+  postcode: '8914205',
+  prefecture_code: '46',
+  address: '熊毛郡屋久島町宮之浦1567',
+  # domitory_price: '0',
+  private_price: '2500',
+  copy: '一人旅好きが自然と集まる屋久島の有名宿',
+  introduction: "屋久島で人気の素泊まり宿。
+  ホームページ等は持たず、予約は電話のみという営業スタイルだが、オーナーさんの人柄と、チェックイン後の心地良い距離感からか全国にファンがいる知る人ぞ知る宿。",
   is_valid: '1',
-  house_area_id: '12',
-  house_image: open("#{Rails.root}/db/fixtures/yagu/yagukana3.jpg"),
-  # images: open("#{Rails.root}/db/fixtures/yagu/yagukana1.jpg"),
-  # open("#{Rails.root}/db/fixtures/yagu/yagukana2.jpg"),
-  # open("#{Rails.root}/db/fixtures/yagu/yagukana4.jpg"),
+  house_area_id: '11',
+  house_image: open("#{Rails.root}/db/fixtures/seikouudoku/daiseikoudoku.jpg"),
+)
+
+HouseCategory.create!(
+  house_id: '10',
+  category_id: '1'
 )
 
 HouseCategory.create!(
@@ -679,12 +699,7 @@ HouseCategory.create!(
 
 HouseCategory.create!(
   house_id: '10',
-  category_id: '7'
-)
-
-HouseCategory.create!(
-  house_id: '10',
-  category_id: '9'
+  category_id: '8'
 )
 
 HouseCategory.create!(
@@ -1148,7 +1163,7 @@ Message.create!(
 Story.create!(
   user_id: '2',
   house_id: '1',
-  title: 'タイトルが入りますタイトルが入りますタイトルが入ります３０字',
+  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
   content: '！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
   コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
   コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
@@ -1201,7 +1216,7 @@ end
 Story.create!(
   user_id: '3',
   house_id: '1',
-  title: 'タイトルが入りますタイトルが入りま２０字',
+  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
   content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
   「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
   「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
@@ -1227,7 +1242,7 @@ Story.create!(
 Story.create!(
   user_id: '4',
   house_id: '1',
-  title: 'タイトルが入りますタイトルが入りま２０字',
+  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
   content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
   「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
   「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
@@ -1298,7 +1313,7 @@ Story.create!(
 Story.create!(
   user_id: '2',
   house_id: '2',
-  title: 'タイトルが入りますタイトルが入りますタイトルが入ります３０字',
+  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
   content: '！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
   コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
   コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
@@ -1436,7 +1451,7 @@ Story.create!(
 Story.create!(
   user_id: '4',
   house_id: '3',
-  title: 'タイトルが入りますタイトルが入りますタイトルが入ります３０字',
+  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
   content: '！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
   コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
   コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
@@ -1574,7 +1589,7 @@ Story.create!(
 Story.create!(
   user_id: '2',
   house_id: '1',
-  title: 'タイトルが入りますタイトルが入りますタイトルが入ります３０字',
+  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
   content: '！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
   コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
   コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！

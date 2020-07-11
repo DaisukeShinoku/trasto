@@ -1,0 +1,54 @@
+      <div class="columns is-multiline">
+          <% stories.each do |story| %>
+            <div class="column is-full">
+              <div class="box">
+                <article class="media">
+                  <div class="media-left">
+                    <%= link_to house_story_path(story.house, story), data: {"turbolinks" => false} do %>
+                      <% if story.story_image? %>
+                        <%= image_tag story.story_image.first.url %>
+                      <% else %>
+                        <%= image_tag 'noimage_first.png' %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <%= link_to house_story_path(story.house, story), data: {"turbolinks" => false} do %>
+                        <strong><%= story.title %></strong><br>
+                        <% end %>
+                        <small><%= l story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small>
+                        <br>
+                        <small><%= story.content.truncate(100) %></small>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="media-right">
+                  <%= link_to user_path(story.user_id) do %>
+                    <div>
+                        <% if story.user.avatar? %>
+                          <%= image_tag story.user.avatar.xs.url %>
+                        <% else %>
+                          <%= image_tag 'noimage_xs.png' %>
+                        <% end %>
+                    </div>
+                    <p>
+                      <small>@<%= story.user.account_name %></small>
+                    </p>
+                    <p>
+                      <small>
+                      <% if logged_in? %>
+                        <% if current_user.id == story.user_id %>
+                          <%= link_to "削除する", house_story_path(story.house, story), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "tag is-danger"%>
+                        <% end %>
+                      <% end %>
+                      </small>
+                    </p>
+                  </div>
+                  <% end %>
+                </article>
+              </div>
+            </div>
+          <% end %>
+      </div>

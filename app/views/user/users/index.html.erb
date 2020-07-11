@@ -1,45 +1,20 @@
-<div class="container main-content">
+<%= render 'layouts/header' %>
+
+<div class="container main-content ">
+
+<%= render 'shared/flash' %>
+
   <div class="columns is-full">
-    <div class="column is-full">
-      <div class="columns is-multiline">
-        <% @users.each do |user| %>
-          <div class="column is-full">
-            
-              <div class="box">
-                <article class="media">
-                  <div class="media-left">
-                    <%= link_to user_path(user.id) do %>
-                      <% if user.avatar? %>
-                        <%= image_tag user.avatar.small.url %>
-                      <% else %>
-                        <%= image_tag 'noimage_first.png' %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                  <div class="media-content">
-                    <div class="content">
-                    <%= link_to user_path(user.id) do %>
-                      <strong><%= user.display_name %></strong>
-                    <% end %>
-                    <br>
-                      <small>@<%= user.account_name %></small><br>
-                      <small><%= user.introduction.truncate(100) %></small>
-                    </div>
-                  </div>
-                  <div class="media-right">
-                    <small><span class="tag is-link">ツイート:<%= user.tweets.count %></span></small><br>
-                    <small><span class="tag is-link">ストーリー:<%= user.stories.count %></span></small><br>
-                    <small><span class="tag is-link">フォロー<%= user.following.count %></span></small><br>
-                    <small><span class="tag is-link">フォロワー<%= user.followers.count %></span></small>
-                  </div>
-                </article>
-              </div>
-            
-          </div>
-        <% end %>
-      </div>
+    <div class="column is-3">
+      <%= render 'shared/user_sidebar', {user: current_user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
+    </div>
+    <div class="column is-9">
+      <h1><strong>trastoに登録しているユーザー</strong></h1><br>
+      <%= render 'index', users: @users %>
+      <%= paginate @users %>
     </div>
   </div>
+
 </div>
 
 <%= render 'layouts/footer' %>

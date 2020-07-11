@@ -1,0 +1,13 @@
+<%#= @user.display_name様, %>
+<%# ゲストハウス口コミサイト"trasto"へようこそ！ %>
+
+<%# 現在、仮登録中です。 %>
+<%# ユーザー登録完了のため、お手数ですが下記のリンクからアカウントの有効化をお願いします。 %>
+
+<%#= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+Hi <%= @user.account_name %>,
+
+Welcome to the trasto! Click on the link below to activate your account:
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

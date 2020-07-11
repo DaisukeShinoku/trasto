@@ -1,27 +1,27 @@
-<div class="container main-content">
+<%= render 'layouts/header' %>
+
+<div class="container main-content ">
 
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
     <div class="column is-3">
-      // ？？
+      <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
     <div class="column is-9">
       <div class="columns is-multiline">
-        <div class="column is-10">
+        <div class="column is-full">
           <div></div>
           <br>
-          <h1>今の気持ちをツイートしよう</h1>
           <%= render partial: "tweet_form" %>
           <div></div>
           <br>
-          <%# 各ツイートの呼び出し %>
+          <%# 各ツブヤキの呼び出し %>
           <%= render partial: "tweet", collection: @tweets %>
-        </div>
-        <div class="column is-2">
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <%= render 'layouts/footer' %>

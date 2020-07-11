@@ -1,5 +1,5 @@
 class User::StoriesController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:new, :create, :edit, :update, :destory]
   before_action :correct_user,   only: [:edit, :update, :destory]
 
   def index
@@ -17,6 +17,7 @@ class User::StoriesController < ApplicationController
   def new
     @house = House.find(params[:house_id])
     @story = Story.new
+    @kind = "ストーリーを投稿"
   end
 
 def create
@@ -36,6 +37,7 @@ end
 def edit
   @house = House.find(params[:house_id])
   @story = Story.find(params[:id])
+  @kind = "ストーリーを更新"
 end
 
 def update
@@ -56,14 +58,14 @@ def destroy
   @story = Story.find(params[:id])
   @house = @story.house
   @story.destroy
-  flash.now[:warning] = "ストーリーを削除しました"
-  redirect_to request.referrer || root_url
+  flash[:warning] = "ストーリーを削除しました"
+  redirect_to house_stories_url(@story.house_id)
 end
 
   private
 
   def story_params
-    params.require(:story).permit(:title, :content, :visit_date, :story_image)
+    params.require(:story).permit(:title, :content, :visit_date, :story_image, {images: []})
   end
 
     # ログイン済みユーザーかどうか確認

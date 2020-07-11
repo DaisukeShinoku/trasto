@@ -1,4 +1,27 @@
 <div class="message" id="message-<%= message.id %>">
-  <p><%= message.id %>:<%= message.user.display_name %>: <%= l message.created_at, format: '%Y年%-m月%-d日(%a) %H:%M' %></p>
-  <%= simple_format(h message.content) %>
+
+
+            <div class="box message-box">
+              <article class="media has-background-white">
+                <div class="media-left">
+                  <% if message.user.avatar? %>
+                    <%= image_tag message.user.avatar.xs.url %>
+                  <% else %>
+                    <%= image_tag 'noimage_xs.png' %>
+                  <% end %>
+                  <div class="is-divider"></div>
+                  <small>@<%= message.user.account_name %></small>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <%= sanitize(simple_format(h message.content), :tags => %w(p br)) %>
+                  </div>
+                </div>
+                <div class="media-right">
+                  <small><%= l message.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                </div>
+              </article>
+            </div>
+
+
 </div>

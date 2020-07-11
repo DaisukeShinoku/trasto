@@ -1,0 +1,31 @@
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <%= link_to admin_user_path(user) do %>
+            <h1><strong><%= user.display_name %></strong></h1>
+            <h5><small>@<%= user.account_name %></small></h5>
+          <% end %>
+          <div><%= link_to '管理者として削除', admin_user_path(user), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'button is-danger' %></div><br>
+          <div><%= link_to '管理者として情報を編集', edit_admin_user_path(user), class: 'button is-warning' %></div><br>
+          <div>
+            <% if user.is_valid == true %>
+              <span class="tag is-primary"><%= "有効" %></span>
+            <% else %>
+              <span class="tag is-danger"><%= "退会済み" %></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <table class="table">
+        <tr>
+          <td><%= sanitize(simple_format(user.introduction), :tags => %w(p br)) %></td>
+        </tr>
+        <tr>
+          <td>
+            <% if user.avatar? %>
+              <%= image_tag user.avatar.medium.url %>
+            <% else %>
+              <%= image_tag 'noimage_second.png' %>
+            <% end %>
+          </td>
+        </tr>
+      </table>

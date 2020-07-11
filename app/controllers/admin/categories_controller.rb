@@ -1,16 +1,22 @@
 class Admin::CategoriesController < ApplicationController
-  # before_action :logged_in_admin
   before_action :admin_user
 
   def index
-    @categories = Category.all
+    @categories_all = Category.all
     @category = Category.new
+    @categories = Category.where(is_valid: true).shuffle.first(5)
+    @house_areas = HouseArea.all
   end
 
   def create
     @category = Category.new(category_params)
-    @category.save
-    redirect_to admin_categories_path
+    if @category.save
+      flash[:success] = "カテゴリーを作成しました"
+      redirect_to admin_categories_path
+    else
+      flash.now[:warning] = "カテゴリーの作成に失敗しました"
+      render action: :index
+    end
   end
 
   def edit
@@ -20,16 +26,25 @@ class Admin::CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update(category_params)
-        redirect_to admin_categories_path
+      flash[:success] = "カテゴリーを更新しました"
+      redirect_to admin_categories_path
     else
+      flash.now[:warning] = "カテゴリーの更新に失敗しました"
       render action: :edit
     end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    flash[:danger] = "カテゴリーを削除しました"
+    redirect_to admin_categories_path
   end
 
   private
 
   def category_params
-      params.require(:category).permit(:name, :is_valid)
+      params.require(:category).permit(:name, :is_valid, :category_image)
   end
 
   def set_category

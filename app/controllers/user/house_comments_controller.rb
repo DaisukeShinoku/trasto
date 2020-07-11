@@ -1,5 +1,5 @@
 class User::HouseCommentsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:create, :destory]
   before_action :correct_user,   only: [:destroy]
 
   def index

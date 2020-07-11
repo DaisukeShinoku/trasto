@@ -1,8 +1,8 @@
+<%= render 'layouts/header' %>
+<div class="notification is-danger admin-notice">管理者のページです</div>
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
+<%= render 'shared/flash' %>
 
   <h1>カテゴリー編集</h1>
 
@@ -14,6 +14,7 @@
         <td> <%= f.text_field :name, class:"field" %> </td>
         <td>有効 <%= f.radio_button :is_valid, true %> </td>
         <td>無効 <%= f.radio_button :is_valid, false %> </td>
+        <%= f.file_field :category_image %>
         <td> <%= f.submit "変更を保存する", class: 'button is-primary' %> </td>
       </tr>
     </table>

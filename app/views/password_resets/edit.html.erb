@@ -1,0 +1,98 @@
+<section class="hero is-small is-primary">
+
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <%# <h1 class="title has-text-white has-text-weight-bold is-size-2"><strong>ｔｒａｓｔｏ</strong></h1> %>
+            <h1 class="title has-text-white has-text-weight-bold is-size-1"><strong>trasto</strong></h1>
+            <p class="heading has-text-white has-text-weight-bold is-size-6">あなただけのゲストハウスの物語を語ろう</p>
+          </div>
+        </div>
+      </nav>
+      <br>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading has-text-white">初めての方</p>
+            <p class="title"><%= link_to ' ユーザー登録 ', signup_path, class: "has-text-white is-size-4" %></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading has-text-white">登録なしで試す</p>
+            <p class="title"><%= link_to ' ゲストハウス検索 ', houses_path, class: "has-text-white is-size-4" %></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading has-text-white">登録済みの方</p>
+            <p class="title"><%= link_to ' ログイン ', login_path, class: "has-text-white is-size-4" %></p>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<%#= render 'shared/flash' %>
+
+    <section class="hero is-fullheight">
+        <div class="hero-body login-hero">
+            <div class="container has-text-centered">
+              <%= render 'shared/flash' %>
+                <div class="column is-8 is-offset-2">
+                  <h3 class="title has-text-grey">新しいパスワードの設定</h3>
+                  <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+                    <div class="box">
+                      <form>
+                      <%= hidden_field_tag :email, @user.email %>
+                        <div class="field">
+                          <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :password, "パスワード(6文字以上)", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
+                            <%= f.password_field :password, class: "input is-medium", type: "password", placeholder: "パスワード(6文字以上)", autofocus: "" %>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :password_confirmation, "パスワード(確認用)", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
+                            <%= f.password_field :password_confirmation, class: "input is-medium", type: "password", placeholder: "パスワードをもう一度入力してください", autofocus: "" %>
+                          </div>
+                        </div>
+                        <%= f.submit "新しいパスワードを登録", class: "button is-block is-info is-large is-fullwidth"%>
+                      </form>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <footer class="footer has-background-primary-light top-footer">
+    <div class="content has-text-centered">
+      <div class="container">
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="title"><%= link_to ' お問い合わせ ', signup_path, class: "has-text-primary is-size-6" %></p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="title"><%= link_to ' このサイトについて ', signup_path, class: "has-text-primary is-size-6" %></p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="title"><%= link_to ' プライバシーポリシー ', login_path, class: "has-text-primary is-size-6" %></p>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </footer>

@@ -1,0 +1,20 @@
+<%= render 'layouts/header' %>
+
+<div class="container main-content ">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3">
+      <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
+    </div>
+    <div class="column is-9">
+      <h1><strong><%= @user.display_name %>のストーリー</strong></h1><br>
+      <%= render 'user/stories/index', {stories: @stories} %>
+    </div>
+  </div>
+</div>
+
+
+
+<%= render 'layouts/footer' %>

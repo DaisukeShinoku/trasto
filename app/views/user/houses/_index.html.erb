@@ -1,27 +1,29 @@
-
       <div class="columns is-multiline">
         <% houses.each do |house| %>
           <div class="column is-4">
-             <%= link_to house_path(house), data: {"turbolinks" => false} do %>
-              <% if house.house_image? %>
-                <%= image_tag house.house_image.second.url %>
-              <% else %>
-                <%= image_tag 'noimage_second.png' %>
+            <div class="box has-background-white">
+              <%= link_to house_path(house), data: {"turbolinks" => false} do %>
+                <% if house.house_image? %>
+                  <%= image_tag house.house_image.second.url %>
+                <% else %>
+                  <%= image_tag 'noimage_second.png' %>
+                <% end %>
+                <p class="has-text-grey-dark is-size-5"><%= house.name %></p>
+                <p class="has-text-grey-dark is-size-6"><%= house.prefecture.name %></p>
               <% end %>
-              <p><strong><%= house.name %></strong>/<%= house.prefecture.name %></p>
-            <% end %>
-            <% if house.is_valid == true %>
-              <% if house.domitory_price && house.private_price%>
-                <p>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
-                  個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
-              <% elsif house.domitory_price %>
-                <p>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
-              <% elsif house.private_price %>
-                <p>個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+              <% if house.is_valid == true %>
+                <% if house.domitory_price && house.private_price%>
+                  <p class="has-text-geay is-size-7">ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
+                    個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+                <% elsif house.domitory_price %>
+                  <p class="has-text-grey is-size-7">ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+                <% elsif house.private_price %>
+                  <p class="has-text-grey is-size-7">個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+                <% end %>
+              <% else%>
+                <p class="has-text-grey is-size-7">休館中 or 閉館中</p>
               <% end %>
-            <% else%>
-              <p>休館中 or 閉館中</p>
-            <% end %>
+            </div>
           </div>
         <% end %>
       </div>

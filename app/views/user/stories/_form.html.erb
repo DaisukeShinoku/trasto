@@ -1,0 +1,49 @@
+
+
+                    <div class="box">
+                      <form>
+                        <div class="field">
+                          <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :title, "タイトル", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
+                            <%= f.text_field :title, class: "input is-medium", type: "text", placeholder: "25字以内", autofocus: "" %>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :visit_date, "訪問日時", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
+                            <%= f.date_field :visit_date, class: "has-text-left" %>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :story_image, "メイン画像を登録", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
+                            <%= f.file_field :story_image, class: "has-text-left" %>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :images, "サブ画像を登録(4枚まで)", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
+                            <%= f.file_field :images, multiple: true, class: "has-text-left" %>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :content, "本文", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
+                            <%= f.text_area :content, class: "textarea is-medium", rows: "30", type: "text", placeholder: "最大3000字まで投稿可能です", autofocus: "" %>
+                          </div>
+                        </div>
+                        <div class="field">
+                        </div>
+                        <%= f.submit "送信", class: "button is-block is-primary is-large is-fullwidth"%>
+                      </form>
+                    </div>

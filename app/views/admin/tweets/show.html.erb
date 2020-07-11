@@ -1,0 +1,103 @@
+<%= render 'layouts/header' %>
+<div class="notification is-danger admin-notice">管理者のページです</div>
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-full">
+      <div class="columns is-multiline">
+        <div class="column is-full">
+            <div class="box">
+              <article class="media">
+                <div class="media-left">
+                  <% if @tweet.user.avatar? %>
+                    <%= image_tag @tweet.user.avatar.xs.url %><br>
+                  <% else %>
+                    <%= image_tag 'noimage_xs.png' %><br>
+                  <% end %>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong><%= link_to @tweet.user.display_name, admin_user_path(@tweet.user) %></strong>
+                      <small>@<%= @tweet.user.account_name %></small>
+                      <small><%= l @tweet.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                      <small>
+                        <%= link_to "管理者として削除", admin_tweet_path(@tweet.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
+                      </small>
+                      <br>
+                      <%= sanitize(simple_format(@tweet.content), :tags => %w(p br)) %>
+                    </p>
+                    <% if @tweet.tweet_picture? %>
+                    <% else %>
+                      <% @tweet_comments.each do |tweet_comment| %>
+                        <article class="media">
+                          <div class="media-left">
+                            <% if tweet_comment.user.avatar? %>
+                              <%= image_tag tweet_comment.user.avatar.xs.url %><br>
+                            <% else %>
+                              <%= image_tag 'noimage_xs.png' %><br>
+                            <% end %>
+                          </div>
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <strong><%= link_to tweet_comment.user.display_name, admin_user_path(tweet_comment.user) %></strong>
+                                <small>@<%= tweet_comment.user.account_name %></small>
+                                <small><%= l tweet_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                                <small>
+                                  <%= link_to "管理者として削除", admin_tweet_tweet_comment_path(@tweet, tweet_comment), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
+                                </small>
+                                <br>
+                                <%= sanitize(simple_format(tweet_comment.content), :tags => %w(p br)) %>
+                              </p>
+                            </div>
+                          </div>
+                        </article>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <% if @tweet.tweet_picture? %>
+                  <div class="content">
+                    <%= image_tag @tweet.tweet_picture.third.url %>
+                      <% @tweet_comments.each do |tweet_comment| %>
+                        <article class="media">
+                          <div class="media-left">
+                            <% if tweet_comment.user.avatar? %>
+                              <%= image_tag tweet_comment.user.avatar.xs.url %><br>
+                            <% else %>
+                              <%= image_tag 'noimage_xs.png' %><br>
+                            <% end %>
+                          </div>
+                          <div class="media-content">
+                            <div class="content">
+                              <p>
+                                <strong><%= link_to tweet_comment.user.display_name, admin_user_path(tweet_comment.user) %></strong>
+                                <small>@<%= tweet_comment.user.account_name %></small>
+                                <small><%= l tweet_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                                <small>
+                                  <%= link_to "管理者として削除", admin_tweet_tweet_comment_path(@tweet, tweet_comment), method: :delete, data: { confirm: "本当に削除しますか?" }, class: 'tag is-danger' %>
+                                </small>
+                                <br>
+                                <%= sanitize(simple_format(tweet_comment.content), :tags => %w(p br)) %>
+                              </p>
+                            </div>
+                          </div>
+                        </article>
+                      <% end %>
+                  </div>
+                  <% end %>
+                </div>
+                <div class="media-right">
+                  <i class="fas fa-comment fa-fw fa-lg" ></i>
+                  <%= @tweet.tweet_comments.count %>
+                </div>
+              </article>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>

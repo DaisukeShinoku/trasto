@@ -1,4 +1,4 @@
-            <div class="box">
+            <div class="box is">
               <article class="media">
                 <div class="media-left">
                   <% if tweet.user.avatar? %>
@@ -10,7 +10,7 @@
                 <div class="media-content">
                   <div class="content">
                     <p>
-                      <strong><%= link_to tweet.user.display_name, tweet.user %></strong>
+                      <strong><%= link_to tweet.user.display_name, tweet_path(tweet.id) %></strong>
                       <small>@<%= tweet.user.account_name %></small>
                       <small><%= l tweet.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
                       <small>

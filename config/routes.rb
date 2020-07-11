@@ -5,20 +5,26 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
+  resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 
   scope module: :user do
-    resources :users do
+    get  '/signup',  to: 'users#new'
+    resources :users, :only => [:index, :show, :create, :edit, :update, :destroy]do
       member do
         get :bookmark, to: 'bookmarks#index'
         get :to_go_list, to: 'to_go_lists#index'
+        get :story_bookmark, to: 'story_bookmarks#index'
+        get :favorite, to: 'favorites#index'
         get :following, :followers
+        get :tweets
+        get :stories
       end
     end
-    get  '/signup',  to: 'users#new'
     resources :messages, :only => [:create]
     resources :relationships,       only: [:create, :destroy]
     resources :categories, :only => [:index]
-    resources :tweets do
+    resources :tweets, :only => [:create, :show, :index, :destroy] do
       resources :tweet_comments, only: [:destroy]
       resource :favorites, only: [:create, :destroy]
       member do
@@ -49,13 +55,28 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    # get '/login', to: 'admins#new'
-    # post '/login', to: 'admins#create'
-    # delete '/logout',  to: 'admins#destroy'
-    # get '/top', to: 'admins#top'
-    resources :users
-    resources :houses
-    resources :categories, only: [:index, :create, :edit, :update]
+    resources :users do
+      member do
+        get :tweets
+        get :stories
+      end
+    end
+    resources :houses do
+      member do
+        resources :house_comments, only: [:index]
+      end
+      resources :stories, :only => [:destroy, :show, :index] do
+        member do
+          resources :story_comments, only: [:index]
+        end
+        resources :story_comments, only: [:destroy]
+      end
+      resources :house_comments, only: [:destroy]
+    end
+    resources :categories
+    resources :tweets do
+      resources :tweet_comments, only: [:destroy]
+    end
   end
 
 end

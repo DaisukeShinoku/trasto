@@ -1,11 +1,23 @@
- <%# <div class="hero-foot is-dark"> %>
-  <footer class="footer">
+  <footer class="footer has-background-primary-light top-footer">
     <div class="content has-text-centered">
-      <p>
-        <strong>Bulma - Blog theme</strong> by <a href="https://gonzalojs.com">Gonzalo Gutierrez</a>. Based on the <a
-          href="http://jigsaw-blog-staging.tighten.co/">jigsaw-blog</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
-      </p>
+      <div class="container">
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="title"><%= link_to ' お問い合わせ ', signup_path, class: "has-text-primary is-size-6" %></p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="title"><%= link_to ' このサイトについて ', signup_path, class: "has-text-primary is-size-6" %></p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="title"><%= link_to ' プライバシーポリシー ', login_path, class: "has-text-primary is-size-6" %></p>
+            </div>
+          </div>
+        </nav>
+      </div>
     </div>
   </footer>
-<%# </div> %>

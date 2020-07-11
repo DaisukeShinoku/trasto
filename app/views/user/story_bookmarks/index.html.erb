@@ -1,0 +1,93 @@
+<%= render 'layouts/header' %>
+
+<div class="container main-content">
+
+<%= render 'shared/flash' %>
+
+  <div class="columns is-full">
+    <div class="column is-3">
+      <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
+    </div>
+    <div class="column is-9">
+      <% if @user.story_bookmarks.present? %>
+        <h1><strong><%= @user.display_name%>のお気に入りのストーリーの一覧</strong></h1><br>
+        <div class="columns is-multiline">
+            <% @story_bookmarks.each do |story_bookmark| %>
+              <div class="column">
+                <div class="box">
+                  <article class="media">
+                    <div class="media-left">
+                      <%= link_to house_story_path(story_bookmark.story.house, story_bookmark.story), data: {"turbolinks" => false} do %>
+                        <% if story_bookmark.story.story_image? %>
+                          <%= image_tag story_bookmark.story.story_image.first.url %>
+                        <% else %>
+                          <%= image_tag 'noimage_first.png' %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="media-content">
+                      <div class="content">
+                        <p>
+                          <%= link_to house_story_path(story_bookmark.story.house, story_bookmark.story), data: {"turbolinks" => false} do %>
+                          <strong><%= story_bookmark.story.title %></strong><br>
+                          <% end %>
+                          <small><%= l story_bookmark.story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small>
+                          <br>
+                          <small><%= story_bookmark.story.content.truncate(100) %></small>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="media-right">
+                    <%= link_to user_path(story_bookmark.story.user_id) do %>
+                      <div>
+                          <% if story_bookmark.story.user.avatar? %>
+                            <%= image_tag story_bookmark.story.user.avatar.xs.url %>
+                          <% else %>
+                            <%= image_tag 'noimage_xs.png' %>
+                          <% end %>
+                      </div>
+                      <p>
+                        <small>@<%= story_bookmark.story.user.account_name %></small>
+                      </p>
+                      <p>
+                        <small>
+                          <% if current_user.id == story_bookmark.story.user_id %>
+                            <%= link_to "delete", house_story_path(story_bookmark.story.house, story_bookmark.story), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                          <% end %>
+                        </small>
+                      </p>
+                    </div>
+                    <% end %>
+                  </article>
+                </div>
+              </div>
+            <% end %>
+        </div>
+      <% else %>
+      <h1><strong><%= @user.display_name%>のお気に入りのストーリー覧</strong></h1><br>
+      <div class="columns is-multiline">
+        <div class="column is-full">
+          <div class="box is">
+            <article class="media">
+              <div class="media-left">
+                <%= image_tag 'noimage_xs.png' %><br>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p class="has-text-centered has-text-weight-bold is-size-5"><%= @user.display_name%>のお気に入りのストーリーはまだありません</p>
+                </div>
+              </div>
+              <div class="media-right">
+                <i class="far fa-heart fa-lg" aria-hidden="true"></i>
+                <i class="fas fa-comment fa-fw fa-lg" ></i>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

@@ -8,10 +8,10 @@ class User::TweetCommentsController < ApplicationController
     @tweet_comment.user_id = current_user.id
     @tweet_comment.tweet_id = @tweet.id
     if @tweet_comment.save
-      flash[:success] = "ツイートにコメントしました!"
+      flash[:success] = "ツブヤキにコメントしました!"
       redirect_to request.referer
     else
-      flash[:warning] = "ツイートに失敗しました"
+      flash[:warning] = "ツブヤキに失敗しました"
       redirect_to request.referer
     end
   end

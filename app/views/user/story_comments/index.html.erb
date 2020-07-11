@@ -1,3 +1,4 @@
+<%= render 'layouts/header' %>
 <div class="container main-content">
 
 <%= render 'shared/flash' %>
@@ -8,42 +9,46 @@
     </div>
 
     <div class="column is-9">
-      <div class="columns is-multiline">
-        <div class="column is-3">
-          <figure class="image">
-            <% if @story.story_image? %>
-              <%= image_tag @story.story_image.first.url %><br>
-            <% else %>
-              <%= image_tag 'noimage_first.png' %><br>
-            <% end %>
-          </figure>
-        </div>
-        <div class="column is-9">
-          <div class="columns is-multiline">
-            <div class="column is-9">
-            <%= link_to house_story_path(@house, @story) do %>
-              <h1><strong><%= @story.title %></strong></h1><br>
-            <% end %>
-              <div>
-                <p><%= @story.content.truncate(100) %></p>
-              </div>
-            </div>
-            <div class="column is-3">
-                <%= link_to user_path(@story.user_id) do %>
+      <div class="box has-background-white">
+        <div class="columns is-multiline">
+          <div class="column is-3">
+            <figure class="image">
+              <% if @story.story_image? %>
+                <%= image_tag @story.story_image.first.url %><br>
+              <% else %>
+                <%= image_tag 'noimage_first.png' %><br>
+              <% end %>
+            </figure>
+          </div>
+          <div class="column is-9">
+            <div class="columns is-multiline">
+              <div class="column is-9">
+              <%= link_to house_story_path(@house, @story) do %>
+                <h1 class="has-text-weight-bold is-size-5"><strong><%= @story.title %></strong></h1><br>
+              <% end %>
                 <div>
-                    <% if @story.user.avatar? %>
-                      <%= image_tag @story.user.avatar.xs.url %>
-                    <% else %>
-                      <%= image_tag 'noimage_xs.png' %>
-                    <% end %>
+                  <p><%= @story.content.truncate(100) %></p>
                 </div>
-                <p>
-                    <small>@<%= @story.user.account_name %></small>
-                </p>
-                <p>
-                  <small><%= l @story.visit_date, format: '%Y年%-m月%-d日' %></small>
-                </p>
-                <% end %>
+                <br>
+                <div>
+                  <%= link_to house_path(@house) do %>
+                  <p class="has-text-grey has-text-weight-bold">>><%= @house.name %>でのストーリー</p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="column is-3">
+                  <%= link_to user_path(@story.user_id) do %>
+                  <div>
+                      <% if @story.user.avatar? %>
+                        <%= image_tag @story.user.avatar.xs.url %>
+                      <% else %>
+                        <%= image_tag 'noimage_xs.png' %>
+                      <% end %>
+                  </div>
+                    <p class="has-text-grey is-size-7">@<%= @story.user.account_name %></p>
+                    <p class="has-text-grey is-size-7"><%= l @story.visit_date, format: '%Y年%-m月%-d日' %></p>
+                  <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -55,21 +60,25 @@
             <div class="box">
               <article class="media is-full">
                 <div class="media-left">
+                  <%= link_to story_comment.user do%>
                   <% if story_comment.user.avatar? %>
                     <%= image_tag story_comment.user.avatar.xs.url %><br>
                   <% else %>
                     <%= image_tag 'noimage_xs.png' %><br>
                   <% end %>
+                  <% end %>
                 </div>
                 <div class="media-content">
                   <div class="content">
                     <p>
-                      <strong><%= link_to story_comment.user.display_name, story_comment.user %></strong>
+                      <strong><%= link_to story_comment.user.display_name, story_comment.user, class: "has-text-grey" %></strong>
                       <small>@<%= story_comment.user.account_name %></small>
                       <small><%= l story_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
                       <small>
-                        <% if current_user.id == story_comment.user_id %>
-                          <%= link_to "delete", house_story_story_comment_path(@house, @story, story_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                        <% if logged_in? %>
+                          <% if current_user.id == story_comment.user_id %>
+                            <%= link_to "削除", house_story_story_comment_path(@house, @story, story_comment), method: :delete, data: { confirm: "本当に削除しますか?" }, class: "tag is-danger" %>
+                          <% end %>
                         <% end %>
                       </small>
                       <br>

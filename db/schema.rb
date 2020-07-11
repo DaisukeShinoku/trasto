@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_05_023951) do
-
-  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2020_07_10_092808) do
 
   create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -134,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_07_05_023951) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "story_image"
+    t.json "images"
     t.index ["house_id"], name: "index_stories_on_house_id"
     t.index ["user_id", "house_id", "created_at"], name: "index_stories_on_user_id_and_house_id_and_created_at"
     t.index ["user_id"], name: "index_stories_on_user_id"
@@ -203,6 +197,11 @@ ActiveRecord::Schema.define(version: 2020_07_05_023951) do
     t.string "avatar"
     t.string "remember_digest"
     t.boolean "admin", default: false
+    t.string "activation_digest"
+    t.boolean "activated", default: false
+    t.datetime "activated_at"
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
     t.index ["account_name"], name: "index_users_on_account_name", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end

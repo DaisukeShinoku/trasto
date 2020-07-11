@@ -1,58 +1,42 @@
+<%= render 'layouts/header' %>
+<div class="notification is-danger admin-notice">管理者のページです</div>
 <div class="container main-content">
 
-      <% flash.each do |message_type, message| %>
-        <div class="notification is-<%= message_type %>"><%= message %></div>
-      <% end %>
+<%= render 'shared/flash' %>
 
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ゲストハウスID</th>
-              <th>ゲストハウス名</th>
-              <th>価格（相部屋）</th>
-              <th>価格（個室）</th>
-              <th>ステータス</th>
-              <th>メイン画像</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @houses.each do |house| %>
-            <tr>
-              <td>
-                <%= house.id %>
-              </td>
-              <td>
-                <%= link_to house.name, admin_house_path(house.id) %>
-              </td>
-              <td>
-                <%= house.domitory_price %>円
-              </td>
-              <td>
-                <%= house.private_price %>円
-              </td>
-              <td>
-              <% if house.is_valid == true %>
-                <%= "営業中" %>
+  <div class="columns is-full">
+    <div class="column is-3">
+      <%= render 'shared/admin_search_sidebar', {categories: @categories, house_areas: @house_areas} %>
+    </div>
+    <div class="column is-9">
+      <div class="columns is-multiline">
+        <% @houses.each do |house| %>
+          <div class="column is-4">
+             <%= link_to admin_house_path(house) do %>
+              <% if house.house_image? %>
+                <%= image_tag house.house_image.second.url %>
               <% else %>
-                <%= "閉館" %>
+                <%= image_tag 'noimage_second.png' %>
               <% end %>
-              </td>
-              <td>
-                <% if house.house_image? %>
-                  <%= image_tag house.house_image.first.url %>
-                <% else %>
-                  <%= image_tag 'noimage_first.png' %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
+              <p><strong><%= house.name %></strong>/<%= house.prefecture.name %></p>
+            <% end %>
+            <% if house.is_valid == true %>
+              <% if house.domitory_price && house.private_price%>
+                <p>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜/
+                  個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+              <% elsif house.domitory_price %>
+                <p>ドミトリー:<%= number_to_currency(house.domitory_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+              <% elsif house.private_price %>
+                <p>個室:<%= number_to_currency(house.private_price, :format => "%u%n", :unit => "￥", :precision => 0) %>〜</p>
+              <% end %>
+            <% else%>
+              <p>休館中 or 閉館中</p>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
-  </section>
+  </div>
 </div>
+
 <%= render 'layouts/footer' %>
