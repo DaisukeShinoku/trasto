@@ -9,18 +9,14 @@ set :rbenv_ruby, '2.7.1'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "public/system", "tmp"
 
-task :initial do
-  on roles(:app) do
-    before "deploy:restart", "puma:start"
-    invoke "deploy"
+namespace :deploy do
+  task :restart_puma do 
+    invoke "puma:stop"
+    invoke! "puma:start"
   end
 end
 
-task :restart do
-  on roles :app do
-    invoke "puma:restart"
-  end
-end
+after "deploy:finishing", "deploy:restart_puma"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
