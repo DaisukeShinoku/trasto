@@ -6,4 +6,7 @@ class HomesController < ApplicationController
     @stories = Story.all.shuffle.first(2)
     @tweets = Tweet.all.shuffle.first(2)
   end
+
+  def about
+  end
 end
