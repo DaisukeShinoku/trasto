@@ -128,7 +128,11 @@
               </div>
               <br>
               <div class="has-text-left">
-                <%= link_to ' >>登録なしでtrastoを試してみたい方はこちら ', houses_path, class: "has-text-right has-text-grey is-size-5" %>
+                <%= link_to ' >>登録なしでtrastoを試してみたい方はこちら(ゲストログイン) ', guest_sign_in_path, method: :post, class: "has-text-right has-text-grey is-size-5" %>
+              </div>
+              <br>
+              <div class="has-text-left">
+                <%= link_to ' >>ログインなしでゲストハウス検索をする場合はこちら ', houses_path, class: "has-text-right has-text-grey is-size-5" %>
               </div>
             </div>
             <div class="column is-6" >

@@ -31,7 +31,7 @@ User.create!(
   password_confirmation: '111111',
   introduction: "ゲストアカウントです",
   avatar: open("#{Rails.root}/db/fixtures/user/guest.png"),
-  admin: true,
+  guest: true,
   activated: true,
   activated_at: Time.zone.now
 )

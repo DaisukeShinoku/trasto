@@ -62,9 +62,13 @@
                 <div class="column is-4">
                   <p class="level-item"><small><%= @story.house.name %></small></p>
                   <p class="level-item"><small><%= l @story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small></p>
-                  <div class="has-text-centered">
-                    <%= link_to "修正する", edit_house_story_path(@house, @story), class: 'tag is-medium is-primary' %>
-                  </div>
+                  <% if logged_in? %>
+                    <% if current_user.id == @story.user_id %>
+                      <div class="has-text-centered">
+                        <%= link_to "修正する", edit_house_story_path(@house, @story), class: 'tag is-medium is-primary' %>
+                      </div>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
           </div>
