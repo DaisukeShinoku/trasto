@@ -1,7 +1,7 @@
 class User::UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers, :tweets, :stories]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy]
+  before_action :check_guest, only: [:update, :destroy]
 
   def index
     @users = User.where(activated: true).page(params[:page]).per(20)

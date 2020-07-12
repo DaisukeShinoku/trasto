@@ -22,14 +22,20 @@
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <p class="heading has-text-white">登録なしで試す</p>
-            <p class="title"><%= link_to ' ゲストハウス検索 ', houses_path, class: "has-text-white is-size-4" %></p>
+            <p class="heading has-text-white">登録済みの方</p>
+            <p class="title"><%= link_to ' ログイン ', login_path, class: "has-text-white is-size-4" %></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <p class="heading has-text-white">登録済みの方</p>
-            <p class="title"><%= link_to ' ログイン ', login_path, class: "has-text-white is-size-4" %></p>
+            <p class="heading has-text-white">登録なしでログイン</p>
+            <p class="title"><%= link_to ' ゲストログイン ', guest_sign_in_path, method: :post, class: "has-text-white is-size-4" %></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading has-text-white">ログインなしでゲストハウスを検索</p>
+            <p class="title"><%= link_to ' ゲストハウス検索 ', houses_path, class: "has-text-white is-size-4" %></p>
           </div>
         </div>
       </nav>

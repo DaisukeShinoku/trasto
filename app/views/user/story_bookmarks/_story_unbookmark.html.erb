@@ -1,1 +1,2 @@
-<%= link_to("お気に入りを解除", house_story_bookmark_path(story, redirect_id: 0), { method: :delete, remote: true, class: "button is-danger"}) %>
+<%= link_to("お気に入りを解除", house_story_bookmark_path(story.house, story, redirect_id: 0),
+ { method: :delete, remote: true, class: "button is-danger"}) %>
