@@ -4,7 +4,7 @@ class User::StoryCommentsController < ApplicationController
   def index
     @story = Story.find(params[:id])
     @house = House.find(params[:house_id])
-    @story_comment = StoryComment.where(story_id: @story.id)
+    @story_comment = StoryComment.where(story_id: @story.id).page(params[:page]).per(20)
   end
   
   def create
@@ -18,8 +18,11 @@ class User::StoryCommentsController < ApplicationController
       flash[:success] = "ストーリーにコメントしました!"
       redirect_to request.referrer || root_url
     else
-      flash[:warning] = "ストーリーにコメントしました!"
-      redirect_to request.referrer || root_url
+      flash[:warning] = "コメントに失敗しました、140文字以内でコメントしてください"
+      @house = House.find(params[:house_id])
+      @story = Story.find(params[:id])
+      @story_comments = @story.story_comments.last(10)
+      render 'user/stories/show'
     end
   end
 

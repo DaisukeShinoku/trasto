@@ -56,6 +56,9 @@
             <% end %>
           </div>
         </div>
+        <%= paginate @favorites %>
+        <div class="is-divider"></div>
+        <br>
       <% else %>
       <h1><strong><%= @user.display_name%>がいいねしたツブヤキ</strong></h1><br>
       <div class="columns is-multiline">

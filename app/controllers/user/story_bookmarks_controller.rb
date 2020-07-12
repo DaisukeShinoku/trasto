@@ -1,5 +1,5 @@
 class User::StoryBookmarksController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:create, :destory]
   
   def create
     @story = Story.find(params[:id])
@@ -27,7 +27,7 @@ class User::StoryBookmarksController < ApplicationController
 
   def index
     @user = User.find(params[:id])
-    @story_bookmarks = StoryBookmark.where(user_id: @user.id).all
+    @story_bookmarks = StoryBookmark.where(user_id: @user.id).all.page(params[:page]).per(20)
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id

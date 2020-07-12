@@ -25,7 +25,7 @@ class User::BookmarksController < ApplicationController
 
   def index
     @user = User.find(params[:id])
-    @bookmarks = Bookmark.where(user_id: @user.id).all
+    @bookmarks = Bookmark.where(user_id: @user.id).all.page(params[:page]).per(20)
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id

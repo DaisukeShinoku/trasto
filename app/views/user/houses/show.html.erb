@@ -113,7 +113,7 @@
                   <div class="media-content">
                     <%#= form_for(shallow_args(@house, @house_comment), url: house_comments_path)do |f| %>
                     <%= form_for(@house_comment, url:house_comments_path) do |f| %>
-                      <%= render 'shared/error_messages', object: f.object %>
+                      <%= render 'shared/flash' %>
                       <div class="field">
                         <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "#{@house.name}を応援しよう...", autofocus: "" %>
                       </div>

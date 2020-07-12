@@ -10,6 +10,9 @@
     <div class="column is-9">
       <h1 class="is-size-5"><strong><%= @house.name %>のストーリー</strong></h1><br>
       <%= render 'index', {stories: @stories} %>
+      <%= paginate @stories %>
+      <div class="is-divider"></div>
+      <br>
     </div>
   </div>
 </div>

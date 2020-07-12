@@ -17,7 +17,7 @@ class User::FavoritesController < ApplicationController
 
     def index
       @user = User.find(params[:id])
-      @favorites = Favorite.where(user_id: @user.id).all
+      @favorites = Favorite.where(user_id: @user.id).all.page(params[:page]).per(20)
       @currentUserEntry=Entry.where(user_id: current_user.id)
       @userEntry=Entry.where(user_id: @user.id)
       if @user.id == current_user.id

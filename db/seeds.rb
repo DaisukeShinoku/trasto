@@ -232,6 +232,37 @@ end
   )
 end
 
+Tweet.create!(
+  user_id: "3",
+  content: "コメントがたくさんついたバズりツブヤキ",
+  tweet_picture: open("#{Rails.root}/db/fixtures/free/free#{rand(1..11)}.jpg")
+  )
+
+  100.times do |n|
+  TweetComment.create!(
+    user_id: rand(4..50),
+    tweet_id: "41",
+    content: "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。",
+  )
+  end
+
+  100.times do |n|
+  TweetComment.create!(
+    user_id: rand(4..50),
+    tweet_id: "41",
+    content: "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。",
+  )
+  end
+
+  100.times do |n|
+  TweetComment.create!(
+    user_id: rand(4..50),
+    tweet_id: "41",
+    content: "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。",
+  )
+  end
+
+
 
 #カテゴリー
 
@@ -1523,7 +1554,6 @@ StoryBookmark.create!(
     user_id: rand(8..50),
     story_id: rand(4..50),
     content: "すごいとてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！
-    とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！
-    とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！"
+    とてもいいお話しですね！！"
   )
-  end
+end

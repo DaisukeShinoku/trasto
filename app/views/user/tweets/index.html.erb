@@ -18,6 +18,9 @@
           <br>
           <%# 各ツブヤキの呼び出し %>
           <%= render partial: "tweet", collection: @tweets %>
+          <%= paginate @tweets %>
+          <div class="is-divider"></div>
+          <br>
         </div>
       </div>
     </div>

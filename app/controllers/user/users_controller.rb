@@ -75,7 +75,7 @@ class User::UsersController < ApplicationController
   def following
     @title = "フォロー"
     @user  = User.find(params[:id])
-    @users = @user.following.all
+    @users = @user.following.all.page(params[:page]).per(20)
     @user = User.find(params[:id])
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
@@ -101,7 +101,7 @@ class User::UsersController < ApplicationController
   def followers
     @title = "フォロワー"
     @user  = User.find(params[:id])
-    @users = @user.followers.all
+    @users = @user.followers.all.page(params[:page]).per(20)
     @user = User.find(params[:id])
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)

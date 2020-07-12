@@ -63,6 +63,9 @@
               </div>
             <% end %>
         </div>
+        <%= paginate @story_bookmarks %>
+        <div class="is-divider"></div>
+        <br>
       <% else %>
       <h1><strong><%= @user.display_name%>のお気に入りのストーリー覧</strong></h1><br>
       <div class="columns is-multiline">
