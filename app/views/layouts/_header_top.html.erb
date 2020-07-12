@@ -1,0 +1,38 @@
+<section class="hero is-small is-primary">
+
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <%= link_to ' trasto ', root_path, data: {"turbolinks" => false}, class: "title has-text-white has-text-weight-bold is-size-1" %>
+            <div class="is-divider"></div>
+            <br>
+            <p class="heading has-text-white has-text-weight-bold is-size-6">あなただけのゲストハウスの物語を語ろう</p>
+          </div>
+        </div>
+      </nav>
+      <br>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading has-text-white">初めての方</p>
+            <p class="title"><%= link_to ' ユーザー登録 ', signup_path, class: "has-text-white is-size-4" %></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading has-text-white">登録なしで試す</p>
+            <p class="title"><%= link_to ' ゲストハウス検索 ', houses_path, class: "has-text-white is-size-4" %></p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading has-text-white">登録済みの方</p>
+            <p class="title"><%= link_to ' ログイン ', login_path, class: "has-text-white is-size-4" %></p>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</section>

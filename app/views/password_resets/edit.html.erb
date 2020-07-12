@@ -1,45 +1,7 @@
-<section class="hero is-small is-primary">
-
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <nav class="level">
-        <div class="level-item has-text-centered">
-          <div>
-            <%# <h1 class="title has-text-white has-text-weight-bold is-size-2"><strong>ｔｒａｓｔｏ</strong></h1> %>
-            <h1 class="title has-text-white has-text-weight-bold is-size-1"><strong>trasto</strong></h1>
-            <p class="heading has-text-white has-text-weight-bold is-size-6">あなただけのゲストハウスの物語を語ろう</p>
-          </div>
-        </div>
-      </nav>
-      <br>
-      <nav class="level">
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading has-text-white">初めての方</p>
-            <p class="title"><%= link_to ' ユーザー登録 ', signup_path, class: "has-text-white is-size-4" %></p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading has-text-white">登録なしで試す</p>
-            <p class="title"><%= link_to ' ゲストハウス検索 ', houses_path, class: "has-text-white is-size-4" %></p>
-          </div>
-        </div>
-        <div class="level-item has-text-centered">
-          <div>
-            <p class="heading has-text-white">登録済みの方</p>
-            <p class="title"><%= link_to ' ログイン ', login_path, class: "has-text-white is-size-4" %></p>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
-</section>
-
-<%#= render 'shared/flash' %>
+<%= render 'layouts/header_top' %>
 
     <section class="hero is-fullheight">
-        <div class="hero-body login-hero">
+        <div class="hero-body login-hero has-background-primary-light">
             <div class="container has-text-centered">
               <%= render 'shared/flash' %>
                 <div class="column is-8 is-offset-2">
@@ -73,26 +35,4 @@
         </div>
     </section>
 
-  <footer class="footer has-background-primary-light top-footer">
-    <div class="content has-text-centered">
-      <div class="container">
-        <nav class="level">
-          <div class="level-item has-text-centered">
-            <div>
-              <p class="title"><%= link_to ' お問い合わせ ', signup_path, class: "has-text-primary is-size-6" %></p>
-            </div>
-          </div>
-          <div class="level-item has-text-centered">
-            <div>
-              <p class="title"><%= link_to ' このサイトについて ', signup_path, class: "has-text-primary is-size-6" %></p>
-            </div>
-          </div>
-          <div class="level-item has-text-centered">
-            <div>
-              <p class="title"><%= link_to ' プライバシーポリシー ', login_path, class: "has-text-primary is-size-6" %></p>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </footer>
+<%= render 'layouts/footer_top' %>
