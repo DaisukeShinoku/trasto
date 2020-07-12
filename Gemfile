@@ -74,3 +74,4 @@ gem 'kaminari'
 gem 'mail-iso-2022-jp'
 
 gem 'rails-i18n'
+
