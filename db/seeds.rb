@@ -12,9 +12,9 @@
 User.create!(
   account_name: 'trasto',
   display_name: '公式アカウント',
-  email: 'trasto@trasto.com',
-  password: '111111',
-  password_confirmation: '111111',
+  email: ENV['ADMIN_ADDRESS'],
+  password: ENV['ADMIN_PASSWORD'],
+  password_confirmation: ENV['ADMIN_PASSWORD'],
   introduction: "公式アカウントです",
   avatar: open("#{Rails.root}/db/fixtures/user/trasto.png"),
   admin: true,
