@@ -1,5 +1,4 @@
 class AccountActivationsController < ApplicationController
-  before_action :check_guest
 
   def edit
     user = User.find_by(email: params[:email])
