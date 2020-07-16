@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
 
   VALID_ACCOUNT_REGEX = /\A[0-9a-z_]{1,15}\z/i
-  validates :account_name, presence: true, length: {maximum: 15}, format: { with: VALID_ACCOUNT_REGEX }, uniqueness: true
+  validates :account_name, presence: true, length: {maximum: 15}, format: { with: VALID_ACCOUNT_REGEX }, uniqueness: { case_sensitive: true }
   validates :display_name, presence: true, length: {maximum: 15}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 50 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }

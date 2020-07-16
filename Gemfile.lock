@@ -108,6 +108,11 @@ GEM
       railties (>= 3.2, < 6.1)
     erubi (1.9.0)
     excon (0.75.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     ffi (1.13.1)
     fog-aws (3.6.6)
       fog-core (~> 2.1)
@@ -202,6 +207,10 @@ GEM
       bundler (>= 1.3.0)
       railties (= 6.0.3.2)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -254,6 +263,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    shoulda-matchers (4.3.0)
+      activesupport (>= 4.2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -310,6 +321,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave
   dotenv-rails
+  factory_bot_rails
   fog-aws
   jbuilder (~> 2.7)
   jp_prefecture
@@ -320,10 +332,12 @@ DEPENDENCIES
   mysql2 (>= 0.4.4)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
+  rails-controller-testing
   rails-i18n
   rspec-rails
   sass-rails (>= 6)
   selenium-webdriver
+  shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
