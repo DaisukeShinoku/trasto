@@ -1,0 +1,44 @@
+<% if logged_in? %>
+
+
+<%= render 'layouts/header' %>
+
+    <section class="hero is-fullheight">
+      <div class="hero-body login-hero has-background-primary-light">
+        <div class="container">
+          <div class="column is-12">
+            <%= render 'shared/flash' %>
+            <div class="has-text-grey has-text-weight-bold is-size-1">本ページはただいま編集中です</div>
+            <br>
+            <div class="has-text-grey has-text-weight-bold is-size-1">公開までしばらく待ちください</div>
+            <br>
+            <%= link_to ' トップページへ戻る ', root_path, data: {"turbolinks" => false}, class: "has-text-right has-text-weight-bold is-size-1" %>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<%= render 'layouts/footer' %>
+
+<% else %>
+
+<%= render 'layouts/header_top' %>
+
+    <section class="hero is-fullheight">
+      <div class="hero-body login-hero has-background-primary-light">
+        <div class="container">
+          <div class="column is-12">
+            <%= render 'shared/flash' %>
+            <div class="has-text-grey has-text-weight-bold is-size-1">本ページはただいま編集中です</div>
+            <br>
+            <div class="has-text-grey has-text-weight-bold is-size-1">公開までしばらく待ちください</div>
+            <br>
+            <%= link_to ' トップページへ戻る ', root_path, data: {"turbolinks" => false}, class: "has-text-right has-text-weight-bold is-size-1" %>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<%= render 'layouts/footer_top' %>
+
+<% end %>

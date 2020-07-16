@@ -38,6 +38,10 @@ module SessionsHelper
     current_user.admin?
   end
 
+  def guest?
+    current_user.guest?
+  end
+
   # 永続的セッションを破棄する
   def forget(user)
     user.forget

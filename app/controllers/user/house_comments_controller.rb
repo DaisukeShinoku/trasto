@@ -4,7 +4,7 @@ class User::HouseCommentsController < ApplicationController
 
   def index
     @house = House.find(params[:id])
-    @house_comments = HouseComment.where(house_id: @house.id)
+    @house_comments = HouseComment.where(house_id: @house.id).page(params[:page]).per(20)
   end
 
   def create
@@ -16,8 +16,13 @@ class User::HouseCommentsController < ApplicationController
       flash[:success] = "応援コメントを投稿しました!"
       redirect_to request.referrer || root_url
     else
-      flash[:warning] = "応援コメントの投稿に失敗しました"
-      redirect_to request.referrer || root_url
+      flash.now[:warning] = "応援コメントの投稿に失敗しました、140文字以内で投稿してください。"
+      @house = House.find(params[:id])
+      @stories = Story.where(house_id: @house.id).shuffle.first(3)
+      @categories = Category.where(is_valid: true).shuffle.first(5)
+      @house_areas = HouseArea.all
+      @house_comments = HouseComment.where(house_id: @house.id).last(5)
+      render 'user/houses/show'
     end
   end
 

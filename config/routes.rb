@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   root 'homes#top'
+  get '/about',   to: 'homes#about'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
+  post '/guest_sign_in', to: 'sessions#new_guest'
   delete '/logout',  to: 'sessions#destroy'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

@@ -62,9 +62,13 @@
                 <div class="column is-4">
                   <p class="level-item"><small><%= @story.house.name %></small></p>
                   <p class="level-item"><small><%= l @story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small></p>
-                  <div class="has-text-centered">
-                    <%= link_to "修正する", edit_house_story_path(@house, @story), class: 'tag is-medium is-primary' %>
-                  </div>
+                  <% if logged_in? %>
+                    <% if current_user.id == @story.user_id %>
+                      <div class="has-text-centered">
+                        <%= link_to "修正する", edit_house_story_path(@house, @story), class: 'tag is-medium is-primary' %>
+                      </div>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
           </div>
@@ -80,6 +84,7 @@
             <div class="column is-9">
               <% if logged_in? %>
                 <h1>ストーリーにコメントを残そう</h1>
+                  <%= render 'shared/flash' %>
                   <%= form_for(@story_comment, url:house_story_comments_path) do |f| %>
                     <div class="field">
                       <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "コメントしよう...", autofocus: "" %>

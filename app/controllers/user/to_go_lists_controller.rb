@@ -1,5 +1,5 @@
 class User::ToGoListsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:create, :destory]
   
   def create
     @house = House.find(params[:house_id])
@@ -25,7 +25,7 @@ class User::ToGoListsController < ApplicationController
 
   def index
     @user = User.find(params[:id])
-    @to_go_lists = ToGoList.where(user_id: @user.id).all
+    @to_go_lists = ToGoList.where(user_id: @user.id).all.page(params[:page]).per(20)
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
     if @user.id == current_user.id

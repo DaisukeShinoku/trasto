@@ -10,7 +10,7 @@
     </div>
     <div class="column is-9">
       <div class="columns is-multiline">
-        <div class="column is-10">
+        <div class="column is-full">
             <div class="box">
               <article class="media">
                 <div class="media-left">
@@ -95,6 +95,11 @@
                           </div>
                         </article>
                       <% end %>
+                      <div class="is-divider"></div>
+                      <br>
+                      <%= paginate @tweet_comments %>
+                      <div class="is-divider"></div>
+                      <br>
                   </div>
                   <% end %>
                 </div>
@@ -113,8 +118,8 @@
                   <% end %>
                 </div>
                 <div class="media-content">
+                  <%= render 'shared/flash' %>
                   <%= form_for(shallow_args(@tweet, @tweet_comment), url:tweet_comments_path )do |f| %>
-                    <%= render 'shared/error_messages', object: f.object %>
                     <div class="field">
                       <%= f.text_area :content, class: "textarea is-midium is-info", type: "text", placeholder: "ツブヤキにコメントしよう...", autofocus: "" %>
                     </div>
@@ -123,8 +128,6 @@
                 </div>
               </article>
             </div>
-        </div>
-        <div class="column is-2">
         </div>
       </div>
     </div>

@@ -2,6 +2,17 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      tweet: ツブヤキ
+      tweet_comment: ツブヤキコメント
+      favorite: ツブヤキいいね
+      house: ゲストハウス
+      house_area: ゲストハウスエリア
+      category: ゲストハウスカテゴリー
+      house_comment: 応援コメント
+      message: メッセージ
+      story: ストーリー
+      story_comment: ストーリーコメント
+
     attributes:
       user:
         account_name: アカウント名
@@ -20,3 +31,86 @@ ja:
         activated_at: 有効日
         reset_digest: リセット状態
         reset_sent_at: リセット日
+
+      tweet:
+        user_id: ユーザーID
+        content: 本文
+        created_at: 登録日
+        updated_at: 更新日
+        tweet_picture: 画像
+
+      tweet_comment:
+        user_id: ユーザーID
+        tweet_id: ツブヤキID
+        content: 本文
+        created_at: 登録日
+        updated_at: 更新日
+
+      favorite:
+        user_id: ユーザーID
+        tweet_id: ツブヤキID
+        created_at: 登録日
+        updated_at: 更新日
+
+      house:
+        name: ゲストハウス名
+        postcode: 表示名
+        prefecture_code: 都道府県コード
+        address: 住所
+        domitory_price: ドミトリー料金
+        private_price: 個室料金
+        copy: キャッチコピー
+        introduction: 紹介文
+        is_valid: 運営ステータス
+        created_at: 登録日
+        updated_at: 更新日
+        house_image: メイン画像
+        images: サブ画像
+        house_area_id: エリアID
+        created_at: 登録日
+        updated_at: 更新日
+
+      house_area:
+        name: エリア名
+        created_at: 登録日
+        updated_at: 更新日
+
+      category:
+        name: カテゴリー名
+        category_image: 画像
+        created_at: 登録日
+        updated_at: 更新日
+        is_valid: 有効ステータス
+
+      house_comment:
+        content: 本文
+        user_id: ユーザーID
+        house_id: ゲストハウスID
+        created_at: 登録日
+        updated_at: 更新日
+
+      message:
+        user_id: ユーザーID
+        room_id: ルームID
+        content: 本文
+        created_at: 登録日
+        updated_at: 更新日
+
+      story:
+        user_id: ユーザーID
+        house_id: ゲストハウスID
+        title: タイトル
+        content: 本文
+        visit_date: 訪問日
+        created_at: 登録日
+        updated_at: 更新日
+        house_image: メイン画像
+        images: サブ画像
+
+      story_comment:
+        content: 本文
+        user_id: ユーザーID
+        story_id: ストーリーID
+        created_at: 登録日
+        updated_at: 更新日
+

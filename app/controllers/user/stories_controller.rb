@@ -4,7 +4,7 @@ class User::StoriesController < ApplicationController
 
   def index
     @house = House.find(params[:house_id])
-    @stories = Story.where(house_id: @house.id)
+    @stories = Story.where(house_id: @house.id).page(params[:page]).per(20)
   end
 
   def show
@@ -30,6 +30,7 @@ def create
       redirect_to house_stories_url(@house)
     else
       flash.now[:warning] = "ストーリーの投稿に失敗しました"
+      @house = House.find(params[:house_id])
       render action: :new
     end
 end

@@ -12,9 +12,9 @@
 User.create!(
   account_name: 'trasto',
   display_name: '公式アカウント',
-  email: 'trasto@trasto.com',
-  password: '111111',
-  password_confirmation: '111111',
+  email: ENV['ADMIN_ADDRESS'],
+  password: ENV['ADMIN_PASSWORD'],
+  password_confirmation: ENV['ADMIN_PASSWORD'],
   introduction: "公式アカウントです",
   avatar: open("#{Rails.root}/db/fixtures/user/trasto.png"),
   admin: true,
@@ -24,11 +24,25 @@ User.create!(
 
 # 2
 User.create!(
-  account_name: 'user2',
+  account_name: 'guest',
+  display_name: 'ゲストアカウント',
+  email: 'guest@trasto.com',
+  password: '111111',
+  password_confirmation: '111111',
+  introduction: "ゲストアカウントです",
+  avatar: open("#{Rails.root}/db/fixtures/user/guest.png"),
+  guest: true,
+  activated: true,
+  activated_at: Time.zone.now
+)
+
+# 3
+User.create!(
+  account_name: 'user3',
   display_name: 'ネコ太郎',
-  email: '222@user.com',
-  password: '222222',
-  password_confirmation: '222222',
+  email: '333@user.com',
+  password: '333333',
+  password_confirmation: '333333',
   introduction: "吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。
   何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
   吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。",
@@ -37,13 +51,13 @@ User.create!(
   activated_at: Time.zone.now
 )
 
-# 3
+# 4
 User.create!(
-  account_name: 'user3',
+  account_name: 'user4',
   display_name: '坊っちゃん',
-  email: '333@user.com',
-  password: '333333',
-  password_confirmation: '333333',
+  email: '444@user.com',
+  password: '444444',
+  password_confirmation: '444444',
   introduction: "親譲りの無鉄砲で小供の時から損ばかりしている。
   小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。
   なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。",
@@ -52,13 +66,13 @@ User.create!(
   activated_at: Time.zone.now
 )
 
-# 4
+# 5
 User.create!(
-  account_name: 'user4',
+  account_name: 'user5',
   display_name: '漱石くん',
-  email: '4444@user.com',
-  password: '444444',
-  password_confirmation: '444444',
+  email: '555@user.com',
+  password: '555555',
+  password_confirmation: '555555',
   introduction: "私はまあ煩悶のものにご学問は売っが得るたですうなけれて、二二の人が別段しだによって説明なて、
   だからこの英語の自信が抜いがらが、彼らかが何の職業を発展が叱ると来るたものならうと話しが意味云え行くますだ。
   文章にそれで槙君がそれでまだ引き離すしものましなかった。",
@@ -67,13 +81,13 @@ User.create!(
   activated_at: Time.zone.now
 )
 
-# 5
+# 6
 User.create!(
-  account_name: 'user5',
+  account_name: 'user6',
   display_name: 'マルチタスク',
-  email: '555@user.com',
-  password: '555555',
-  password_confirmation: '555555',
+  email: '666@user.com',
+  password: '666666',
+  password_confirmation: '666666',
   introduction: "それを人間に当てはめて、同時並行的に複数の仕事をこなせる人を
   「マルチタスク型人間」なんて言うみたいですね。
   複数のプロジェクトを同時進行で進められるとか。",
@@ -82,13 +96,13 @@ User.create!(
   activated_at: Time.zone.now
 )
 
-# 6
+# 7
 User.create!(
-  account_name: 'user6',
+  account_name: 'user7',
   display_name: '集中ちゃん',
-  email: '666@user.com',
-  password: '666666',
-  password_confirmation: '666666',
+  email: '777@user.com',
+  password: '777777',
+  password_confirmation: '777777',
   introduction: "一度に一つの事に集中しなさいとか、
   一番重要なことを最初にしなさいとか、
   管理する方法を考えるより、管理する対象を少なくする方がいいとか、
@@ -98,58 +112,157 @@ User.create!(
   activated_at: Time.zone.now
 )
 
-# 7以降
+# 8以降
 50.times do |n|
-User.create!(
-  account_name: "mobu#{n+1}",
-  display_name: "モブ太郎#{n+1}号",
-  email: "example-#{n+1}@example.com",
-  password: '111111',
-  password_confirmation: '111111',
-  introduction: "僕はモブキャラです。主役にはなれません。僕はモブキャラです。主役にはなれません。
-  僕はモブキャラです。主役にはなれません。僕はモブキャラです。主役にはなれません。僕はモブキャラです。主役にはなれません。",
-  activated: true,
-  activated_at: Time.zone.now
-)
+  User.create!(
+    account_name: "mobu#{n+1}",
+    display_name: "ダミー太郎#{n+1}号",
+    email: "example-#{n+1}@example.com",
+    password: '111111',
+    password_confirmation: '111111',
+    introduction: "せっかくの休日に雨なんて・・・とがっかりせずに、
+    雨だからこそ家でゆっくりと過ごせると
+    発想転換してみましょう。",
+    activated: true,
+    activated_at: Time.zone.now
+  )
+  end
+
+# リレーションシップ
+users = User.all
+user  = users.third
+following = users[4..50]
+followers = users[5..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
+
+# ツイート
+  10.times do |n|
+    Tweet.create!(
+    user_id: rand(3..7),
+    content: "ハヤトは小学５年生。
+    中肉中背の、あまり目立たない男の子だ。
+    サッカー部に入っているが、レギュラーメンバーは
+    クラブチームに入っているエリートばかり。
+    走るのが遅く地味なプレーが多いハヤトは
+    いつも補欠で、応援席を暖めている。",
+    )
+  end
+
+  10.times do |n|
+    Tweet.create!(
+    user_id: rand(3..7),
+    content: "地球から遥か彼方にある、二次元星。
+    実は、地球上で見られる漫画、アニメ、絵本などの
+    二次元のお話に出てくる全ての存在が
+    この星で暮らしている。",
+    )
+  end
+
+  10.times do |n|
+    Tweet.create!(
+    user_id: rand(3..7),
+    content: "秋葉原の一角にオープンした、「柔道カフェ」。
+    給仕はもちろん柔道着姿のマッチョなお兄様方。
+    靴を脱いで入店すると青臭い畳と、
+    いちおしメニューの「寒稽古の後にふるまうお汁粉」の甘い香りが
+    暖かく迎えてくれます。",
+    )
+  end
+
+  10.times do |n|
+    Tweet.create!(
+    user_id: rand(3..7),
+    content: "「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
+    「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
+    「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」",
+    tweet_picture: open("#{Rails.root}/db/fixtures/free/free#{rand(1..11)}.jpg")
+    )
+  end
+
+20.times do |n|
+  Favorite.create!(
+    user_id: "3",
+    tweet_id: "#{n+1}"
+  )
 end
 
-#ツブヤキ
+20.times do |n|
+  Favorite.create!(
+    user_id: "4",
+    tweet_id: "#{n+10}"
+  )
+end
 
-2.times do |n|
-  Tweet.create!(
-  user_id: rand(2..6),
-  content: "「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
-  「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
-  「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」",
+20.times do |n|
+  Favorite.create!(
+    user_id: "5",
+    tweet_id: "#{n+20}"
+  )
+end
+
+20.times do |n|
+  Favorite.create!(
+    user_id: "6",
+    tweet_id: "#{n+20}"
+  )
+end
+
+20.times do |n|
+  Favorite.create!(
+    user_id: "7",
+    tweet_id: "#{n+1}"
+  )
+end
+
+40.times do |n|
+  TweetComment.create!(
+    user_id: rand(3..7),
+    tweet_id: "#{n+1}",
+    content: "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。",
+  )
+end
+
+40.times do |n|
+  TweetComment.create!(
+    user_id: rand(8..50),
+    tweet_id: "#{n+1}",
+    content: "後ろで大きな爆発音がした。俺は驚いて振り返った。",
+  )
+end
+
+Tweet.create!(
+  user_id: "3",
+  content: "コメントがたくさんついたバズりツブヤキ",
   tweet_picture: open("#{Rails.root}/db/fixtures/free/free#{rand(1..11)}.jpg")
   )
-end
 
-15.times do |n|
-  Tweet.create!(
-  user_id: rand(2..6),
-  content: "「つぶやきます」「つぶやきます」「つぶやきます」「つぶやきます」「つぶやきます」
-  「つぶやきます」「つぶやきます」「つぶやきます」「つぶやきます」",
+  100.times do |n|
+  TweetComment.create!(
+    user_id: rand(4..50),
+    tweet_id: "41",
+    content: "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。",
   )
-end
+  end
 
-3.times do |n|
-  Tweet.create!(
-  user_id: rand(2..6),
-  content: "「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
-  「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」
-  「写真つきのツブヤキ」「写真つきのツブヤキ」「写真つきのツブヤキ」",
-  tweet_picture: open("#{Rails.root}/db/fixtures/free/free#{rand(1..11)}.jpg")
+  100.times do |n|
+  TweetComment.create!(
+    user_id: rand(4..50),
+    tweet_id: "41",
+    content: "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。",
   )
-end
+  end
 
-30.times do |n|
-  Tweet.create!(
-  user_id: rand(2..6),
-  content: "「つぶやきます」「つぶやきます」「つぶやきます」「つぶやきます」「つぶやきます」
-  「つぶやきます」「つぶやきます」「つぶやきます」「つぶやきます」",
+  100.times do |n|
+  TweetComment.create!(
+    user_id: rand(4..50),
+    tweet_id: "41",
+    content: "この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。",
   )
-end
+  end
+
+
 
 #カテゴリー
 
@@ -250,6 +363,8 @@ Category.create!(
   category_image: open("#{Rails.root}/db/fixtures/category/cafe.jpg")
 )
 
+# エリア
+
 # 1
 HouseArea.create!(
   name: '北海道'
@@ -310,7 +425,6 @@ HouseArea.create!(
   name: '沖縄'
 )
 
-
 #ゲストハウス
 
 # 1
@@ -359,6 +473,28 @@ HouseCategory.create!(
   category_id: '11'
 )
 
+HouseComment.create!(
+  user_id: "3",
+  house_id: "1",
+  content: "綺麗な海！最高にクレイジーな旅人たち！本当にありがとうございました！
+  またいきたいよーー！！！"
+)
+
+HouseComment.create!(
+  user_id: "4",
+  house_id: "1",
+  content: "毎晩８時からのおかず交換会で友達できて、
+  遅くまでお酒を飲んで、
+  次の日はみんなで海の遊びに行って、
+  学生の夏休みみたいな時間が過ごせました！"
+)
+
+HouseComment.create!(
+  user_id: "7",
+  house_id: "1",
+  content: "元・ヘルパーです！たったの１ヶ月ですが、最高のプチ移住体験でした。"
+)
+
 
 # 2
 House.create!(
@@ -400,6 +536,23 @@ HouseCategory.create!(
   category_id: '11'
 )
 
+HouseComment.create!(
+  user_id: "6",
+  house_id: "2",
+  content: "海が近くて夕陽が綺麗！！オーナーのけいさん、スタッフのたかさん、シェフのにいに、ありがとう！！"
+)
+
+HouseComment.create!(
+  user_id: "5",
+  house_id: "2",
+  content: "沖縄マラソンの時に利用しました！前日にヤーグナで燃料（酒）を大量に詰め込んだおかげで完走できた笑"
+)
+
+HouseComment.create!(
+  user_id: "7",
+  house_id: "2",
+  content: "看板犬のコップとノコが可愛い"
+)
 
 # 3
 House.create!(
@@ -441,6 +594,23 @@ HouseCategory.create!(
   category_id: '9'
 )
 
+HouseComment.create!(
+  user_id: "5",
+  house_id: "3",
+  content: "日本一周の道中になぜか２週間滞在してしまった、、、なぜだ、、、笑"
+)
+
+HouseComment.create!(
+  user_id: "4",
+  house_id: "3",
+  content: "街並みとか建物の感じも好き、でもって漫画が大量にあるのが一番テンション上がったかも。"
+)
+
+HouseComment.create!(
+  user_id: "3",
+  house_id: "3",
+  content: "歴史を感じる建物。天気が良い日には近くの川で遊んだりできるのもGood"
+)
 
 
 # 4
@@ -480,63 +650,84 @@ HouseCategory.create!(
   category_id: '12'
 )
 
+HouseComment.create!(
+  user_id: "4",
+  house_id: "4",
+  content: "ロッククライミングの時に利用しています、女将のらぶこさんの朝ご飯最高！"
+)
+
+HouseComment.create!(
+  user_id: "5",
+  house_id: "4",
+  content: "看板犬のあんこに会いに季節ごとにいっちゃう、いつも可愛い"
+)
+
+HouseComment.create!(
+  user_id: "6",
+  house_id: "4",
+  content: "リビングめっちゃ広い。合宿できそう"
+)
+
+
 
 # 5
-House.create!(
-  name: 'マスヤゲストハウス',
-  postcode: '3930062',
-  prefecture_code: '20',
-  address: '諏訪郡下諏訪町平沢町314',
-  domitory_price: '3200',
-  private_price: '5000',
-  copy: '旅人からも地元からも愛される暖かいゲストハウス',
-  introduction: "マスヤゲストハウスは、長野県は諏訪湖のほとり下諏訪町にあるゲストハウス。
-  赤煉瓦の続くかっこいい門構えのこの宿は、明治時代の古地図にも載っている老舗の旅館でした。
-  「ますや旅館」の屋号を受け継ぎ、元々ある良いところを残しつつ、３ヶ月の改装を経て完成したマスヤゲストハウス。
-  地元の方やスタッフと一緒に、のんびり楽しく、宿と諏訪での時間をお過ごしください。",
-  is_valid: '1',
-  house_area_id: '6',
-  house_image: open("#{Rails.root}/db/fixtures/masuya/mgkana6.jpg"),
-  # images: open("#{Rails.root}/db/fixtures/masuya/mgkana1.jpg"),
-          # open("#{Rails.root}/db/fixtures/masuya/mgkana4.jpg"),
-          # open("#{Rails.root}/db/fixtures/masuya/mgkana5.jpg"),
-          # open("#{Rails.root}/db/fixtures/masuya/mgkana2.jpg")
-)
+  House.create!(
+    name: "Railsゲストハウス",
+    postcode: "5555555",
+    prefecture_code: "20",
+    address: '中原郡大谷町',
+    domitory_price: '3500',
+    private_price: '4800',
+    copy: 'プログラミング宿',
+    introduction: "初学者、現役問わずプログラミングを愛する者が集まる宿です。高速WiFi完備",
+    is_valid: "1",
+    house_area_id: "6",
+    house_image: open("#{Rails.root}/db/fixtures/house/sh01.jpg"),
+  )
 
-HouseCategory.create!(
-  house_id: '5',
-  category_id: '1'
-)
+  HouseCategory.create!(
+    house_id: "5",
+    category_id: "1"
+  )
+  
+  HouseCategory.create!(
+    house_id: "5",
+    category_id: "3"
+  )
+  
+  HouseCategory.create!(
+    house_id: "5",
+    category_id: "7"
+  )
+  
+  HouseCategory.create!(
+    house_id: '5',
+    category_id: '15'
+  )
 
-HouseCategory.create!(
-  house_id: '5',
-  category_id: '3'
-)
-
-HouseCategory.create!(
-  house_id: '5',
-  category_id: '7'
-)
-
-HouseCategory.create!(
-  house_id: '5',
-  category_id: '15'
-)
+  50.times do |n|
+    HouseComment.create!(
+      user_id: rand(8..50),
+      house_id: "5",
+      content: "とってもいい宿なんですよーーーー！！！"
+    )
+    end
 
 # 6
 House.create!(
-  name: '鎌倉ゲストハウス',
-  postcode: '2480022',
-  prefecture_code: '14',
-  address: '鎌倉市常盤273-3',
+  name: 'マラソンゲストハウス',
+  postcode: '6666666',
+  prefecture_code: '4',
+  address: '長距離市陸上273-3',
   domitory_price: '3500',
   private_price: '15000',
-  copy: '囲炉裏のある小さなお宿',
-  introduction: "湘南よりも山のほう 大仏さまのずっと奥に、あかり灯る一軒家 大きな囲炉裏と、家を守る大きな柱 宮大工により造られた、あたたかな木のおうち 畳のにおい、陽だまり縁側 どこか懐かしい、おばあちゃん家のような ここに流れるのは、きっとこころから安らぐ時間 どうぞゆるりお過ごしください",
+  copy: 'マラソン宿',
+  introduction: "マラソンを愛する者が集まる宿です。毎月第２土曜日にセルフ箱根駅伝開催中！
+  酸素ルーム完備のランナーに優しいお宿",
   is_valid: '1',
-  house_area_id: '4',
-  house_image: open("#{Rails.root}/db/fixtures/kamagesu/kamagesukana1.jpg"),
-  # images: open("#{Rails.root}/db/fixtures/kamagesu/kamagesukana2.jpg"),
+  house_area_id: '2',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh02.jpg"),
+  # images: open("#{Rails.root}/db/fixtures/house/sh02.jpg"),
 )
 
 HouseCategory.create!(
@@ -561,19 +752,19 @@ HouseCategory.create!(
 
 # 7
 House.create!(
-  name: '島宿 月桃屋',
-  postcode: '9070013',
-  prefecture_code: '47',
-  address: '石垣市浜崎町2−3−24 エメラルドアイル浜崎町1F南',
+  name: '北海道はでっかい堂',
+  postcode: '7777777',
+  prefecture_code: '1',
+  address: '札幌市ブラックニッカビル4階',
   domitory_price: '2500',
   private_price: '3900',
-  copy: '月桃家におかえりなさい〜！！',
-  introduction: "沖縄那覇からさらにさらに南の石垣島にてとしてみなさんの旅のお手伝いをしています。
-  食事の提供はありませんが毎日自炊や石垣牛や島料理の美味しいお店に食べることも。
-  夜はリビングに集まってみんなとゆんたく(おしゃべり)！自分のおうちのようにゆっくりやすんで友達作っていい思い出たくさん作ってまた帰ってきてね〜。",
+  copy: '北海道におかえりなさい〜！！',
+  introduction: "北海道のみんなの実家としてみなさんの旅のお手伝いをしています。
+  くつろいで行ってくださいね！
+  夜はリビングに集まって炬燵でUNOをやりましょう！",
   is_valid: '1',
-  house_area_id: '12',
-  house_image: open("#{Rails.root}/db/fixtures/gettouya/daigettouya.jpg"),
+  house_area_id: '1',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh03.jpg"),
 )
 
 HouseCategory.create!(
@@ -598,18 +789,18 @@ HouseCategory.create!(
 
 # 8
 House.create!(
-  name: 'eat&stay ROMEY',
-  postcode: '4210123',
-  prefecture_code: '22',
-  address: '静岡市駿河区石部27-11',
+  name: 'RAMEN HOUSE',
+  postcode: '8888888',
+  prefecture_code: '6',
+  address: 'ラーメン市ラーメン部27-11',
   # domitory_price: '0',
   private_price: '3500',
-  copy: 'ゲストハウス兼カレー屋さん',
-  introduction: "ネパール出身のご主人と、日本人の奥様が二人三脚で営むアットホームなゲストハウス兼カレー屋さん。
-  ゲストとの一期一会の出会いを大切にしている素敵なお宿",
+  copy: 'ゲストハウス兼ラーメン屋さん',
+  introduction: "カンボジア出身のご主人と、オーストラリア人の奥様が営むアットホームなゲストハウス兼ラーメン屋。
+  ゲストとの出会いをとラーメンのスープのコクを大切にしている素敵なお宿",
   is_valid: '1',
-  house_area_id: '7',
-  house_image: open("#{Rails.root}/db/fixtures/romey/dairomey.jpg"),
+  house_area_id: '3',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh04.jpg"),
 )
 
 HouseCategory.create!(
@@ -634,19 +825,18 @@ HouseCategory.create!(
 
 # 9
 House.create!(
-  name: '飛騨高山ゲストハウス tau',
-  postcode: '5060031',
-  prefecture_code: '21',
-  address: '高山市西之一色町2-84',
+  name: 'ゲストハウス まごのて',
+  postcode: '9999999',
+  prefecture_code: '15',
+  address: '新潟市新潟町2-84',
   domitory_price: '2500',
   private_price: '7200',
-  copy: '飛騨高山のちいさな家',
-  introduction: "「ｔａｕ」とは広島の方言で手が届きますか？の意味です。
-  ゲストさんの想い、目標や夢に手が届く宿を目指しています。
-  訪れるすべてのゲストさんの笑顔を願い、皆様のお越しを心からお待ちしております。",
+  copy: '新潟のちいさな家',
+  introduction: "ゲストさんのかゆいところに手が届く宿を目指しています。
+  ムヒ片手にお待ちしています。",
   is_valid: '1',
-  house_area_id: '7',
-  house_image: open("#{Rails.root}/db/fixtures/tau/tau_ryo3.jpg"),
+  house_area_id: '5',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh05.jpg"),
   # images: open("#{Rails.root}/db/fixtures/tau/tau_ryo1.jpg"),
           # open("#{Rails.root}/db/fixtures/tau/tau_ryo2.jpg"),
 )
@@ -673,18 +863,18 @@ HouseCategory.create!(
 
 # 10
 House.create!(
-  name: '晴耕雨読',
-  postcode: '8914205',
+  name: '唯我独尊',
+  postcode: '1110000',
   prefecture_code: '46',
-  address: '熊毛郡屋久島町宮之浦1567',
+  address: '結郡土町孫浦1567',
   # domitory_price: '0',
   private_price: '2500',
-  copy: '一人旅好きが自然と集まる屋久島の有名宿',
-  introduction: "屋久島で人気の素泊まり宿。
-  ホームページ等は持たず、予約は電話のみという営業スタイルだが、オーナーさんの人柄と、チェックイン後の心地良い距離感からか全国にファンがいる知る人ぞ知る宿。",
+  copy: '一人旅好きが自然と集まる山奥の有名宿',
+  introduction: "人気の素泊まり宿。
+  ホームページ等は持たず、予約はハガキのみという営業スタイルだが、オーナーさんの人柄と、チェックイン後の心地良い距離感からか全国にファンがいる知る人ぞ知る宿。",
   is_valid: '1',
   house_area_id: '11',
-  house_image: open("#{Rails.root}/db/fixtures/seikouudoku/daiseikoudoku.jpg"),
+  house_image: open("#{Rails.root}/db/fixtures/house/sh06.jpg"),
 )
 
 HouseCategory.create!(
@@ -709,20 +899,18 @@ HouseCategory.create!(
 
 # 11
 House.create!(
-  name: '小笠原ユースホステル',
-  postcode: '1002101',
-  prefecture_code: '13',
-  address: '小笠原村父島字西町',
+  name: '宝島ユースホステル',
+  postcode: '0001111',
+  prefecture_code: '35',
+  address: '非公開',
   domitory_price: '3950',
   private_price: '5950',
-  copy: '東京から丸一日、１週間以上のフリータイムを手に入れて向かう贅沢時間をここで！',
-  introduction: "東京から南へ1,000Kmの絶海の孤島。
-  月に5便ほど、25時間半もかかる定期船でしか行かれない、世界的にも遠い島。訪れる人は少ないけれど、だからこそ本物の自然が残っています。
-  海ではダイビングはもちろん、ドルフィンスイムやホエールウォッチング、スキンダイブに島巡りボート。
-  山はトレッキングに数々の展望台。1便やりすごして8~9泊してもやることいっぱい。",
+  copy: '何もしない贅沢時間をここで！',
+  introduction: "知る人ぞ知る絶海の孤島。定期便が出ておらず、海図にも載っていない世界的にも遠い島。
+  訪れる人は少ないけれど、だからこそ本物の自然が残っています。さあ、冒険の旅に出かけよう",
   is_valid: '1',
-  house_area_id: '4',
-  house_image: open("#{Rails.root}/db/fixtures/free/free1.jpg"),
+  house_area_id: '9',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh07.jpg"),
 )
 
 HouseCategory.create!(
@@ -745,22 +933,20 @@ HouseCategory.create!(
   category_id: '9'
 )
 
-
 # 12
 House.create!(
-  name: '御宿ゲストハウス 海おやぶん',
-  postcode: '2995103',
-  prefecture_code: '12',
+  name: '白浜ゲストハウス はまはま',
+  postcode: '1112222',
+  prefecture_code: '30',
   address: '夷隅郡御宿町新町608',
   domitory_price: '3300',
   private_price: '4300',
-  copy: '都心からすぐ来られる房総に、誰もがくつろげる場所を。',
+  copy: '大阪からすぐ来られる、だけども自然がいっぱい、誰もが心が解放される場所。',
   introduction: "約40年前にこだわり抜いて建てられた家屋を引き継ぎ、ゲストハウスを開きました。
-  関東屈指の美しさを誇る御宿の海から徒歩5分、駅から徒歩8分、スーパーから徒歩2分の御宿中心街にひっそりと佇んでいます。
-  帰ってきたらすぐに浴びられる外シャワーがあるので、海水浴やサーフィンも快適。ツーリングなどの拠点にもご利用ください。皆様のお越しを心よりお待ちしております",
+  関西屈指の美しさを誇る白浜の海から徒歩5分、海水浴やサーフィンに最適。",
   is_valid: '1',
-  house_area_id: '4',
-  house_image: open("#{Rails.root}/db/fixtures/free/free2.jpg"),
+  house_area_id: '8',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh08.jpg"),
 )
 
 HouseCategory.create!(
@@ -785,18 +971,18 @@ HouseCategory.create!(
 
 # 13
 House.create!(
-  name: '五島バックパッカーズ ぽれ',
-  postcode: '8574214',
-  prefecture_code: '42',
-  address: '新上五島町七目郷 1005-2',
+  name: 'バックパッカーズ repo',
+  postcode: '1113333',
+  prefecture_code: '38',
+  address: '宝町七目 5-2',
   domitory_price: '3500',
   private_price: '4500',
   copy: '世界を練り歩いたバックパッカーが地元に建てた夢の宿',
-  introduction: "ゲストハウスの魅力に取り憑かれバックパッカーとして世界を旅した五島出身のオーナーが、「いつか、ゲストハウスを、自分が生まれ育った島に作りたい！」という思いを形にした宿。
+  introduction: "ゲストハウスの魅力に取り憑かれバックパッカーとして世界を旅した宝町出身のオーナーが、「いつか、ゲストハウスを、自分が生まれ育った宝町に作りたい！」という思いを形にした宿。
   旅人の気持ちがわかるオーナーだから作れる居心地の良い宿です",
   is_valid: '1',
-  house_area_id: '12',
-  house_image: open("#{Rails.root}/db/fixtures/free/free3.jpg"),
+  house_area_id: '10',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh09.jpg"),
 )
 
 HouseCategory.create!(
@@ -821,20 +1007,18 @@ HouseCategory.create!(
 
 # 14
 House.create!(
-  name: 'さっぽろゲストハウス 縁家',
-  postcode: '0640808',
-  prefecture_code: '1',
-  address: '札幌市中央区南8条西8丁目515 南八条アーバンライフ201号室',
+  name: 'ゲストハウス ばあちゃん家',
+  postcode: '1114444',
+  prefecture_code: '22',
+  address: '俺市俺区西8丁目',
   domitory_price: '2500',
   # private_price: '0',
-  copy: '暮らすように旅しよう',
-  introduction: "縁家は10階建ての大きなマンションの一室にあります。
-  初めてお越しになるゲストさんは『こんな所にゲストハウスが！？』と驚きますが、縁家の重い扉を開けた瞬間に、その緊張はどこかへと吹っ飛ぶことでしょう。
-  中に入れば、北の大地とは思えないユルい雰囲気と居心地の良さ。まるでホームステイに来たようなアットホームな空気感が自慢の宿です。
-  ホテルや旅館では味わえない、素敵な一期一会の出会いが待っています。",
+  copy: '忘れられない旅をしよう',
+  introduction: "田舎のおばあの家に来たようなアットホームな空気感が自慢の宿です。
+  ホテルや旅館では味わえない、忘れられない出会いが待っています。",
   is_valid: '1',
-  house_area_id: '1',
-  house_image: open("#{Rails.root}/db/fixtures/free/free4.jpg"),
+  house_area_id: '7',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh10.jpg"),
 )
 
 HouseCategory.create!(
@@ -859,17 +1043,19 @@ HouseCategory.create!(
 
 # 15
 House.create!(
-  name: 'ゲストハウス Nami',
-  postcode: '9071751',
-  prefecture_code: '47',
-  address: '八重山郡竹富町波照間5251',
+  name: 'ハウス N',
+  postcode: '1115555',
+  prefecture_code: '42',
+  address: '山郡竹町波5',
   # domitory_price: '0',
   private_price: '2800',
-  copy: '日本の最南端にある素敵な出会い',
-  introduction: '日本最南端の有人島にあるゲストハウスNami。どこか懐かしさを感じるその佇まいは夏休みに田舎のおばあちゃんの家に帰ってきた時の感覚を思い出させます。広々とした庭に置かれた大きなテーブルを囲んであなたも”ゆんたく（おしゃべり）”を楽しみませんか？',
+  copy: 'ここだけにある素敵な出会い',
+  introduction: '本州最西端の有人島にあるハウスN。
+  どこか懐かしさを感じるその佇まいは夏休みに田舎のおばあちゃんの家に帰ってきた時の感覚を思い出させます。
+  広々とした庭に置かれた大きなテーブルを囲んであなたも”ゆんたく（おしゃべり）”を楽しみませんか？',
   is_valid: '1',
-  house_area_id: '12',
-  house_image: open("#{Rails.root}/db/fixtures/free/free5.jpg"),
+  house_area_id: '11',
+  house_image: open("#{Rails.root}/db/fixtures/house/sh11.jpg"),
 )
 
 HouseCategory.create!(
@@ -894,17 +1080,17 @@ HouseCategory.create!(
 
 # 16
 House.create!(
-  name: '亀時間',
-  postcode: '248-0013',
+  name: '鶴時間',
+  postcode: '1116666',
   prefecture_code: '14',
-  address: '鎌倉市材木座３丁目１７−２１',
+  address: '鎌倉市歌舞伎座３ー１',
   domitory_price: '3200',
   private_price: '9000',
-  copy: '鎌倉の暮らしを亀時間で旅する宿',
-  introduction: '鎌倉時代に港町として栄えた材木座に、宮大工によって建てられた築94年の歴史を持つ古民家をゲストハウスに改装しました。海まで徒歩3分、鎌倉の暮らしをゆっくりお楽しみください。',
+  copy: '鎌倉の暮らしを体験する宿',
+  introduction: '宮大工によって建てられた築100年の歴史を持つ古民家をゲストハウスに改装。鎌倉を暮らすように旅していってください。',
   is_valid: '1',
   house_area_id: '4',
-  house_image: open("#{Rails.root}/db/fixtures/free/free6.jpg"),
+  house_image: open("#{Rails.root}/db/fixtures/house/sh12.jpg"),
 )
 
 HouseCategory.create!(
@@ -930,74 +1116,74 @@ HouseCategory.create!(
 #ブックマーク
 
 4.times do |n|
-Bookmark.create!(
-  user_id: "2",
-  house_id: "#{n+1}",
-)
-end
-
-3.times do |n|
   Bookmark.create!(
     user_id: "3",
-    house_id: "#{n+2}",
+    house_id: "#{n+1}",
   )
-end
-
-2.times do |n|
-  Bookmark.create!(
-    user_id: "4",
-    house_id: "#{n+3}",
-  )
-end
-
-Bookmark.create!(
-  user_id: "5",
-  house_id: "7",
-)
-
-
-2.times do |n|
+  end
+  
+  3.times do |n|
+    Bookmark.create!(
+      user_id: "4",
+      house_id: "#{n+2}",
+    )
+  end
+  
+  2.times do |n|
+    Bookmark.create!(
+      user_id: "5",
+      house_id: "#{n+3}",
+    )
+  end
+  
   Bookmark.create!(
     user_id: "6",
-    house_id: "#{n+5}",
+    house_id: "7",
   )
-end
-
-#行きたいリスト
-
-4.times do |n|
-ToGoList.create!(
-  user_id: "5",
-  house_id: "#{n+1}",
-)
-end
   
-3.times do |n|
+  
+  2.times do |n|
+    Bookmark.create!(
+      user_id: "7",
+      house_id: "#{n+5}",
+    )
+  end
+  
+  #行きたいリスト
+  
+  4.times do |n|
   ToGoList.create!(
-    user_id: "4",
-    house_id: "#{n+2}",
+    user_id: "5",
+    house_id: "#{n+1}",
   )
-end
-  
-2.times do |n|
+  end
+    
+  3.times do |n|
+    ToGoList.create!(
+      user_id: "4",
+      house_id: "#{n+2}",
+    )
+  end
+    
+  2.times do |n|
+    ToGoList.create!(
+      user_id: "7",
+      house_id: "#{n+3}",
+    )
+  end
+    
   ToGoList.create!(
-    user_id: "2",
-    house_id: "#{n+3}",
+    user_id: "6",
+    house_id: "7",
   )
-end
-  
-ToGoList.create!(
-  user_id: "6",
-  house_id: "7",
-)
-  
-  
-2.times do |n|
-  ToGoList.create!(
-    user_id: "3",
-    house_id: "#{n+5}",
-  )
-end
+    
+    
+  2.times do |n|
+    ToGoList.create!(
+      user_id: "3",
+      house_id: "#{n+5}",
+    )
+  end
 
 #ルーム
 
@@ -1009,48 +1195,43 @@ end
 #エントリー
 
 Entry.create!(
-  user_id: "2",
-  room_id: "1",
-)
-
-Entry.create!(
   user_id: "3",
   room_id: "1",
 )
 
 Entry.create!(
-  user_id: "2",
-  room_id: "2",
-)
-
-Entry.create!(
   user_id: "4",
-  room_id: "2",
+  room_id: "1",
 )
 
 Entry.create!(
-  user_id: "2",
-  room_id: "3",
+  user_id: "3",
+  room_id: "2",
 )
 
 Entry.create!(
   user_id: "5",
-  room_id: "3",
+  room_id: "2",
 )
 
 Entry.create!(
-  user_id: "2",
-  room_id: "4",
+  user_id: "3",
+  room_id: "3",
 )
 
 Entry.create!(
   user_id: "6",
-  room_id: "4",
+  room_id: "3",
 )
 
 Entry.create!(
   user_id: "3",
-  room_id: "5",
+  room_id: "4",
+)
+
+Entry.create!(
+  user_id: "7",
+  room_id: "4",
 )
 
 Entry.create!(
@@ -1059,680 +1240,320 @@ Entry.create!(
 )
 
 Entry.create!(
-  user_id: "3",
+  user_id: "5",
+  room_id: "5",
+)
+
+Entry.create!(
+  user_id: "4",
   room_id: "6",
 )
 
 Entry.create!(
-  user_id: "5",
+  user_id: "6",
   room_id: "6",
 )
 
 #メッセージ
 
 50.times do |n|
-Message.create!(
-  user_id: "2",
-  room_id: "1",
-  content: "これは#{n+1}番目のメッセージ",
-)
-end
-
-Message.create!(
-  user_id: "2",
-  room_id: "2",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "4",
-  room_id: "2",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "2",
-  room_id: "3",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "5",
-  room_id: "3",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "2",
-  room_id: "4",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "6",
-  room_id: "4",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "3",
-  room_id: "5",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "4",
-  room_id: "5",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "3",
-  room_id: "6",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
-
-Message.create!(
-  user_id: "5",
-  room_id: "6",
-  content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
-  でも象さんはもっと好きです、アリさんマークの引越し社
-  隣の客はなんとやら",
-)
+  Message.create!(
+    user_id: "3",
+    room_id: "1",
+    content: "これは#{n+1}番目のメッセージ",
+  )
+  end
+  
+  Message.create!(
+    user_id: "3",
+    room_id: "2",
+    content: "ハヤトは小学５年生。
+    中肉中背の、あまり目立たない男の子だ。
+    サッカー部に入っているが、レギュラーメンバーは
+    クラブチームに入っているエリートばかり。
+    走るのが遅く地味なプレーが多いハヤトは
+    いつも補欠で、応援席を暖めている。",
+  )
+  
+  Message.create!(
+    user_id: "5",
+    room_id: "2",
+    content: "ある大手の美容室検索サイトでは
+    失恋したてで、これからの自分を変えたくて
+    ヘアカットがしたくなった時だけ現れる
+    「失恋女子限定～カウンセリング付～」
+    というバナーがある。",
+  )
+  
+  Message.create!(
+    user_id: "3",
+    room_id: "3",
+    content: "そのバナーで予約できる時間は２２時のみ。
+    通常営業の終わった美容室は
+    失恋女子だけのために
+    貸し切りでオープンする。",
+  )
+  
+  Message.create!(
+    user_id: "6",
+    room_id: "3",
+    content: "夜２２時、今夜も
+    ヘアカットで自分探しがしたい失恋女子へ
+    美容室の扉が開く。",
+  )
+  
+  Message.create!(
+    user_id: "3",
+    room_id: "4",
+    content: "こんにちは、よろしくお願いします、ゲストハウスが好きです
+    でも象さんはもっと好きです、アリさんマークの引越し社
+    隣の客はなんとやら",
+  )
+  
+  Message.create!(
+    user_id: "7",
+    room_id: "4",
+    content: "運動会が近いある日、サッカー部顧問の先生から
+    部活動対抗リレーについての話が出る。",
+  )
+  
+  Message.create!(
+    user_id: "4",
+    room_id: "5",
+    content: "従順なイメージの黒ボブを
+    明るいふわふわ髪に。",
+  )
+  
+  Message.create!(
+    user_id: "5",
+    room_id: "5",
+    content: "「ネットで頼めばいい」
+    ネットなら、飽きるまでスイーツを選べる。",
+  )
+  
+  Message.create!(
+    user_id: "4",
+    room_id: "6",
+    content: "執筆作業のルーティンワークは
+    「終盤のクライマックスは、甘いものを食べながら仕上げる」
+    というもの。",
+  )
+  
+  Message.create!(
+    user_id: "6",
+    room_id: "6",
+    content: "優しくて頼りがいのある先輩、
+    サッカーがうまいことを鼻に掛けないクラブチーム所属組や
+    小生意気ながらも可愛らしい後輩たちと一緒に
+    ハヤトは上達が遅いながらも、楽しく部活に参加していた。",
+  )
 
 #ストーリー
 
-Story.create!(
-  user_id: '2',
-  house_id: '1',
-  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
-  content: '！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！
-  ！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字
-  ！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文
-  字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３００
-  ０文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３
-  ０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入りま
-  す３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入
-  ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテン
-  ツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字
-  ！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３００
-  ０文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります
-  ３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが
-  入ります',
-  visit_date: '2011-11-14',
-  story_image: open("#{Rails.root}/db/fixtures/musubiya/zakimusubiya09.jpg")
-)
-
-50.times do |n|
-StoryComment.create!(
-  user_id: "#{n+1}",
-  story_id: "1",
-  content: "すごいとてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！
-  とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！
-  とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！"
-)
-end
-
-
-
+# 1
 Story.create!(
   user_id: '3',
   house_id: '1',
-  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
+  title: "大自然に囲まれた賑やか宿で過ごす贅沢時間",
+  content: "２０１８年の冬、僕は唐突に思いました、「最近、旅してなくね！？」と、
+  もともと一人旅やゲストハウスは好きなのですが、、、ここ最近は友人や恋人と、っていうことが多くて近頃は泊まる機会がありませんでした。
+  ただ、今年の冬は年末年始が忙しくて、年末直前が長期休みというなかなか他の人達とは合わせづらいスケジュール、、、
+  ということで！いっちゃいました、初沖縄！！
+  基本的にはかなりチキンの性格なので、情報収集は念入りに、、、どーもこの「なきじんゲストハウス結家」ってとこが良さそうだぞ、ってことでおそるおそる予約をしましたが、いやー本当にこの時の自分の選択を褒めてあげたい！
+  もう最高ポイント多過ぎて紹介仕切れないんですが、特にここがってとこをこれから紹介していきますね！
+  
+  １・宿に集まる方々のクセが強い！（いい意味で）
+  はじめてのゲストハウス、結構ドキドキしながらいったんですよ。雰囲気とかよくわからんし、本当に旅人同士仲良くなるとか、あるの？都市伝説でしょ？みたいな。
+  でも、結家に関してはそのs心配はないっていうか、むしろ声枯れるまで話すことになるのでそっちの心配した方がいいっす。
+  まず、この結家では毎晩８時から「おかず交換会」をやっていて簡単にいうと一人一品おかずを持ち寄ってみんなでご飯食べようね、っていう会なのです。
+  めっちゃいいですよこのシステム！まずキッチンで料理してると自然とコミュニケーションうまれますし、やっぱ同じテーブル囲んでご飯食べると一気に距離が近づきます！
+  そして何より、女将の「結ねぇ」の場を回すスキルが高すぎる！「結ねぇ」はなんとこの宿を始める前はあの木下大サーカスでアクロバット芸人をやっていたそうで、めちゃくちゃ面白いんです！
+  木下で培われたスキルなのかは分かりませんが、とにかく人を楽しませることに関して天才的なこの女将の仕切るおかず交換会はめっちゃ楽しい！滞在５日間中、１回くらいは外に食べに行こうかとも思ったんですが、結局皆勤賞でした笑
+  そして、この「結ねぇ」の人柄に惹かれてなのか、集まる人々も個性的でフレンドリーで楽しい人が多いという印象！毎晩遅くまでみんなで飲んじゃって毎日寝不足でした笑
 
+  ２・最高のロケーション
+  この宿なんですけど、マジめっちゃ広いんですよね。駐車場はサッカーの公式戦できるんじゃね？くらいの広さだし、反対側の庭では総勢１０人くらいでバレーボールが楽しめました。しかもオーシャンビュー。
+  そしてなんといっても目の前の海！地理的に結家の宿泊客しかこないだろうなっていう場所がビーチになっていて、めっちゃ綺麗！
+  シュノーケリングを楽しむ人、岩場でアカペラしてる人、写真撮ってる人、なかにはサーフィンを楽しんでいる人もいました。ちなみに僕はビール飲んでました。
+  綺麗なプライベートビーチを、この値段で楽しめる宿なんて、日本中探してもここにしかないんじゃないですかね？
 
+  ３・設備も充実
+  上の２つが特に結家を推せる大きな理由なんですが、内装とかも女将結ねぇのこだわりが感じられる素敵な宿ですし、ハンモックとか、大量の漫画とか、嬉しいポイントたくさんあるんでぜひ行ってみてください！
 
+  ということで、なきじんゲストハウス結家へのストーリーを書かせていただきました！
+  ここで出会った旅人さん達から他にもいろんな宿を教えてもらったので早くも次の休暇が待ち遠しい、、、
+  ",
+  visit_date: '2018-08-25',
+  story_image: open("#{Rails.root}/db/fixtures/musubiya/zakimusubiya09.jpg")
+)
 
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
+StoryComment.create!(
+  user_id: "7",
+  story_id: "1",
+  content: "結家やっぱいいですねー！
+  私が行った時は今の場所ではなくて、宿の大きさも今よりは少し小さいのかな？なんだか懐かしくなっちゃいました"
+)
+
+StoryComment.create!(
+  user_id: "4",
+  story_id: "1",
+  content: "あ！ネコさん早速投稿してるー！
+  今度来た時はビールばっか飲んでないで俺と一緒にサーフィンにもいきましょうね笑"
+)
+
+StoryComment.create!(
+  user_id: "5",
+  story_id: "1",
+  content: "ヘルパーの漱石です！
+  気に入ってもらえて嬉しいです！自分もまだしばらく宿にいる予定なので、休み取れたらまた来てくださいね！"
+)
+
+10.times do |n|
+StoryBookmark.create!(
+  user_id: "#{n+4}",
+  story_id: "1"
+)
+end
+
+# 2
+Story.create!(
+  user_id: '4',
+  house_id: '1',
+  title: '私の個人主義',
+  content: "あなたも一遍はなはだこの意味社という事のうちへいうあるまい。
+
+  はたして昔が影響人ももっともそのお話したありまでを片づけばいでしょのは成就忘れですんて、こうにはついでですならなら。
+  支が知れないのは正しく結果をはなはだうないませ。同時に木下さんに講演畸形こう活動を計らた根ある例外これか記憶にってお保留ないないたませが、
+  その絶対は彼らか進み霧を云うが、大森さんの事に主義の己をまるでご意味と変っと私頭に肝尊重がなっようにともかくお発表からしましたが、
+  たといもっとも成就が見るましてならたものに当てるうう。
+  
+  だからそうしてお進みに引込んのは全く公平とするなながら、その人真似には考えですとという当人に潰さているますませ。
+  そのうち主義の後この底はそれごろが使いこなすありかと嘉納さんになさませで、国の当時だろというお相違うませですて、
+  騒ぎの上を道に今日でもの茫然で晩するば来けれども、どうの事実に結びてある頃をたとい受けますませと聴いあり事でから、
+  ないなませで全く大理由考えでしょはずんたた。だから常か非常か批評にしたて、場合中世間に耽りとみるで後が小反抗の事実で知っじべき。
+  今には同時に着ば諦めたないですたくっと、はなはだようやく叱りて観念はそれほどむずかしかった事た。すなわちご所有に好まからはいるんものますて、
+  他人には、ようやく私かなるて聴いれなかっでしょするれれたあると考えで、学校も見えといますなけれ。
+  
+  ついに必ずしもはいよいよ個人というならたて、私がは事実いっぱいまであなたのお意味はないする下さいでた。
+  そこは依然としてお話しののにお附与は移ろてしまったですでんば、二一の甲にまだ申し上げたという吟味なけれて、またこのめの装束をいせから、
+  私かを私の知人を注意と当るばならましのなけれたと尊重罹りと意味偽ら来るたた。がたにまた岩崎さんにすなわちいっそ見るうものうなです。
+  嘉納さんはしっかり例外にしよて流行るですのないますた。
+  
+  （しかも釣からなろ以上うんますがですも解るなけれたて、）もう少し換えるた自己で、スコットの一つだけ知れてしとして、
+  腹の講演は今の時でもなれ反しのをなるたで留学方云うとありんに対してお内容うのん。
+  あなたは充分足で願うたように言い直すているです方たがしかしそれほど松山申申し込んあるた。ただ少々一行は新聞にありて、
+  当時でよくなっなけれたと引き摺り込んて、長くないませてそれからご養成に上げるたます。
+  ",
   visit_date: '2018-01-01',
   story_image: open("#{Rails.root}/db/fixtures/musubiya/zakimusubiya11.jpg")
 )
 
+StoryComment.create!(
+  user_id: "3",
+  story_id: "2",
+  content: "木曾路はすべて山の中である。
+  あるところは岨づたいに行く崖の道であり、あるところは数十間の深さに臨む木曾川の岸であり、あるところは山の尾をめぐる谷の入り口である。"
+)
+
+StoryComment.create!(
+  user_id: "5",
+  story_id: "2",
+  content: "恥の多い生涯を送って来ました。自分には、人間の生活というものが、見当つかないのです。
+  自分は東北の田舎に生れましたので、汽車をはじめて見たのは、よほど大きくなってからでした。"
+)
+
+StoryComment.create!(
+  user_id: "6",
+  story_id: "2",
+  content: "掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。
+  この時妙なものだと思った感じが今でも残っている。"
+)
+
+10.times do |n|
+  StoryBookmark.create!(
+    user_id: "#{n+4}",
+    story_id: "2"
+  )
+end
+
+StoryBookmark.create!(
+  user_id: "3",
+  story_id: "2"
+)
+
+# 3
 Story.create!(
-  user_id: '4',
+  user_id: '5',
   house_id: '1',
-  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
+  title: 'セロ弾きのゴーシュ',
+  content: "楽長もゴーシュの遠慮子どもたちへ小太鼓に叩く耳たまし。ところが思わず勝手ないましというセロたませ。
+  勝手ましないんましはないまたゴーシュの同じたちの限りをはどうしても正確たたが、こればかり巻へはいっれものうう。
+  立っすぎこれもゴーシュによしましとはじめの金の舌がいを弾き第十狸屋の息に死んけれども行くでしん。しずかこそ夕方来て出しでしょ。
 
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
+  譜も六せ工合のようで歩きながらだした。かっこうも窓巻たりいつをきって行っまし。
+  中は扉をまだになって眼がけちのようをひきとトロメライを出ししいんとあとがすって切れた。",
   visit_date: '2016-12-12',
   story_image: open("#{Rails.root}/db/fixtures/musubiya/zakimusubiya05.jpg")
 )
 
+StoryComment.create!(
+  user_id: "6",
+  story_id: "3",
+  content: "同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。"
+)
+
+StoryComment.create!(
+  user_id: "7",
+  story_id: "3",
+  content: "つれづれなるまゝに、日暮らし、硯にむかひて、心にうつりゆくよしなし事を、そこはかとなく書きつくれば、あやしうこそものぐるほしけれ。"
+)
+
+StoryComment.create!(
+  user_id: "4",
+  story_id: "3",
+  content: "後ろで大きな爆発音がした。俺は驚いて振り返った。"
+)
+
+10.times do |n|
+  StoryBookmark.create!(
+    user_id: "#{n+4}",
+    story_id: "3"
+  )
+end
+
+StoryBookmark.create!(
+  user_id: "3",
+  story_id: "3"
+)
+
+
+# 4以降
+50.times do |n|
 Story.create!(
-  user_id: '5',
-  house_id: '1',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
+  user_id: "#{n+8}",
+  house_id: '5',
+  title: "ストーリーのタイトルが入ります#{n+1}",
+  content: "それは今日無論どんな指図帰りというののためを知れませだろ。
+  もち前を担任者はどうにかこの学習ないなまでがなりてならだっをも発展来ですですながら、こうには考えますないないます。
+  一種を抱いですのはもっと前にどうもあっうた。
+  けっして大森さんで意味数少し附随がしや人間そんな申私か関係でというご安心んんないなくと、その次第は私か教師警視総監の気に入らて、
+  嘉納さんの事が骨の私をかつてご意味と勤めばどこ社とお意見をあるように始めてご関係がするないないて、もっともけっして撲殺にやまましからいるうのに思いだた。もしくはしかしお自力からしのはそう嫌いと出るないで、そうした教場をもしですがという手の起りていましな。どんなところ思いのためその騒ぎは私上を食わせろんかと張さんとなっんた、人の今ないとして同関係でなくっないて、会の時で権力に十月までの示威を当時できるて過ぎから、少しの毎日にいうてその以上がついいたましとしたのないので、ないでたからこれからお支とどまるますのだですです。
+  さて通りか好い加減か教育が行ったて、直接いっぱい春がしが来ないためにご評価の時間が思いんた。
+  半分をは同時に気に入らと申し上げますたないずば、いよいよ同時にするて病気もそうなかっです点でし。",
   visit_date: '2015-10-01',
-  story_image: open("#{Rails.root}/db/fixtures/musubiya/zakimusubiya09.jpg")
-)
-
-Story.create!(
-  user_id: '6',
-  house_id: '1',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  
-  
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  
-  
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」",
-  visit_date: '2020-017-01',
-  story_image: open("#{Rails.root}/db/fixtures/musubiya/musubiya-moai7.jpg")
-)
-
-Story.create!(
-  user_id: '2',
-  house_id: '2',
-  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
-  content: '！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！
-  ！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字
-  ！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文
-  字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３００
-  ０文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３
-  ０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入りま
-  す３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入
-  ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテン
-  ツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字
-  ！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３００
-  ０文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります
-  ３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが
-  入ります',
-  visit_date: '2011-11-14',
-  story_image: open("#{Rails.root}/db/fixtures/masuya/mgkana1.jpg")
-)
-
-Story.create!(
-  user_id: '3',
-  house_id: '2',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2018-01-01',
-  story_image: open("#{Rails.root}/db/fixtures/masuya/mgkana2.jpg")
-)
-
-Story.create!(
-  user_id: '4',
-  house_id: '2',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2016-12-12',
-  story_image: open("#{Rails.root}/db/fixtures/masuya/mgkana3.jpg")
-)
-
-Story.create!(
-  user_id: '5',
-  house_id: '2',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2015-10-01',
-  story_image: open("#{Rails.root}/db/fixtures/masuya/mgkana4.jpg")
-)
-
-Story.create!(
-  user_id: '6',
-  house_id: '2',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  
-  
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  
-  
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」",
-  visit_date: '2020-017-01',
-  story_image: open("#{Rails.root}/db/fixtures/masuya/mgkana5.jpg")
-)
-
-Story.create!(
-  user_id: '4',
-  house_id: '3',
-  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
-  content: '！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！
-  ！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字
-  ！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文
-  字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３００
-  ０文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３
-  ０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入りま
-  す３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入
-  ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテン
-  ツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字
-  ！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３００
-  ０文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります
-  ３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが
-  入ります',
-  visit_date: '2011-11-14',
-  story_image: open("#{Rails.root}/db/fixtures/free/free7.jpg")
-)
-
-Story.create!(
-  user_id: '2',
-  house_id: '3',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2018-01-01',
-  story_image: open("#{Rails.root}/db/fixtures/free/free8.jpg")
-)
-
-Story.create!(
-  user_id: '5',
-  house_id: '3',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2016-12-12',
-  story_image: open("#{Rails.root}/db/fixtures/free/free9.jpg")
-)
-
-Story.create!(
-  user_id: '3',
-  house_id: '3',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2015-10-01',
-  story_image: open("#{Rails.root}/db/fixtures/free/free10.jpg")
-)
-
-Story.create!(
-  user_id: '2',
-  house_id: '3',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  
-  
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  
-  
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」",
-  visit_date: '2020-017-01',
-  story_image: open("#{Rails.root}/db/fixtures/free/free11.jpg")
-)
-
-Story.create!(
-  user_id: '2',
-  house_id: '1',
-  title: 'タイトルが入りますタイトルが入りますタイトル２５字',
-  content: '！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！
-  コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！
-  ！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字
-  ！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文
-  字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３００
-  ０文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３
-  ０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入りま
-  す３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入
-  ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテン
-  ツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コ
-  ンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字
-  ！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３００
-  ０文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります
-  ３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが入ります３０００文字！！コンテンツが
-  入ります',
-  visit_date: '2011-11-14',
-  story_image: open("#{Rails.root}/db/fixtures/musubiya/musubiya-moai2.jpg")
-)
-
-Story.create!(
-  user_id: '3',
-  house_id: '1',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2018-01-01',
-  story_image: open("#{Rails.root}/db/fixtures/musubiya/musubiya-moai6.jpg")
-)
-
-Story.create!(
-  user_id: '4',
-  house_id: '1',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2016-12-12',
-  story_image: open("#{Rails.root}/db/fixtures/musubiya/musubiya-moai4.jpg")
-)
-
-Story.create!(
-  user_id: '5',
-  house_id: '1',
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「ここでめっちゃ改行するよ！」
-
-
-
-
-  「どうなったかな？？」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」
-  「コメントが入ります改行あり１０００文字」「コメントが入ります改行あり１０００文字」「コメントが入ります改行あ",
-  visit_date: '2015-10-01',
-  story_image: open("#{Rails.root}/db/fixtures/musubiya/musubikana9.jpg")
-)
-
-#ストーリーコメント
-
-30.times do |n|
-  Story.create!(
-  user_id: rand(2..6),
-  house_id: rand(1..14),
-  title: 'タイトルが入りますタイトルが入りま２０字',
-  content: "「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  
-  
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  
-  
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」
-  「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」「メッッチャいい宿やねん」",
-  visit_date: '2020-017-01',
 )
 end
 
-100.times do |n|
-StoryComment.create!(
-  user_id: rand(2..6),
-  story_id: rand(1..49),
-  content: "すごいとてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！
-  とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！
-  とてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！"
+StoryBookmark.create!(
+  user_id: "3",
+  story_id: "4"
 )
+
+100.times do |n|
+  StoryComment.create!(
+    user_id: rand(8..50),
+    story_id: rand(4..50),
+    content: "すごいとてもいいお話しですね！私も行ってみたくなりました！とてもいいお話しですね！私も行ってみたくなりました！
+    とてもいいお話しですね！！"
+  )
 end

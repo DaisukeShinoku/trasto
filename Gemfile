@@ -35,6 +35,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -74,3 +75,4 @@ gem 'kaminari'
 gem 'mail-iso-2022-jp'
 
 gem 'rails-i18n'
+

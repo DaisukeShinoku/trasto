@@ -1,7 +1,7 @@
 class User::UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :following, :followers, :tweets, :stories]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: [:destroy]
+  before_action :check_guest, only: [:update, :destroy]
 
   def index
     @users = User.where(activated: true).page(params[:page]).per(20)
@@ -75,7 +75,7 @@ class User::UsersController < ApplicationController
   def following
     @title = "フォロー"
     @user  = User.find(params[:id])
-    @users = @user.following.all
+    @users = @user.following.all.page(params[:page]).per(20)
     @user = User.find(params[:id])
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
@@ -101,7 +101,7 @@ class User::UsersController < ApplicationController
   def followers
     @title = "フォロワー"
     @user  = User.find(params[:id])
-    @users = @user.followers.all
+    @users = @user.followers.all.page(params[:page]).per(20)
     @user = User.find(params[:id])
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)

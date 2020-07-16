@@ -4,13 +4,13 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
 .login-hero{
-  background-image: url("/images/beach.jpg");
+  background-image: image-url("/images/beach.jpg");
   // background-image: image-url("musubiya-moai4.jpg'");
   background-size: cover;
 }
 
 .signup-hero{
-  background-image: url("/images/hateroad2.jpg");
+  background-image: image-url("/images/hateroad2.jpg");
   // background-image: image-url("musubiya-moai4.jpg'");
   background-size: cover;
 }
@@ -25,13 +25,13 @@
 }
 
 .fa-arrow-circle-up:hover{
-  color:hsl(171, 100%, 41%);
+  color:hsl(204, 86%, 53%);
   background-color:none;
 }
 
 #back-to-top a{
-  background :none;
-  color:hsl(171, 100%, 41%);
+  color:hsl(204, 86%, 53%);
+  background-color:none;
 }
 
 #back-to-top a:hover{

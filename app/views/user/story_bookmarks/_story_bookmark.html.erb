@@ -1,1 +1,2 @@
-<%= link_to("お気に入りに登録", house_story_bookmarks_path(story, redirect_id: 0), { method: :post, remote: true, class: "button is-danger is-light"}) %>
+<%= link_to("お気に入りに登録", house_story_bookmarks_path(story.house, story, redirect_id: 0),
+{ method: :post, remote: true, class: "button is-danger is-light"}) %>

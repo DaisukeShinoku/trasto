@@ -1,24 +1,13 @@
-<%# <h1>ゲストハウス口コミサイト"trasto"です</h1> %>
-
-<%# <p> %>
-  <%# = @user.display_name様,<br> %>
-  <%# ゲストハウス口コミサイト"trasto"へようこそ！ %>
-<%# </p> %>
-
-<%# <p> %>
-  <%# 現在、仮登録中です。<br> %>
-  <%# ユーザー登録完了のため、お手数ですが下記のリンクからアカウントの有効化をお願いします。 %>
-<%# </p> %>
-
-<%#= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
-
-
-<h1>trasto</h1>
-
-<p>Hi <%= @user.account_name %>,</p>
+<h1>ゲストハウス口コミサイト"trasto"です</h1>
 
 <p>
-Welcome to the trasto! Click on the link below to activate your account:
+  <%= @user.display_name %>様,<br> 
+  ゲストハウス口コミサイト"trasto"へようこそ！
+</p>
+
+<p>
+  現在、仮登録中です。<br>
+  ユーザー登録完了のため、お手数ですが下記のリンクからアカウントの有効化をお願いします。
 </p>
 
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>

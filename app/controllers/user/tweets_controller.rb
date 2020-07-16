@@ -8,8 +8,28 @@ class User::TweetsController < ApplicationController
       flash[:success] = "ツブヤキしました!"
       redirect_to tweets_url
     else
-      flash[:warning] = "ツブヤキに失敗しました"
-      redirect_to tweets_url
+      flash.now[:warning] = "ツブヤキに失敗しました、140文字以内でツブヤキをしてください。"
+      @tweets = Tweet.all.page(params[:page]).per(20)
+      @user = current_user
+      @currentUserEntry=Entry.where(user_id: current_user.id)
+      @userEntry=Entry.where(user_id: @user.id)
+      if @user.id == current_user.id
+      else
+        @currentUserEntry.each do |cu|
+          @userEntry.each do |u|
+            if cu.room_id == u.room_id then
+              @isRoom = true
+              @roomId = cu.room_id
+            end
+          end
+        end
+        if @isRoom
+        else
+          @room = Room.new
+          @entry = Entry.new
+        end
+      end
+      render action: :index
     end
   end
 
@@ -22,7 +42,7 @@ class User::TweetsController < ApplicationController
 
   def index
     @tweet = Tweet.new
-    @tweets = Tweet.all.first(20)
+    @tweets = Tweet.all.page(params[:page]).per(20)
     @user = current_user
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
@@ -46,7 +66,7 @@ class User::TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
-    @tweet_comments = @tweet.tweet_comments.all
+    @tweet_comments = @tweet.tweet_comments.all.page(params[:page]).per(20)
     @tweet_comment = TweetComment.new
     @user = @tweet.user
     @currentUserEntry=Entry.where(user_id: current_user.id)
