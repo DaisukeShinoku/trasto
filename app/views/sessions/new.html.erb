@@ -11,11 +11,17 @@
                       <form>
                         <div class="field">
                           <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :email, "メールアドレス", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
                             <%= f.email_field :email, class: "input is-large", type: "email", placeholder: "メールアドレス", autofocus: "" %>
                           </div>
                         </div>
                         <div class="field">
                           <div class="control">
+                            <div class="has-text-left" >
+                              <%= f.label :password, "パスワード", {class: 'is-size-6 has-text-grey'} %>
+                            </div>
                             <%= f.password_field :password, class: "input is-large", type: "password", placeholder: "パスワード" %>
                             <div class="has-text-left">
                             <%= link_to "(パスワードを忘れた方はこちらをクリック)", new_password_reset_path, class: "has-text-weight-bold is-size-6" %>
@@ -28,7 +34,7 @@
                             次回から自動でログインする</p>
                           <% end %>
                         </div>
-                        <%= f.submit "ログイン", class: "button is-block is-info is-large is-fullwidth"%>
+                        <%= f.submit "Login", class: "button is-block is-info is-large is-fullwidth"%>
                       </form>
                       <div class="has-text-right">
                         <%= link_to ' >>ユーザー登録はこちらから ', signup_path, class: "has-text-weight-bold is-size-5" %>
