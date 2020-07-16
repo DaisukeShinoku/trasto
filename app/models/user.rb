@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 50 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :introduction, length: {maximum: 140}
 
   has_many :house_comments, dependent: :destroy
   has_many :stories, dependent: :destroy
