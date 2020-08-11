@@ -21,7 +21,7 @@ import "@fortawesome/fontawesome-free/js/all";
 // const imagePath = (name) => images(name, true)
 
 $(function() {
-  $('.slide-a').slick({
+  $('.slide-parent').slick({
       dots: true,
       autoplay: true,
       autoplaySpeed: 4000,

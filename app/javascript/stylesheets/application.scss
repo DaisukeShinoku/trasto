@@ -5,13 +5,11 @@
 
 .login-hero{
   background-image: image-url("/images/beach.jpg");
-  // background-image: image-url("musubiya-moai4.jpg'");
   background-size: cover;
 }
 
 .signup-hero{
   background-image: image-url("/images/hateroad2.jpg");
-  // background-image: image-url("musubiya-moai4.jpg'");
   background-size: cover;
 }
 
@@ -92,26 +90,7 @@
 
 .btn-ignore{
   pointer-events: none;
-} 
-
-// #message-container {
-//   max-width: 768px;
-//   margin: 0 auto;
-//   padding: 1rem 1rem 1rem 1rem;
-// }
-
-// メッセージ投稿フォーム
-// roomfooter {
-//   max-width: 768px;
-  // padding: 1rem;
-//   margin: 0 auto;
-// }
-
-// .footerforroom{
-//   background-color:rgb(54,54,54);
-//   padding-top: 1rem;
-//   // padding-bottom: 15rem;
-// }
+}
 
 .message-box{
   padding:0.5rem;
@@ -122,21 +101,11 @@
   resize: none;
 }
 
-.slide-c{
-  height: 440px;
-  width :100%;
-}
-
-.slide-d{
-  height: 202px;
-  width :100%;
-}
-
 .story-card{
   margin-bottom: 1rem;
 }
 
-.slide-e{
+.slide-grandchild{
   width :100%;
 }
 
