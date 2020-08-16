@@ -8,8 +8,8 @@
 (4月15日学習開始 / 7月15日公開)
 
 <br>
-サイトへはこちらから(https://untrasto.net/)
 
+サイトへはこちらから(https://untrasto.net/)
 
 <br>
 
