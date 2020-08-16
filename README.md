@@ -1,16 +1,13 @@
 <img width="1424" alt="trasto_top" src="https://user-images.githubusercontent.com/62245694/90328565-3d253500-dfd8-11ea-884d-a7cc25f13e58.png">
 
 # trasto
-### あなただけのゲストハウスの物語を語ろう
+## あなただけのゲストハウスの物語を語ろう
 
 ご覧いただきありがとうございます。
 こちらは就職活動のためポートフォリオとして作成したSNS Web アプリケーションです。
 (4月15日学習開始 / 7月15日公開)
-
 <br>
-
 サイトへはこちらから(https://untrasto.net/)
-
 <br>
 
 "travel story"、略してtrasto。このtrastoという言葉はスペイン語で「役に立たないオンボロ」という意味。
@@ -19,10 +16,7 @@
 ## なぜtrastoを作ったか
 
 trastoは全国のゲストハウスに関する情報共有や、ゲストハウス好きのユーザー同士の交流を目的としたSNSサイトです。
-あなたは旅先でゲストハウスに泊まったことはありますか？
-ゲストハウスはただの安宿ではありません。それぞれに特色があり、それぞれのゲストハウスでしか得ることのできない体験があります。
-これらの情報は今までは書籍や、個人のブログ、Google Mapへのコメントなどからしか得ることができず、統合されたプラットフォームは存在していませんでした。
-「もっとたくさんの人にゲストハウスの魅力を知ってほしい。もっと手軽にゲストハウスのことを知ってもらえる情報源があったらいいな。」そのような思いからtrastoは生まれました。
+現状、国内ゲストハウスの情報まとめサイトはいくつかありますが、SNS形式のものは存在しません。ユーザーと一緒に作っていくサイトがあれば、よりリアルなゲストハウス情報を発信できると考えました。
 
 ## 技術面
 ### 言語・環境等
@@ -42,23 +36,23 @@ trastoは全国のゲストハウスに関する情報共有や、ゲストハ�
 - kaminari(ページネーション)
 - carrierwave(画像投稿機能)
 
-### 重点的に実装した技術
+## スクリーンショット
 
-- ログイン機能(Devise等のライブラリは不使用)
+### ログイン機能(Devise等のライブラリは不使用)
 
 ![traso_login](https://user-images.githubusercontent.com/62245694/90328415-3c3fd380-dfd7-11ea-8f32-eb2188b49915.jpeg)
 
-- ActionMailerを利用したメール認証およびパスワードリセット
+### ActionMailerを利用したメール認証およびパスワードリセット
 
 ![traso_mailer1](https://user-images.githubusercontent.com/62245694/90327954-6a231900-dfd3-11ea-9c38-bcc876ab1aa3.jpeg)
 
 
-- ActionCableを利用したチャット機能
+### ActionCableを利用したチャット機能
 
 ![trasto-ac](https://user-images.githubusercontent.com/62245694/90326172-24108a00-dfc0-11ea-995e-6d93948c5876.gif)
 
 
-- ルーティングをネストし、各ゲストハウス別に記事を投稿できる設計で実装
+### ルーティングをネストし、各ゲストハウス別に記事を投稿できる設計で実装
 
 ![traso_vs](https://user-images.githubusercontent.com/62245694/90331496-cf850300-dfef-11ea-9fca-9ddbdd9942ce.gif)
 
@@ -74,18 +68,12 @@ https://drive.google.com/file/d/17yoAxT9jRp7GEhbl4oK1InPRb3PNv0Ma/view?usp=shari
 
 https://drive.google.com/file/d/17e0RIeYr3ggOAGpvfDQd_bw7hTbPTF5c/view?usp=sharing
 
-### アプリケーション詳細設計
 
-https://drive.google.com/file/d/14TwSX4paQjc2i_sKvJU4T4JvkpGy8Sjh/view?usp=sharing
+### AWS構成図
 
-### UIフロー
+https://drive.google.com/file/d/1MDeD-qkmzydp4pAmdhA25vLG1ALfYuJr/view?usp=sharing
 
-https://drive.google.com/file/d/1ar0s2OQ3lJ9snnRYmI6ZYhjiLtKQZHfv/view?usp=sharing
 
-### ワイヤーフレーム
+### インフラ設計書
 
-https://drive.google.com/file/d/183jRX328wrRc8NRxN_iW6Z8nvan13XLf/view?usp=sharing
-
-### 機能一覧
-
-https://docs.google.com/spreadsheets/d/189dJTlmK8Zm1sxLN4mIa5wTC9Z3ABPJg00Rdkbz00sY/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1B1NsL9f-jmT4NVkCj3DBUas4q3a50uTT5yyk2P7ZnOc/edit?usp=sharing
