@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get '/about',   to: 'homes#about'
+  get '/term',   to: 'homes#term'
+  get '/privacy',   to: 'homes#privacy'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   post '/guest_sign_in', to: 'sessions#new_guest'
