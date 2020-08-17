@@ -68,7 +68,7 @@ $(function(){
 
 });
 
-$(document).ready(function() {
+$(document).on('turbolinks:load',function() {
 
   // Check for click events on the navbar burger icon
   $(".navbar-burger").click(function() {
@@ -77,5 +77,15 @@ $(document).ready(function() {
       $(".navbar-burger").toggleClass("is-active");
       $(".navbar-menu").toggleClass("is-active");
 
+  });
+});
+
+$(document).on('turbolinks:load',function(){
+  $(".openBtn").click(function(){
+    $($(this).nextAll(".hidden-set")).animate(
+      {height: "toggle", opacity: "toggle"},
+
+      "nomal"
+    );
   });
 });

@@ -1,0 +1,39 @@
+      <div class="columns is-multiline is-hidden-desktop">
+          <% stories.each do |story| %>
+            <div class="column is-full">
+              <div class="box">
+                <article class="media">
+                  <div class="media-left">
+                    <%= link_to house_story_path(story.house, story), data: {"turbolinks" => false} do %>
+                      <% if story.story_image? %>
+                        <%= image_tag story.story_image.first.url %>
+                      <% else %>
+                        <%= image_tag 'noimage_first.png' %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <%= link_to house_story_path(story.house, story), data: {"turbolinks" => false} do %>
+                        <strong><%= story.title %></strong><br>
+                        <% end %>
+                        <small><%= l story.visit_date, format: '%Y年%-m月%-d日' %>のストーリー</small><br>
+                          <div class="has-text-right">
+                            <%= link_to user_path(story.user_id) do %>
+                                <% if story.user.avatar? %>
+                                  <%= image_tag story.user.avatar.xs.url, :class => "round_icon" %><br>
+                                <% else %>
+                                  <%= image_tag 'noimage_xs.png', :class => "round_icon"%><br>
+                                <% end %>
+                                <small>@<%= story.user.account_name %></small>
+                            <% end %>
+                          </div>
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          <% end %>
+      </div>

@@ -5,10 +5,13 @@
   <%= render 'shared/flash' %>
 
   <div class="columns is-full">
-    <div class="column is-3">
+    <div class="column is-3 is-hidden-touch">
       <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
     <div class="column is-9">
+
+    <%= render 'shared/user_mobile', user: @user %>
+    
       <div class="columns is-multiline">
         <div class="column is-full">
           <p class="has-text-weight-bold is-size-6"><%= @user.display_name %>のツブヤキ</p>

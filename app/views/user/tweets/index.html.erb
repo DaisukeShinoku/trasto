@@ -5,7 +5,7 @@
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
-    <div class="column is-3">
+    <div class="column is-3 is-hidden-touch">
       <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
     <div class="column is-9">

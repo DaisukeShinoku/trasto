@@ -10,7 +10,7 @@
   <%= render 'shared/flash' %>
 
     <div class="columns is-full">
-      <div class="column is-3 is-hidden-mobile">
+      <div class="column is-3 is-hidden-touch">
         <%= render 'shared/search_sidebar', {categories: @categories, house_areas: @house_areas} %>
       </div>
       <div class="column is-9">
@@ -59,6 +59,7 @@
           </div>
           <div class="column is-full">
             <%= render 'user/stories/index', {stories: @stories} %>
+            <%= render 'user/stories/index_mobile', {stories: @stories} %>
           </div>
           <div class="column is-full has-text-right">
             <%= link_to houses_path do %>

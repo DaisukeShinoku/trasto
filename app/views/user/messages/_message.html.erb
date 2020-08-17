@@ -1,13 +1,13 @@
 <div class="message" id="message-<%= message.id %>">
 
 
-            <div class="box message-box">
+            <div class="box message-box is-hidden-touch">
               <article class="media has-background-white">
                 <div class="media-left">
                   <% if message.user.avatar? %>
-                    <%= image_tag message.user.avatar.xs.url %>
+                    <%= image_tag message.user.avatar.xs.url, :class => "round_icon" %>
                   <% else %>
-                    <%= image_tag 'noimage_xs.png' %>
+                    <%= image_tag 'noimage_xs.png', :class => "round_icon" %>
                   <% end %>
                   <div class="is-divider"></div>
                   <small>@<%= message.user.account_name %></small>
@@ -19,6 +19,29 @@
                 </div>
                 <div class="media-right">
                   <small><%= l message.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                </div>
+              </article>
+            </div>
+
+
+            <div class="box message-box is-hidden-desktop">
+              <article class="media has-background-white">
+                <div class="media-left">
+                  <% if message.user.avatar? %>
+                    <%= image_tag message.user.avatar.xs.url, :class => "round_icon" %>
+                  <% else %>
+                    <%= image_tag 'noimage_xs.png', :class => "round_icon" %>
+                  <% end %>
+                  <div class="is-divider"></div>
+                  <small>@<%= message.user.account_name %></small>
+                </div>
+                <div class="media-content">
+                  <div class="content">
+                    <%= sanitize(simple_format(h message.content), :tags => %w(p br)) %>
+                  </div><br>
+                  <div class="has-text-right">
+                  <small><%= l message.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                  </div>
                 </div>
               </article>
             </div>

@@ -1,7 +1,7 @@
       <aside class="menu has-background-white" >
-      <table class="table">
-        <tr>
-          <td>
+      <table class="table" style="border:none;">
+        <tr style="border:none;">
+          <td style="border:none;">
             <div class="columns is-multiline">
               <div class="column is-10">
                 <%= link_to user_path(user) do %>
@@ -23,11 +23,11 @@
         <%# <tr> %>
           <!-- <td><p class="has-text-weight-bold is-size-6 has-text-centered"><%= user.display_name %>のプロフィール</p></td> -->
         <%# </tr> %>
-        <tr>
-          <td><%= sanitize(simple_format(user.introduction), :tags => %w(p br)) %></td>
+        <tr style="border:none;">
+          <td style="border:none;"><%= sanitize(simple_format(user.introduction), :tags => %w(p br)) %></td>
         </tr>
-        <tr>
-          <td>
+        <tr style="border:none;">
+          <td style="border:none;">
             <% if user.avatar? %>
               <%= image_tag user.avatar.medium.url %>
             <% else %>
@@ -35,20 +35,20 @@
             <% end %>
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr style="border:none;">
+          <td style="border:none;">
             <%= render 'user/relationships/stats', user: user %>
           </td>
         </tr>
         <% if user.id == current_user.id %>
         <% else %>
-        <tr>
-          <td>
+        <tr style="border:none;">
+          <td style="border:none;">
             <%= render 'user/relationships/follow_form', user: user %>
           </td>
         </tr>
-        <tr>
-          <td>
+        <tr style="border:none;">
+          <td style="border:none;">
             <% if isRoom == true %>
               <%= link_to "メッセージを送る", "/rooms/#{roomId}", class: 'button is-success' , data: {"turbolinks" => false} %>
             <% else %>
@@ -59,20 +59,20 @@
                 <%= f.submit "チャットを始める", class: 'button is-success', data: {"turbolinks" => false} %>
               <% end %>
             <% end %>
-          <td>
+          </td>
         </tr>
         <% end %>
-        <tr>
-          <td><%= link_to "お気に入りゲストハウス", bookmark_user_path(user.id), class: 'button is-warning is-light'%></td>
+        <tr style="border:none;">
+          <td style="border:none;"><%= link_to "お気に入りゲストハウス", bookmark_user_path(user.id), class: 'button is-warning is-light'%></td>
         </tr>
-        <tr>
-          <td><%= link_to "行きたいゲストハウス", to_go_list_user_path(user.id), class: 'button is-warning is-light'%></td>
+        <tr style="border:none;">
+          <td style="border:none;"><%= link_to "行きたいゲストハウス", to_go_list_user_path(user.id), class: 'button is-warning is-light'%></td>
         </tr>
-        <tr>
-          <td><%= link_to "お気に入りストーリー", story_bookmark_user_path(user.id), class: 'button is-warning is-light'%></td>
+        <tr style="border:none;">
+          <td style="border:none;"><%= link_to "お気に入りストーリー", story_bookmark_user_path(user.id), class: 'button is-warning is-light'%></td>
         </tr>
-        <tr>
-          <td><%= link_to "「いいね」したツブヤキ", favorite_user_path(user.id), class: 'button is-warning is-light'%></td>
+        <tr style="border:none;">
+          <td style="border:none;"><%= link_to "「いいね」したツブヤキ", favorite_user_path(user.id), class: 'button is-warning is-light'%></td>
         </tr>
       </table>
       </aside>

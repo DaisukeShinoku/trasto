@@ -1,0 +1,20 @@
+          <div class="columns is-multiline is-mobile is-hidden-desktop">
+              <div class="column is-8">
+                <figure class="image">
+                  <% if house.house_image? %>
+                    <%= image_tag house.house_image.second.url %><br>
+                  <% else %>
+                    <%= image_tag 'noimage_second.png' %><br>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="column is-4">
+                <%= link_to house_path(house) do %>
+                  <strong><%= house.name %></strong><br>
+                <% end %>
+                <br>
+                <small><%= house.prefecture.name %></small>
+                <br>
+                <small><%= house.house_comments.count %>件のストーリー</small>
+              </div>
+          </div>
