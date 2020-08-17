@@ -5,12 +5,15 @@
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
-    <div class="column is-3">
+    <div class="column is-3 is-hidden-touch">
     <div class="is-divider"></div>
     <br>
       <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
     <div class="column is-9">
+
+    <%= render 'shared/user_mobile', user: @user %>
+    
       <p class="has-text-weight-bold is-size-6"><%= @user.display_name %>の<%= @title %></p>
       <div class="is-divider"></div>
       <br>

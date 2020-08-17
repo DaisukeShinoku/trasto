@@ -4,13 +4,16 @@
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
-    <div class="column is-3 has-background-info-light">
+    <div class="column is-3 is-hidden-touch">
       <%= render 'shared/house_sidebar', house: @house %>
     </div>
     <div class="column is-9">
       <div class="container has-text-left">
         <div class="is-divider"></div>
         <br>
+
+          <%= render 'shared/house_mobile', house: @house %>
+
         <h3 class="title has-text-grey">ストーリーを投稿</h3>
         <%= render 'shared/error_message', model: @story %>
         <%= form_for(shallow_args(@house, @story), url:house_stories_path )do |f| %>

@@ -1,4 +1,4 @@
-      <aside class="menu has-background-white">
+      <aside class="menu has-background-white is-hidden-touch">
         <ul class="menu-list has-text-centered">
           <%= link_to "ゲストハウスをさがす", houses_path, class: "has-text-weight-bold" %>
         </ul>
@@ -15,6 +15,29 @@
           エリアで探す
         </p>
         <ul class="menu-list">
+        <% house_areas.each do |house_area| %>
+          <li><%= link_to house_area.name, houses_path(house_area_id: house_area.id) %></li>
+        <% end %>
+        </ul>
+      </aside>
+
+      <aside class="menu has-background-white is-hidden-desktop">
+        <ul class="menu-list has-text-centered has-text-weight-bold openBtn">
+        <i class="fa fa-chevron-down faColor">　</i>ゲストハウスをさがす
+        </ul>
+        <p class="menu-label hidden-set">
+          カテゴリーから探す
+        </p>
+        <ul class="menu-list hidden-set">
+          <% categories.each do |category| %>
+            <li><%= link_to category.name, houses_path(category_id: category.id) %></li>
+          <% end %>
+            <li><%= link_to "他のカテゴリで探す", categories_path, class: "has-text-right" %></li>
+        </ul>
+        <p class="menu-label hidden-set">
+          エリアで探す
+        </p>
+        <ul class="menu-list hidden-set">
         <% house_areas.each do |house_area| %>
           <li><%= link_to house_area.name, houses_path(house_area_id: house_area.id) %></li>
         <% end %>

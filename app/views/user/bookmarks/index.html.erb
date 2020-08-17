@@ -5,10 +5,13 @@
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
-    <div class="column is-3">
+    <div class="column is-3 is-hidden-touch">
       <%= render 'shared/user_sidebar', {user: @user, isRoom: @isRoom, roomId: @roomId, room:@room, entry:@entry} %>
     </div>
     <div class="column is-9">
+
+    <%= render 'shared/user_mobile', user: @user %>
+
       <% if @user.bookmarks.present? %>
         <h1><strong><%= @user.display_name%>のお気に入りのゲストハウス一覧</strong></h1><br>
         <div class="columns is-multiline">

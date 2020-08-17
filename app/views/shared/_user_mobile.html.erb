@@ -1,0 +1,17 @@
+          <div class="columns is-multiline is-mobile is-hidden-desktop">
+              <div class="column is-8">
+                <figure class="image">
+                  <% if user.avatar? %>
+                    <%= image_tag user.avatar.medium.url %><br>
+                  <% else %>
+                    <%= image_tag 'noimage_second.png' %><br>
+                  <% end %>
+                </figure>
+              </div>
+              <div class="column is-4">
+                <%= link_to user_path(user) do %>
+                  <strong><%= user.display_name %></strong><br>
+                  <small>@<%= user.account_name %></small>
+                <% end %>
+              </div>
+          </div>

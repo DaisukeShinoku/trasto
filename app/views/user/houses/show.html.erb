@@ -5,7 +5,7 @@
 <%= render 'shared/flash' %>
 
   <div class="columns is-full">
-    <div class="column is-3">
+    <div class="column is-3 is-hidden-touch">
       <%= render 'shared/search_sidebar', {categories: @categories, house_areas: @house_areas} %>
     </div>
     <div class="column is-9">
@@ -68,7 +68,7 @@
             <div><%= link_to 'この宿に投稿されたストーリーを読む', house_stories_path(@house), class: 'button is-info' %></div><br>
       </div>
 
-            <div class="box has-background-white">
+            <div class="box has-background-white is-hidden-touch">
               <% @house_comments.each do |house_comment| %>
                 <article class="media has-background-white">
                   <div class="media-left">
@@ -126,7 +126,66 @@
                 <p class="has-text-right">>>>応援コメントをもっと読む（全<%= @house.house_comments.count %>件）</p>
               <% end %>
             </div>
-      
+
+            <div class="box has-background-white is-hidden-desktop">
+              <% @house_comments.each do |house_comment| %>
+                <article class="media has-background-white">
+                  <div class="media-left">
+                    <% if house_comment.user.avatar? %>
+                      <%= image_tag house_comment.user.avatar.xs.url %><br>
+                    <% else %>
+                      <%= image_tag 'noimage_xs.png' %><br>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>
+                        <strong><%= link_to house_comment.user.display_name, house_comment.user %></strong>
+                        <small>@<%= house_comment.user.account_name %></small>
+                        <small>
+                          <% if current_user?(house_comment.user) %>
+                            <%= link_to "delete", house_house_comment_path(@house, house_comment), method: :delete, data: { confirm: "本当に削除しますか?" } %>
+                          <% end %>
+                        </small>
+                        <br>
+                        <small><%= l house_comment.created_at, format: '%Y年%-m月%-d日 %H:%M' %></small>
+                        <br>
+                        <%= sanitize(simple_format(house_comment.content), :tags => %w(p br)) %>
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              <% end %>
+              <% if logged_in? %>
+                <div class="is-divider"></div>
+                <br>
+                <h1><%= @house.name %>に応援コメントを投稿しよう！</h1>
+                <article class="media">
+                  <div class="media-left">
+                    <% if current_user.avatar? %>
+                      <%= image_tag current_user.avatar.xs.url %><br>
+                    <% else %>
+                      <%= image_tag 'noimage_xs.png' %><br>
+                    <% end %>
+                  </div>
+                  <div class="media-content">
+                    <%#= form_for(shallow_args(@house, @house_comment), url: house_comments_path)do |f| %>
+                    <%= form_for(@house_comment, url:house_comments_path) do |f| %>
+                      <%= render 'shared/flash' %>
+                      <div class="field">
+                        <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "#{@house.name}を応援しよう...", autofocus: "" %>
+                      </div>
+                      <%= f.submit "応援！", class: "button is-primary" %>
+                    <% end %>
+                  </div>
+                </article>
+              <% end %>
+              <%= link_to house_comments_path(@house) do %>
+                <p class="has-text-right">>>>応援コメントをもっと読む（全<%= @house.house_comments.count %>件）</p>
+              <% end %>
+            </div>
+
+
     </div>
   </div>
 </div>
