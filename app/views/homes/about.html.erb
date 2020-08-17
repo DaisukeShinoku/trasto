@@ -1,39 +1,64 @@
 <% if logged_in? %>
 
-
 <%= render 'layouts/header' %>
-
-    <section class="hero is-fullheight">
-      <div class="hero-body login-hero has-background-primary-light">
-        <div class="container">
-          <div class="column is-12">
-            <%= render 'shared/flash' %>
-            <div class="has-text-grey has-text-weight-bold is-size-1">本ページはただいま編集中です</div>
-            <br>
-            <div class="has-text-grey has-text-weight-bold is-size-1">公開までしばらく待ちください</div>
-            <br>
-            <%= link_to ' トップページへ戻る ', root_path, data: {"turbolinks" => false}, class: "has-text-right has-text-weight-bold is-size-1" %>
-          </div>
-        </div>
-      </div>
-    </section>
-
-<%= render 'layouts/footer' %>
 
 <% else %>
 
 <%= render 'layouts/header_top' %>
 
-    <section class="hero is-fullheight">
+<% end %>
+
+    <section class="hero is-medium">
       <div class="hero-body login-hero has-background-primary-light">
         <div class="container">
           <div class="column is-12">
             <%= render 'shared/flash' %>
-            <div class="has-text-grey has-text-weight-bold is-size-1">本ページはただいま編集中です</div>
-            <br>
-            <div class="has-text-grey has-text-weight-bold is-size-1">公開までしばらく待ちください</div>
-            <br>
-            <%= link_to ' トップページへ戻る ', root_path, data: {"turbolinks" => false}, class: "has-text-right has-text-weight-bold is-size-1" %>
+          </div>
+          <div class="columns is-multiline">
+            <div class="column is-12 has-vertically-aligned-content">
+              <p class="is-larger is-size-3">
+                What's trasto ??
+              </p>
+              <br>
+              <p>
+                ゲストハウス好きのユーザー同士の交流・情報交換を目的としたSNSサイトです。<br>
+                ゲストハウスに応援コメントを残したり、写真や文章と一緒にゲストハウスで体験したストーリーを投稿することができます。<br>
+                他の人の投稿を読んだり、コメントすることで新しいゲストハウスとの出会いが広がります。メッセージ機能を用いて詳しく情報交換をすることもできます。<br>
+                trastoは2020年7月にオープンしたばかりです。今はまだ真っ白なページにあなただけの物語を描いてみませんか？
+              </p>
+              <br>
+              <p class="is-larger is-size-3">
+                そもそもゲストハウスって ??
+              </p>
+              <br>
+              <p>
+                ゲストハウスはアメニティサービスを提供しない、素泊まり宿のことです。<br>
+                相部屋を用意していることが多く、ホテルや旅館と比べて格安で泊まることができる点も魅力のひとつと言えるでしょう。<br>
+                そして、何と言っても最大の魅力は、共有リビングなど他者との繋がりを重視した共用空間を設けており、そこで旅人同士の交流が生まれることでしょう。<br>
+                これは、プライベート性を重視したホテルや旅館とは明らかに異なっており、特徴・魅力のあるゲストハウスには、それに惹かれるように魅力的な旅人が集まります。<br>
+                さあ、trastoであなたにピッタリのゲストハウスを見つけて旅に出ましょう!!
+              </p>
+              <br>
+              <p class="is-larger is-size-3">
+                trastoの使い方
+              </p>
+              <br>
+              <p>
+              ゲストハウスの基本情報や、trastoユーザーが書いた投稿記事は誰でも見ることができます。<br>
+              会員登録をしていただくことで、下記の機能をご利用いただけます。<br>
+                - 各ゲストハウスでの思い出を綴る記事（ストーリー）を投稿する。<br>
+                - 他のユーザーが投稿したストーリーにコメントする。<br>
+                - ゲストハウスへの応援メッセージを残す。<br>
+                - 他のユーザーの情報を見る。<br>
+                - 他のユーザーにメッセージを送る。<br>
+                - 旅に関するちょっとした投稿（ツブヤキ）の機能を使うことができる。<br>
+              是非、会員登録をしてtrastoを最大限楽しんでください。
+              </p>
+              <br>
+              <div class="has-text-left">
+                <%= link_to ' >>会員登録はこちらから ', signup_path, class: "has-text-right has-text-grey-light" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -41,4 +66,6 @@
 
 <%= render 'layouts/footer_top' %>
 
-<% end %>
+        <div id="back-to-top" style="position:fixed;right:25px;bottom:5px">
+          <a href="#"><i class="fas fa-arrow-alt-circle-up fa-3x"></i></a>
+        </div>
