@@ -87,7 +87,7 @@
                   <%= render 'shared/flash' %>
                   <%= form_for(@story_comment, url:house_story_comments_path) do |f| %>
                     <div class="field">
-                      <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "コメントしよう...", autofocus: "" %>
+                      <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "コメントしよう..." %>
                     </div>
                     <%= f.submit "コメント", class: "button is-primary" %>
                   <% end %>

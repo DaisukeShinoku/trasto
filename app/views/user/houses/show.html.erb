@@ -115,7 +115,7 @@
                     <%= form_for(@house_comment, url:house_comments_path) do |f| %>
                       <%= render 'shared/flash' %>
                       <div class="field">
-                        <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "#{@house.name}を応援しよう...", autofocus: "" %>
+                        <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "#{@house.name}を応援しよう..." %>
                       </div>
                       <%= f.submit "応援！", class: "button is-primary" %>
                     <% end %>
@@ -173,7 +173,7 @@
                     <%= form_for(@house_comment, url:house_comments_path) do |f| %>
                       <%= render 'shared/flash' %>
                       <div class="field">
-                        <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "#{@house.name}を応援しよう...", autofocus: "" %>
+                        <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "#{@house.name}を応援しよう..." %>
                       </div>
                       <%= f.submit "応援！", class: "button is-primary" %>
                     <% end %>
