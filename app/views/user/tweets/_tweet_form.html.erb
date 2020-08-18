@@ -3,7 +3,7 @@
                       <%= form_for(@tweet) do |f| %>
                         <div class="field">
                           <div class="control">
-                            <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "旅についてつぶやこう...", autofocus: "" %>
+                            <%= f.text_area :content, class: "textarea is-midium", type: "text", placeholder: "旅についてつぶやこう..." %>
                               <%= f.label :tweet_picture, "画像を選択" do %>
                                 <p class="is-size-6 has-text-grey has-text-left">画像をつけてツブヤキ<i class="fa fa-image" aria-hidden="true"></i></p>
                                 <%= f.file_field :tweet_picture, class: "avatar-form" %>

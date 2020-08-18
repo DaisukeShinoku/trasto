@@ -121,7 +121,7 @@
                   <%= render 'shared/flash' %>
                   <%= form_for(shallow_args(@tweet, @tweet_comment), url:tweet_comments_path )do |f| %>
                     <div class="field">
-                      <%= f.text_area :content, class: "textarea is-midium is-info", type: "text", placeholder: "ツブヤキにコメントしよう...", autofocus: "" %>
+                      <%= f.text_area :content, class: "textarea is-midium is-info", type: "text", placeholder: "ツブヤキにコメントしよう..." %>
                     </div>
                     <%= f.submit "Post", class: "button is-primary" %>
                   <% end %>
