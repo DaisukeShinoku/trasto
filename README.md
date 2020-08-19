@@ -71,9 +71,4 @@ https://drive.google.com/file/d/17e0RIeYr3ggOAGpvfDQd_bw7hTbPTF5c/view?usp=shari
 
 ### AWS構成図
 
-https://drive.google.com/file/d/1MDeD-qkmzydp4pAmdhA25vLG1ALfYuJr/view?usp=sharing
-
-
-### インフラ設計書
-
-https://docs.google.com/spreadsheets/d/1B1NsL9f-jmT4NVkCj3DBUas4q3a50uTT5yyk2P7ZnOc/edit?usp=sharing
+https://drive.google.com/file/d/15VwWOM_ZZPEgXyYfzKHKTM1296OidGTl/view?usp=sharing
